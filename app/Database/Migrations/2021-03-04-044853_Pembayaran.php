@@ -24,11 +24,11 @@ class Pembayaran extends Migration
 			],
 			'bulan_dibayar' => [
 				'type' => 'VARCHAR',
-				'constraint' => 8,
+				'constraint' => 9,
 			],
 			'tahun_dibayar' => [
 				'type' => 'VARCHAR',
-				'constraint' => 4,
+				'constraint' => 9,
 			],
 			'id_spp' => [
 				'type' => 'INT',

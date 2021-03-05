@@ -18,8 +18,7 @@ class Kelas extends Migration
 				'constraint' => 10,
 			],
 			'kompetensi_keahlian' => [
-				'type' => 'VARCHAR',
-				'constraint' => 50,
+				'type' => 'INT',
 			],
 		]);
 		$this->forge->addKey('id_kelas', true);

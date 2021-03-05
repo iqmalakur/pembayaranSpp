@@ -27,7 +27,7 @@ class Pembayaran extends Migration
 				'constraint' => 9,
 			],
 			'tahun_dibayar' => [
-				'type' => 'VARCHAR',
+				'type' => 'CHAR',
 				'constraint' => 9,
 			],
 			'id_spp' => [

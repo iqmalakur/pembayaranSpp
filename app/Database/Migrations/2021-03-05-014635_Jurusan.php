@@ -17,6 +17,10 @@ class Jurusan extends Migration
 				'type' => 'VARCHAR',
 				'constraint' => 50,
 			],
+			'alias' => [
+				'type' => 'VARCHAR',
+				'constraint' => 5,
+			],
 		]);
 		$this->forge->addKey('id_jurusan', true);
 		$this->forge->createTable('jurusan');

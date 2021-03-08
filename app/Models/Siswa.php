@@ -7,14 +7,17 @@ use CodeIgniter\Model;
 class Siswa extends Model
 {
 	protected $DBGroup              = 'default';
-	protected $table                = 'siswas';
-	protected $primaryKey           = 'id';
-	protected $useAutoIncrement     = true;
+	protected $table                = 'siswa';
+	protected $primaryKey           = 'nisn';
+	protected $useAutoIncrement     = false;
 	protected $insertID             = 0;
-	protected $returnType           = 'array';
+	protected $returnType           = 'object';
 	protected $useSoftDelete        = false;
 	protected $protectFields        = true;
-	protected $allowedFields        = [];
+	protected $allowedFields        = ['nisn', 'nis', 'nama',
+									   'id_kelas', 'alamat', 'no_telp',
+									   'id_spp'
+									];
 
 	// Dates
 	protected $useTimestamps        = false;

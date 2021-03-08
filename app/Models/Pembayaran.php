@@ -7,17 +7,20 @@ use CodeIgniter\Model;
 class Pembayaran extends Model
 {
 	protected $DBGroup              = 'default';
-	protected $table                = 'pembayarans';
-	protected $primaryKey           = 'id';
+	protected $table                = 'pembayaran';
+	protected $primaryKey           = 'id_pembayaran';
 	protected $useAutoIncrement     = true;
 	protected $insertID             = 0;
-	protected $returnType           = 'array';
+	protected $returnType           = 'object';
 	protected $useSoftDelete        = false;
 	protected $protectFields        = true;
-	protected $allowedFields        = [];
+	protected $allowedFields        = ['id_petugas', 'nisn', 'tgl_bayar',
+									   'bulan_dibayar', 'tahun_dibayar',
+									   'id_spp', 'jumlah_bayar'
+									];
 
 	// Dates
-	protected $useTimestamps        = false;
+	protected $useTimestamps        = true;
 	protected $dateFormat           = 'datetime';
 	protected $createdField         = 'created_at';
 	protected $updatedField         = 'updated_at';

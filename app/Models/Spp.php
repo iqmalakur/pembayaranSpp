@@ -7,14 +7,14 @@ use CodeIgniter\Model;
 class Spp extends Model
 {
 	protected $DBGroup              = 'default';
-	protected $table                = 'spps';
-	protected $primaryKey           = 'id';
+	protected $table                = 'spp';
+	protected $primaryKey           = 'id_spp';
 	protected $useAutoIncrement     = true;
 	protected $insertID             = 0;
-	protected $returnType           = 'array';
+	protected $returnType           = 'object';
 	protected $useSoftDelete        = false;
 	protected $protectFields        = true;
-	protected $allowedFields        = [];
+	protected $allowedFields        = ['kompetensi_keahlian', 'nominal'];
 
 	// Dates
 	protected $useTimestamps        = false;

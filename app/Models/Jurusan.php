@@ -7,14 +7,14 @@ use CodeIgniter\Model;
 class Jurusan extends Model
 {
 	protected $DBGroup              = 'default';
-	protected $table                = 'jurusans';
-	protected $primaryKey           = 'id';
+	protected $table                = 'jurusan';
+	protected $primaryKey           = 'id_jurusan';
 	protected $useAutoIncrement     = true;
 	protected $insertID             = 0;
-	protected $returnType           = 'array';
+	protected $returnType           = 'object';
 	protected $useSoftDelete        = false;
 	protected $protectFields        = true;
-	protected $allowedFields        = [];
+	protected $allowedFields        = ['nama_jurusan', 'alias'];
 
 	// Dates
 	protected $useTimestamps        = false;

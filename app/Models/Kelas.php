@@ -8,13 +8,13 @@ class Kelas extends Model
 {
 	protected $DBGroup              = 'default';
 	protected $table                = 'kelas';
-	protected $primaryKey           = 'id';
+	protected $primaryKey           = 'id_kelas';
 	protected $useAutoIncrement     = true;
 	protected $insertID             = 0;
-	protected $returnType           = 'array';
+	protected $returnType           = 'object';
 	protected $useSoftDelete        = false;
 	protected $protectFields        = true;
-	protected $allowedFields        = [];
+	protected $allowedFields        = ['nama_kelas', 'kompetensi_keahlian'];
 
 	// Dates
 	protected $useTimestamps        = false;

@@ -19,7 +19,7 @@ class Petugas extends Migration
 			],
 			'password' => [
 				'type' => 'VARCHAR',
-				'constraint' => 32,
+				'constraint' => 255,
 			],
 			'nama_petugas' => [
 				'type' => 'VARCHAR',

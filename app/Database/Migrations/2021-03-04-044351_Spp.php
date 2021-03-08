@@ -13,9 +13,8 @@ class Spp extends Migration
 				'type' => 'INT',
 				'auto_increment' => true,
 			],
-			'tahun_ajaran' => [
-				'type' => 'CHAR',
-				'constraint' => 9,
+			'kompetensi_keahlian' => [
+				'type' => 'INT',
 			],
 			'nominal' => [
 				'type' => 'INT',

@@ -11,7 +11,11 @@ class KelasSeeder extends Seeder
 		// Menyiapkan Data
 		$data = [
 			[
-				'nama_kelas' => 'X RPL 1',
+				'nama_kelas' => 'XI RPL 1',
+				'kompetensi_keahlian' => 1
+			],
+			[
+				'nama_kelas' => 'XII RPL 1',
 				'kompetensi_keahlian' => 1
 			],
 			[
@@ -19,36 +23,32 @@ class KelasSeeder extends Seeder
 				'kompetensi_keahlian' => 2
 			],
 			[
-				'nama_kelas' => 'XI MM 1',
-				'kompetensi_keahlian' => 3
-			],
-			[
-				'nama_kelas' => 'X RPL 2',
-				'kompetensi_keahlian' => 1
-			],
-			[
-				'nama_kelas' => 'XI RPL 1',
-				'kompetensi_keahlian' => 1
-			],
-			[
-				'nama_kelas' => 'XII TKJ 1',
+				'nama_kelas' => 'XI TKJ 1',
 				'kompetensi_keahlian' => 2
-			],
-			[
-				'nama_kelas' => 'XII RPL 1',
-				'kompetensi_keahlian' => 1
-			],
-			[
-				'nama_kelas' => 'XII TKJ 2',
-				'kompetensi_keahlian' => 2
-			],
-			[
-				'nama_kelas' => 'XI MM 2',
-				'kompetensi_keahlian' => 3
 			],
 			[
 				'nama_kelas' => 'X MM 1',
 				'kompetensi_keahlian' => 3
+			],
+			[
+				'nama_kelas' => 'XII MM 2',
+				'kompetensi_keahlian' => 3
+			],
+			[
+				'nama_kelas' => 'X SIJA 1',
+				'kompetensi_keahlian' => 4
+			],
+			[
+				'nama_kelas' => 'XI SIJA 1',
+				'kompetensi_keahlian' => 4
+			],
+			[
+				'nama_kelas' => 'X ANI 1',
+				'kompetensi_keahlian' => 5
+			],
+			[
+				'nama_kelas' => 'XI ANI 1',
+				'kompetensi_keahlian' => 5
 			],
 		];
 

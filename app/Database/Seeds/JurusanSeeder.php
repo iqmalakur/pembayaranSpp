@@ -23,12 +23,12 @@ class JurusanSeeder extends Seeder
 				'alias' => 'MM'
 			],
 			[
-				'nama_jurusan' => 'Akuntansi',
-				'alias' => 'AK'
+				'nama_jurusan' => 'Sistem Informatika Jaringan dan Aplikasi',
+				'alias' => 'SIJA'
 			],
 			[
-				'nama_jurusan' => 'Teknik Mesin',
-				'alias' => 'TM'
+				'nama_jurusan' => 'Animasi',
+				'alias' => 'ANI'
 			],
 		];
 

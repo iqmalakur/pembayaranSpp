@@ -8,6 +8,16 @@ class Auth extends BaseController
 {
 	public function index()
 	{
-		//
+		// Tampilan Login
+	}
+
+	public function login()
+	{
+		// Proses Login
+	}
+
+	public function logout()
+	{
+		// Proses Logout
 	}
 }

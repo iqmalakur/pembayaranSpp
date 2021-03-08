@@ -36,6 +36,14 @@ class Pembayaran extends Migration
 			'jumlah_bayar' => [
 				'type' => 'INT',
 			],
+			'created_at' => [
+				'type' => 'DATETIME',
+				'null' => TRUE,
+			],
+			'updated_at' => [
+				'type' => 'DATETIME',
+				'null' => TRUE,
+			],
 		]);
 		$this->forge->addKey('id_pembayaran', true);
 		$this->forge->createTable('pembayaran');

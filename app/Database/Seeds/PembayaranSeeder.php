@@ -3,11 +3,14 @@
 namespace App\Database\Seeds;
 
 use CodeIgniter\Database\Seeder;
+use CodeIgniter\I18n\Time;
 
 class PembayaranSeeder extends Seeder
 {
 	public function run()
 	{
+		$time = Time::today('America/Chicago', 'en_US');
+
 		// Menyiapkan Data
 		$data = [
 			[
@@ -18,6 +21,8 @@ class PembayaranSeeder extends Seeder
 				'tahun_dibayar' => '2018/2019',
 				'id_spp' => 3,
 				'jumlah_bayar' => 140000,
+				'created_at' => $time,
+				'updated_at' => $time,
 			],
 			[
 				'id_petugas' => 1,
@@ -27,6 +32,8 @@ class PembayaranSeeder extends Seeder
 				'tahun_dibayar' => '2019/2020',
 				'id_spp' => 4,
 				'jumlah_bayar' => 120000,
+				'created_at' => $time,
+				'updated_at' => $time,
 			],
 			[
 				'id_petugas' => 3,
@@ -36,6 +43,8 @@ class PembayaranSeeder extends Seeder
 				'tahun_dibayar' => '2019/2020',
 				'id_spp' => 1,
 				'jumlah_bayar' => 110000,
+				'created_at' => $time,
+				'updated_at' => $time,
 			],
 			[
 				'id_petugas' => 5,
@@ -45,6 +54,8 @@ class PembayaranSeeder extends Seeder
 				'tahun_dibayar' => '2019/2020',
 				'id_spp' => 3,
 				'jumlah_bayar' => 140000,
+				'created_at' => $time,
+				'updated_at' => $time,
 			],
 			[
 				'id_petugas' => 4,
@@ -54,6 +65,8 @@ class PembayaranSeeder extends Seeder
 				'tahun_dibayar' => '2019/2020',
 				'id_spp' => 5,
 				'jumlah_bayar' => 150000,
+				'created_at' => $time,
+				'updated_at' => $time,
 			],
 		];
 

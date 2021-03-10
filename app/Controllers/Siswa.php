@@ -8,7 +8,13 @@ class Siswa extends BaseController
 {
 	public function index()
 	{
-		// Read Data
+		$data = [
+			"title" => "Siswa",
+			"controller" => explode("\\", get_class($this))[2],
+			"role" => $this->role,
+		];
+
+		return view("siswa/index", $data);
 	}
 
 	public function create()
@@ -19,6 +25,7 @@ class Siswa extends BaseController
 	public function save($data)
 	{
 		// Save Data
+	}
 
 	public function edit($data)
 	{

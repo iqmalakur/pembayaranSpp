@@ -8,12 +8,24 @@ class Main extends BaseController
 {
 	public function index()
 	{
-		// Tampilan Home (Grafik dan Histori)
+		$data = [
+			"title" => "Dashboard",
+			"controller" => explode("\\", get_class($this))[2],
+			"role" => $this->role,
+		];
+
+		return view("main/index", $data);
 	}
 
 	public function payment()
 	{
-		// Tampilan Pembayaran
+		$data = [
+			"title" => "Pembayaran Spp",
+			"controller" => explode("\\", get_class($this))[2],
+			"role" => $this->role,
+		];
+
+		return view("main/payment", $data);
 	}
 
 	public function pay($data)
@@ -24,5 +36,10 @@ class Main extends BaseController
 	public function report($data)
 	{
 		// Generate Laporan
+	}
+
+	public function receipt($data)
+	{
+		// Kuitansi
 	}
 }

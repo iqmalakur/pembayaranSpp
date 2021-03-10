@@ -8,7 +8,13 @@ class Auth extends BaseController
 {
 	public function index()
 	{
-		// Tampilan Login
+		$data = [
+			"title" => "Login",
+			"controller" => explode("\\", get_class($this))[2],
+			"role" => $this->role,
+		];
+
+		return view("login/index", $data);
 	}
 
 	public function login()

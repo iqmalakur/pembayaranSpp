@@ -1,5 +1,5 @@
 <?= $this->extend("layout/template"); ?>
 
 <?= $this->section("content"); ?>
-<h1>Dashboard</h1>
+<h1>Auth</h1>
 <?= $this->endSection(); ?>

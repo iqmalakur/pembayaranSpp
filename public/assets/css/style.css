@@ -1,0 +1,30 @@
+body {
+    background-color: blue;
+}
+
+aside {
+    height: 84vh;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+aside ul {
+    list-style: none;
+    padding: 0;
+    height: 80%;
+    flex-direction: column;
+}
+
+aside ul li a {
+    text-decoration: none;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+main div.container {
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    height: 84vh;
+    overflow: auto;
+    background-color: #fff;
+}

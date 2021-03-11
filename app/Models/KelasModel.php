@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Spp extends Model
+class KelasModel extends Model
 {
 	protected $DBGroup              = 'default';
-	protected $table                = 'spp';
-	protected $primaryKey           = 'id_spp';
+	protected $table                = 'kelas';
+	protected $primaryKey           = 'id_kelas';
 	protected $useAutoIncrement     = true;
 	protected $insertID             = 0;
 	protected $returnType           = 'object';
 	protected $useSoftDelete        = false;
 	protected $protectFields        = true;
-	protected $allowedFields        = ['kompetensi_keahlian', 'nominal'];
+	protected $allowedFields        = ['nama_kelas', 'kompetensi_keahlian'];
 
 	// Dates
 	protected $useTimestamps        = false;

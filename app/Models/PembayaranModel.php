@@ -4,20 +4,24 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Kelas extends Model
+class PembayaranModel extends Model
 {
 	protected $DBGroup              = 'default';
-	protected $table                = 'kelas';
-	protected $primaryKey           = 'id_kelas';
+	protected $table                = 'pembayaran';
+	protected $primaryKey           = 'id_pembayaran';
 	protected $useAutoIncrement     = true;
 	protected $insertID             = 0;
 	protected $returnType           = 'object';
 	protected $useSoftDelete        = false;
 	protected $protectFields        = true;
-	protected $allowedFields        = ['nama_kelas', 'kompetensi_keahlian'];
+	protected $allowedFields        = [
+		'id_petugas', 'nisn', 'tgl_bayar',
+		'bulan_dibayar', 'tahun_dibayar',
+		'id_spp', 'jumlah_bayar'
+	];
 
 	// Dates
-	protected $useTimestamps        = false;
+	protected $useTimestamps        = true;
 	protected $dateFormat           = 'datetime';
 	protected $createdField         = 'created_at';
 	protected $updatedField         = 'updated_at';

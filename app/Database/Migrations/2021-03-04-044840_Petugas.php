@@ -9,10 +9,6 @@ class Petugas extends Migration
 	public function up()
 	{
 		$this->forge->addField([
-			'id_petugas' => [
-				'type' => 'INT',
-				'auto_increment' => true,
-			],
 			'username' => [
 				'type' => 'VARCHAR',
 				'constraint' => 25,
@@ -30,7 +26,7 @@ class Petugas extends Migration
 				'constraint' => array('admin', 'petugas'),
 			],
 		]);
-		$this->forge->addKey('id_petugas', true);
+		$this->forge->addKey('username', true);
 		$this->forge->createTable('petugas');
 	}
 

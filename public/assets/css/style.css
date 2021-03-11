@@ -1,5 +1,5 @@
 body {
-    background-color: blue;
+    background-color: #3498db;
 }
 
 aside {
@@ -27,4 +27,21 @@ main div.container {
     height: 84vh;
     overflow: auto;
     background-color: #fff;
+}
+
+div.login-container {
+    height: 100vh;
+    flex-direction: column;
+}
+
+div.login-container div.card {
+    height: 80vh;
+}
+
+div.login-container div.card form {
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+div.login-container div.card h1 {
+    font-size: 3em;
 }

@@ -4,23 +4,20 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Pembayaran extends Model
+class PetugasModel extends Model
 {
 	protected $DBGroup              = 'default';
-	protected $table                = 'pembayaran';
-	protected $primaryKey           = 'id_pembayaran';
-	protected $useAutoIncrement     = true;
+	protected $table                = 'petugas';
+	protected $primaryKey           = 'username';
+	protected $useAutoIncrement     = false;
 	protected $insertID             = 0;
 	protected $returnType           = 'object';
 	protected $useSoftDelete        = false;
 	protected $protectFields        = true;
-	protected $allowedFields        = ['id_petugas', 'nisn', 'tgl_bayar',
-									   'bulan_dibayar', 'tahun_dibayar',
-									   'id_spp', 'jumlah_bayar'
-									];
+	protected $allowedFields        = ['username', 'password', 'nama_petugas', 'level'];
 
 	// Dates
-	protected $useTimestamps        = true;
+	protected $useTimestamps        = false;
 	protected $dateFormat           = 'datetime';
 	protected $createdField         = 'created_at';
 	protected $updatedField         = 'updated_at';
@@ -42,4 +39,20 @@ class Pembayaran extends Model
 	protected $afterFind            = [];
 	protected $beforeDelete         = [];
 	protected $afterDelete          = [];
+
+	public function getLogin($data)
+	{
+		if ($petugas = $this->find($data['username'])) {
+			if (password_verify($data['password'], $petugas->password)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	public function getRole($username)
+	{
+		return $this->find($username)->level;
+	}
 }

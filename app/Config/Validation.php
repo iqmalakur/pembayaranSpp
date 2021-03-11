@@ -40,4 +40,22 @@ class Validation
 	//--------------------------------------------------------------------
 	// Rules
 	//--------------------------------------------------------------------
+
+	// Validasi Login
+	public $login = [
+		'username' => 'required|alpha_numeric|max_length[25]',
+		'password' => 'required|max_length[32]'
+	];
+
+	public $login_errors = [
+		'username' => [
+			'required'      => 'Username wajib diisi',
+			'alpha_numeric' => 'Username hanya boleh diisi dengan huruf dan angka',
+			'max_length'    => 'Username maksimal terdiri dari 25 karakter'
+		],
+		'password' => [
+			'required'      => 'Password wajib diisi',
+			'max_length'    => 'Password maksimal terdiri dari 32 karakter'
+		]
+	];
 }

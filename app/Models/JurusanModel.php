@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Jurusan extends Model
+class JurusanModel extends Model
 {
 	protected $DBGroup              = 'default';
 	protected $table                = 'jurusan';

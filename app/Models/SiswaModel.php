@@ -4,17 +4,21 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Petugas extends Model
+class SiswaModel extends Model
 {
 	protected $DBGroup              = 'default';
-	protected $table                = 'petugas';
-	protected $primaryKey           = 'id_petugas';
-	protected $useAutoIncrement     = true;
+	protected $table                = 'siswa';
+	protected $primaryKey           = 'nisn';
+	protected $useAutoIncrement     = false;
 	protected $insertID             = 0;
 	protected $returnType           = 'object';
 	protected $useSoftDelete        = false;
 	protected $protectFields        = true;
-	protected $allowedFields        = ['username', 'password', 'nama_petugas', 'level'];
+	protected $allowedFields        = [
+		'nisn', 'nis', 'nama',
+		'id_kelas', 'alamat', 'no_telp',
+		'id_spp'
+	];
 
 	// Dates
 	protected $useTimestamps        = false;
@@ -39,4 +43,15 @@ class Petugas extends Model
 	protected $afterFind            = [];
 	protected $beforeDelete         = [];
 	protected $afterDelete          = [];
+
+	public function getLogin($data)
+	{
+		if ($siswa = $this->find($data['username'])) {
+			if ($data['password'] == $siswa->nis) {
+				return true;
+			}
+		}
+
+		return false;
+	}
 }

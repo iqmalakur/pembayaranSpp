@@ -23,12 +23,14 @@
     <?php
     if ($controller != 'Auth') {
         echo $this->include('layout/navbar');
-    }
 
-    if ($role != 'siswa' && $controller != 'Auth') {
-        echo $this->include("layout/admin");
+        if ($role != 'siswa') {
+            echo $this->include("layout/admin");
+        } else {
+            echo $this->include("layout/siswa");
+        }
     } else {
-        echo $this->include("layout/siswa");
+        $this->renderSection('content');
     }
     ?>
 
@@ -40,6 +42,9 @@
 
     <!-- Chart.js -->
     <script src="/assets/Chart.js-2.9.4/dist/Chart.js"></script>
+
+    <!-- My JavaScript -->
+    <script src="/assets/js/script.js"></script>
 </body>
 
 </html>

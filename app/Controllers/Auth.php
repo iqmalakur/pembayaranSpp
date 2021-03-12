@@ -57,11 +57,13 @@ class Auth extends BaseController
 				$this->session->setFlashdata('success', true);
 				$user = $role == 'siswa' ? $siswaModel->getSiswa($data['username']) : $petugasModel->getPetugas($data['username']);
 
-				$this->session->set('login', true);
-				$this->session->set('user', [
-					'username' => $role == 'siswa' ? $user->nisn : $user->username,
-					'password' => $role == 'siswa' ? $user->nis : $user->password,
-					'role' => $role,
+				$this->session->set([
+					'login' => true,
+					'user' => [
+						'username' => $role == 'siswa' ? $user->nisn : $user->username,
+						'password' => $role == 'siswa' ? $user->nis : $user->password,
+						'role' => $role,
+					],
 				]);
 
 				// Redirect ke Dashboard

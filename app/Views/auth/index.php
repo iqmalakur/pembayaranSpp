@@ -12,6 +12,7 @@
                 </div>
             <?php endif ?>
             <form method="POST" action="/login" class="mt-5 p-4">
+                <?= csrf_field(); ?>
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
                     <input type="text" name="username" class="form-control <?= isset($errors['username']) ? 'is-invalid' : ''; ?>" id="username" value="<?= old('username') ? old('username') : ''; ?>">

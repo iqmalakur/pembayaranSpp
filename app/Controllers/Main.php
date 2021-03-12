@@ -17,6 +17,7 @@ class Main extends BaseController
 			"title" => "Dashboard",
 			"controller" => $this->controller,
 			"role" => $this->role,
+			"user" => $this->user,
 			"loginStatus" => $this->session->get('success'),
 		];
 

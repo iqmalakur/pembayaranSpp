@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\PetugasModel;
+use App\Models\SiswaModel;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -29,6 +31,7 @@ class BaseController extends Controller
 	 */
 	protected $helpers = [];
 	protected $role = '';
+	protected $user = '';
 	protected $controller = '';
 
 	/**
@@ -53,6 +56,15 @@ class BaseController extends Controller
 
 		if ($this->session->login) {
 			$this->role = $this->session->user['role'];
+			$username = $this->session->user['username'];
+
+			if ($this->role == 'siswa') {
+				$model = new SiswaModel();
+				$this->user = $model->getSiswa($username);
+			} else {
+				$model = new PetugasModel();
+				$this->user = $model->getPetugas($username);
+			}
 		}
 	}
 }

@@ -26,13 +26,14 @@
                     <div id="passwordFeedback" class="invalid-feedback">
                         <?= isset($errors['password']) ? $errors['password'] : ''; ?>
                     </div>
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="rememberMe">
-                        <label class="form-check-label" for="rememberMe">Remember Me</label>
-                    </div>
-                    <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn btn-success me-3">Login</button>
-                    </div>
+                </div>
+                <!-- <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="rememberMe">
+                    <label class="form-check-label" for="rememberMe">Remember Me</label>
+                </div> -->
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-success me-3">Login</button>
+                </div>
             </form>
         </div>
     </div>

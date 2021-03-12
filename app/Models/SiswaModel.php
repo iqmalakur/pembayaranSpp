@@ -44,6 +44,11 @@ class SiswaModel extends Model
 	protected $beforeDelete         = [];
 	protected $afterDelete          = [];
 
+	public function getSiswa($nisn)
+	{
+		return $this->find($nisn);
+	}
+
 	public function getLogin($data)
 	{
 		if ($siswa = $this->find($data['username'])) {

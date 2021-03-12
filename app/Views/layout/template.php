@@ -32,6 +32,10 @@
     } else {
         $this->renderSection('content');
     }
+
+    if (isset(session()->loginInfo)) {
+        echo '<span id="login-info" data-login="' . session()->loginInfo . '"></span>';
+    }
     ?>
 
     <!-- Bootstrap Bundle with Popper -->

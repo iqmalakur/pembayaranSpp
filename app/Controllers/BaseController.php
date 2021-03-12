@@ -28,7 +28,8 @@ class BaseController extends Controller
 	 * @var array
 	 */
 	protected $helpers = [];
-	public $role = "admin";
+	protected $role = '';
+	protected $controller = '';
 
 	/**
 	 * Constructor.
@@ -46,6 +47,12 @@ class BaseController extends Controller
 		// Preload any models, libraries, etc, here.
 		//--------------------------------------------------------------------
 
+		$this->controller = explode("\\", get_class($this))[2];
+
 		$this->session = \Config\Services::session();
+
+		if ($this->session->login) {
+			$this->role = $this->session->user['role'];
+		}
 	}
 }

@@ -8,6 +8,11 @@ class Auth extends BaseController
 {
 	public function index()
 	{
+		if ($this->session->login) {
+			$this->session->setFlashdata('loginInfo', true);
+			return redirect()->to(previous_url());
+		}
+
 		$data = [
 			"title" => "Login",
 			"controller" => explode("\\", get_class($this))[2],
@@ -50,6 +55,14 @@ class Auth extends BaseController
 
 			if ($role) {
 				$this->session->setFlashdata('success', true);
+				$user = $role == 'siswa' ? $siswaModel->getSiswa($data['username']) : $petugasModel->getPetugas($data['username']);
+
+				$this->session->set('login', true);
+				$this->session->set('user', [
+					'username' => $role == 'siswa' ? $user->nisn : $user->username,
+					'password' => $role == 'siswa' ? $user->nis : $user->password,
+					'role' => $role,
+				]);
 
 				// Redirect ke Dashboard
 				return redirect()->to('/');
@@ -64,6 +77,8 @@ class Auth extends BaseController
 
 	public function logout()
 	{
-		// Proses Logout
+		$this->session->destroy();
+
+		return redirect()->to('/login');
 	}
 }

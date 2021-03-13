@@ -57,4 +57,9 @@ class Validation
 	public $kelas = [
 		'nama_kelas' => 'required|alpha_numeric_space|max_length[10]'
 	];
+
+	// Validasi Spp
+	public $spp = [
+		'nominal' => 'required|numeric|max_length[11]'
+	];
 }

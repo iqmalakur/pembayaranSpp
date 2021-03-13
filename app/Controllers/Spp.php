@@ -3,47 +3,136 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\JurusanModel;
+use App\Models\SppModel;
 
 class Spp extends BaseController
 {
+	protected $model;
+	protected $jurusan;
+
+	public function __construct()
+	{
+		$this->model = new SppModel();
+
+		$jurusanModel = new JurusanModel();
+		$this->jurusan = $jurusanModel->findAll();
+	}
+
 	public function index()
 	{
 		if (!$this->session->login) {
 			$this->session->setFlashdata('loginInfo', false);
-			return redirect()->to('/login');
+			return redirect()->to('/spp');
 		}
 
 		if ($this->session->user['role'] !== 'admin') {
 			return view('errors/html/error_404');
 		}
 
-		$this->data['title'] = "SPP";
+		$this->data['title'] = "Spp";
+		$this->data['spp'] = $this->model->get();
 
 		return view("spp/index", $this->data);
 	}
 
 	public function create()
 	{
-		// Create Data
+		if (!$this->session->login) {
+			$this->session->setFlashdata('loginInfo', false);
+			return redirect()->to('/spp');
+		}
+
+		if ($this->session->user['role'] !== 'admin') {
+			return view('errors/html/error_404');
+		}
+
+		$this->data['title'] = "Tambah data Spp";
+		$this->data['jurusan'] = $this->jurusan;
+		$this->data["errors"] = $this->session->get('errors');
+
+		return view("spp/create", $this->data);
 	}
 
-	public function save($data)
+	public function save()
 	{
-		// Save Data
+		$data = $this->request->getPost(["kompetensi_keahlian", "nominal"]);
+
+		helper(['form', 'url']);
+		$validation = \Config\Services::validation();
+
+		// Cek Validasi (Rules ada di app/Config/validation.php)
+		if (!$validation->run($data, 'spp')) {
+			$this->session->setFlashdata('errors', $validation->getErrors());
+
+			// Kembali ke halaman login dan mengirimkan input sebelumnya
+			return redirect()->to('/spp/add')->withInput();
+		} else {
+			if ($jurusan = $this->model->cek($data['kompetensi_keahlian'])) {
+				$this->session->setFlashdata('exists', $jurusan->nama_jurusan);
+				return redirect()->to('/spp/add')->withInput();
+			}
+
+			$this->model->save($data);
+
+			$this->session->setFlashdata('successInfo', 'Menambahkan');
+
+			return redirect()->to("/spp");
+		}
 	}
 
-	public function edit($data)
+	public function edit($id)
 	{
-		// Edit Data
+		if (!$this->session->login) {
+			$this->session->setFlashdata('loginInfo', false);
+			return redirect()->to('/spp');
+		}
+
+		if ($this->session->user['role'] !== 'admin') {
+			return view('errors/html/error_404');
+		}
+
+		$this->data['title'] = "Ubah data Spp";
+		$this->data['spp'] = $this->model->get($id);
+		$this->data['jurusan'] = $this->jurusan;
+		$this->data["errors"] = $this->session->get('errors');
+
+		return view("spp/edit", $this->data);
 	}
 
-	public function update($data)
+	public function update()
 	{
-		// Update Data
+		$data = $this->request->getPost(["id_spp", "kompetensi_keahlian", "nominal"]);
+
+		helper(['form', 'url']);
+		$validation = \Config\Services::validation();
+
+		// Cek Validasi (Rules ada di app/Config/validation.php)
+		if (!$validation->run($data, 'spp')) {
+			$this->session->setFlashdata('errors', $validation->getErrors());
+
+			// Kembali ke halaman login dan mengirimkan input sebelumnya
+			return redirect()->to('/spp/edit/' . $data["id_spp"])->withInput();
+		} else {
+			if ($jurusan = $this->model->cek($data['kompetensi_keahlian'])) {
+				$this->session->setFlashdata('exists', $jurusan->nama_jurusan);
+				return redirect()->to('/spp/edit/' . $data["id_spp"])->withInput();
+			}
+
+			$this->model->save($data);
+
+			$this->session->setFlashdata('successInfo', 'Mengubah');
+
+			return redirect()->to("/spp");
+		}
 	}
 
-	public function delete($data)
+	public function delete($id)
 	{
-		// Delete Data
+		$this->model->delete($id);
+
+		$this->session->setFlashdata('successInfo', 'Menghapus');
+
+		return redirect()->to("/spp");
 	}
 }

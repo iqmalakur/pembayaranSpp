@@ -54,6 +54,15 @@ if ((errorExists = document.getElementById("error-exists"))) {
     });
 }
 
+// Error Spp
+let errorSpp;
+if ((errorSpp = document.getElementById("error-spp"))) {
+    Swal.fire({
+        icon: "error",
+        title: "Spp untuk Kompetensi Keahlian " + errorSpp.dataset.jurusan + " telah tersedia!",
+    });
+}
+
 // Alert Berhasil
 let succesInfo;
 if ((succesInfo = document.getElementById("success-info"))) {

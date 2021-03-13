@@ -39,4 +39,26 @@ class SppModel extends Model
 	protected $afterFind            = [];
 	protected $beforeDelete         = [];
 	protected $afterDelete          = [];
+
+	// Query Builder
+	protected $sppBuilder			= '';
+
+	public function __construct()
+	{
+		$this->sppBuilder = $this->builder("spp");
+		$this->builder();
+	}
+
+	public function get($id = false)
+	{
+		if ($id) {
+			return $this->sppBuilder->where('id_spp', $id)->join('jurusan', 'spp.kompetensi_keahlian=jurusan.id_jurusan')->get()->getRowObject();
+		}
+		return $this->sppBuilder->join('jurusan', 'spp.kompetensi_keahlian=jurusan.id_jurusan')->get()->getResultObject();
+	}
+
+	public function cek($jurusan)
+	{
+		return $this->sppBuilder->join('jurusan', 'spp.kompetensi_keahlian=jurusan.id_jurusan')->where('id_jurusan', $jurusan)->get()->getRowObject();
+	}
 }

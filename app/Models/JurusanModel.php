@@ -39,4 +39,12 @@ class JurusanModel extends Model
 	protected $afterFind            = [];
 	protected $beforeDelete         = [];
 	protected $afterDelete          = [];
+
+	public function cek($jurusan)
+	{
+		if ($this->builder('jurusan')->where("nama_jurusan", $jurusan)->countAllResults() >= 1) {
+			return true;
+		}
+		return false;
+	}
 }

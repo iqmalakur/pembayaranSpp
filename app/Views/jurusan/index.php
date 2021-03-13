@@ -9,7 +9,7 @@
             <th scope="col">No.</th>
             <th scope="col">Nama Jurusan</th>
             <th scope="col">Alias</th>
-            <th scope="col">Action</th>
+            <th scope="col">Aksi</th>
         </tr>
     </thead>
     <tbody>
@@ -20,7 +20,7 @@
                 <td><?= $j->alias; ?></td>
                 <td>
                     <a href="/jurusan/edit/<?= $j->id_jurusan; ?>" class="btn btn-primary">Ubah</a>
-                    <form id="form-delete" action="/jurusan/delete/<?= $j->id_jurusan; ?>" method="POST" class="d-inline">
+                    <form action="/jurusan/delete/<?= $j->id_jurusan; ?>" method="POST" class="d-inline">
                         <?= csrf_field(); ?>
                         <input type="hidden" name="_method" value="DELETE">
                         <span id="delete" class="btn btn-danger" data-item="<?= $j->nama_jurusan; ?>">Hapus</span>

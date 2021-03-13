@@ -17,13 +17,9 @@ class Spp extends BaseController
 			return view('errors/html/error_404');
 		}
 
-		$data = [
-			"title" => "Spp",
-			"controller" => $this->controller,
-			"role" => $this->role,
-		];
+		$this->data['title'] = "SPP";
 
-		return view("spp/index", $data);
+		return view("spp/index", $this->data);
 	}
 
 	public function create()

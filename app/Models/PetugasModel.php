@@ -40,11 +40,6 @@ class PetugasModel extends Model
 	protected $beforeDelete         = [];
 	protected $afterDelete          = [];
 
-	public function getPetugas($username)
-	{
-		return $this->find($username);
-	}
-
 	public function getLogin($data)
 	{
 		if ($petugas = $this->find($data['username'])) {

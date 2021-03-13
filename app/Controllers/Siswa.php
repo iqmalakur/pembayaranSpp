@@ -17,13 +17,9 @@ class Siswa extends BaseController
 			return view('errors/html/error_404');
 		}
 
-		$data = [
-			"title" => "Siswa",
-			"controller" => $this->controller,
-			"role" => $this->role,
-		];
+		$this->data['title'] = "Siswa";
 
-		return view("siswa/index", $data);
+		return view("siswa/index", $this->data);
 	}
 
 	public function create()

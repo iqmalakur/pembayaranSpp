@@ -17,13 +17,9 @@ class Kelas extends BaseController
 			return view('errors/html/error_404');
 		}
 
-		$data = [
-			"title" => "Kelas",
-			"controller" => $this->controller,
-			"role" => $this->role,
-		];
+		$this->data['title'] = "Kelas";
 
-		return view("kelas/index", $data);
+		return view("kelas/index", $this->data);
 	}
 
 	public function create()

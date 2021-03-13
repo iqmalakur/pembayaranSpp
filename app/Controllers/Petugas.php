@@ -17,13 +17,9 @@ class Petugas extends BaseController
 			return view('errors/html/error_404');
 		}
 
-		$data = [
-			"title" => "Petugas",
-			"controller" => $this->controller,
-			"role" => $this->role,
-		];
+		$this->data['title'] = "Petugas";
 
-		return view("petugas/index", $data);
+		return view("petugas/index", $this->data);
 	}
 
 	public function create()

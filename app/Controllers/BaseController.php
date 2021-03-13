@@ -33,6 +33,7 @@ class BaseController extends Controller
 	protected $role = '';
 	protected $user = '';
 	protected $controller = '';
+	protected $data = [];
 
 	/**
 	 * Constructor.
@@ -60,11 +61,17 @@ class BaseController extends Controller
 
 			if ($this->role == 'siswa') {
 				$model = new SiswaModel();
-				$this->user = $model->getSiswa($username);
 			} else {
 				$model = new PetugasModel();
-				$this->user = $model->getPetugas($username);
 			}
+
+			$this->user = $model->find($username);
 		}
+
+		$this->data = [
+			"controller" => $this->controller,
+			"role" => $this->role,
+			"user" => $this->user,
+		];
 	}
 }

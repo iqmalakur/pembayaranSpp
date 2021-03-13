@@ -13,15 +13,10 @@ class Main extends BaseController
 			return redirect()->to('/login');
 		}
 
-		$data = [
-			"title" => "Dashboard",
-			"controller" => $this->controller,
-			"role" => $this->role,
-			"user" => $this->user,
-			"loginStatus" => $this->session->get('success'),
-		];
+		$this->data['title'] = "dashboard";
+		$this->data['loginStatus'] = $this->session->get('success');
 
-		return view("main/index", $data);
+		return view("main/index", $this->data);
 	}
 
 	public function payment()
@@ -35,13 +30,9 @@ class Main extends BaseController
 			return view('errors/html/error_404');
 		}
 
-		$data = [
-			"title" => "Pembayaran Spp",
-			"controller" => $this->controller,
-			"role" => $this->role,
-		];
+		$this->data['title'] = "Pembayaran Spp";
 
-		return view("main/payment", $data);
+		return view("main/payment", $this->data);
 	}
 
 	public function pay($data)
@@ -56,6 +47,7 @@ class Main extends BaseController
 
 	public function receipt($data)
 	{
+		echo "Kuitansi";
 		if (!$this->session->login) {
 			$this->session->setFlashdata('loginInfo', false);
 			return redirect()->to('/login');

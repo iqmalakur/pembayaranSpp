@@ -31,16 +31,37 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+
+// Controller Main
 $routes->get('/', 'Main::index');
+$routes->get('/pembayaran', 'Main::payment');
+
+// Controller Auth
 $routes->get('/login', 'Auth::index');
 $routes->post('/login', 'Auth::login');
 $routes->get('/logout', 'Auth::logout');
-$routes->get('/pembayaran', 'Main::payment');
-$routes->get('/siswa', 'Siswa::index');
-$routes->get('/petugas', 'Petugas::index');
-$routes->get('/spp', 'Spp::index');
-$routes->get('/kelas', 'Kelas::index');
+
+// Controller Jurusan
 $routes->get('/jurusan', 'Jurusan::index');
+$routes->get('/jurusan/add', 'Jurusan::create');
+$routes->get('/jurusan/edit/(:segment)', 'Jurusan::edit/$1');
+$routes->post('/jurusan/save', 'Jurusan::save');
+$routes->post('/jurusan/update', 'Jurusan::update');
+$routes->delete('/jurusan/delete/(:segment)', 'Jurusan::delete/$1');
+
+// Controller Kelas
+$routes->get('/kelas', 'Kelas::index');
+
+// Controller Spp
+$routes->get('/spp', 'Spp::index');
+
+// Controller Siswa
+$routes->get('/siswa', 'Siswa::index');
+
+// Controller Petugas
+$routes->get('/petugas', 'Petugas::index');
+
+// Kuitansi atau Bukti Pembayaran
 $routes->get('/(:any)', 'Main::receipt/$1');
 
 /*

@@ -47,15 +47,9 @@ class Validation
 		'password' => 'required|max_length[32]'
 	];
 
-	public $login_errors = [
-		'username' => [
-			'required'      => 'Username wajib diisi',
-			'alpha_numeric' => 'Username hanya boleh diisi dengan huruf dan angka',
-			'max_length'    => 'Username maksimal terdiri dari 25 karakter'
-		],
-		'password' => [
-			'required'      => 'Password wajib diisi',
-			'max_length'    => 'Password maksimal terdiri dari 32 karakter'
-		]
+	// Validasi Jurusan
+	public $jurusan = [
+		'nama_jurusan' => 'required|alpha_space|max_length[50]',
+		'alias' => 'required|alpha_space|max_length[5]'
 	];
 }

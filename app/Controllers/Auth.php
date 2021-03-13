@@ -13,28 +13,21 @@ class Auth extends BaseController
 			return redirect()->to(previous_url());
 		}
 
-		$data = [
-			"title" => "Login",
-			"controller" => explode("\\", get_class($this))[2],
-			"role" => $this->role,
-			"errors" => $this->session->get('errors'),
-		];
+		$this->data["title"] = "Login";
+		$this->data["errors"] = $this->session->get('errors');
 
-		return view("auth/index", $data);
+		return view("auth/index", $this->data);
 	}
 
 	public function login()
 	{
-		$data = [
-			'username'  => $this->request->getPost('username'),
-			'password'  => $this->request->getPost('password')
-		];
+		$data = $this->request->getPost(['username', 'password']);
 
 		helper(['form', 'url']);
 		$validation = \Config\Services::validation();
 
 		// Cek Validasi (Rules ada di app/Config/validation.php)
-		if ($validation->run($data, 'login') == FALSE) {
+		if (!$validation->run($data, 'login')) {
 			$this->session->setFlashdata('errors', $validation->getErrors());
 
 			// Kembali ke halaman login dan mengirimkan input sebelumnya
@@ -55,7 +48,7 @@ class Auth extends BaseController
 
 			if ($role) {
 				$this->session->setFlashdata('success', true);
-				$user = $role == 'siswa' ? $siswaModel->getSiswa($data['username']) : $petugasModel->getPetugas($data['username']);
+				$user = $role == 'siswa' ? $siswaModel->find($data['username']) : $petugasModel->find($data['username']);
 
 				$this->session->set([
 					'login' => true,

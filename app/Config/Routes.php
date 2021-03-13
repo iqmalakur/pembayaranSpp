@@ -51,15 +51,35 @@ $routes->delete('/jurusan/delete/(:segment)', 'Jurusan::delete/$1');
 
 // Controller Kelas
 $routes->get('/kelas', 'Kelas::index');
+$routes->get('/kelas/add', 'Kelas::create');
+$routes->get('/kelas/edit/(:segment)', 'Kelas::edit/$1');
+$routes->post('/kelas/save', 'Kelas::save');
+$routes->post('/kelas/update', 'Kelas::update');
+$routes->delete('/kelas/delete/(:segment)', 'Kelas::delete/$1');
 
 // Controller Spp
 $routes->get('/spp', 'Spp::index');
+$routes->get('/spp/add', 'Spp::create');
+$routes->get('/spp/edit/(:segment)', 'Spp::edit/$1');
+$routes->post('/spp/save', 'Spp::save');
+$routes->post('/spp/update', 'Spp::update');
+$routes->delete('/spp/delete/(:segment)', 'Spp::delete/$1');
 
 // Controller Siswa
 $routes->get('/siswa', 'Siswa::index');
+$routes->get('/siswa/add', 'Siswa::create');
+$routes->get('/siswa/edit/(:segment)', 'Siswa::edit/$1');
+$routes->post('/siswa/save', 'Siswa::save');
+$routes->post('/siswa/update', 'Siswa::update');
+$routes->delete('/siswa/delete/(:segment)', 'Siswa::delete/$1');
 
 // Controller Petugas
 $routes->get('/petugas', 'Petugas::index');
+$routes->get('/petugas/add', 'Petugas::create');
+$routes->get('/petugas/edit/(:segment)', 'Petugas::edit/$1');
+$routes->post('/petugas/save', 'Petugas::save');
+$routes->post('/petugas/update', 'Petugas::update');
+$routes->delete('/petugas/delete/(:segment)', 'Petugas::delete/$1');
 
 // Kuitansi atau Bukti Pembayaran
 $routes->get('/(:any)', 'Main::receipt/$1');

@@ -39,4 +39,29 @@ class KelasModel extends Model
 	protected $afterFind            = [];
 	protected $beforeDelete         = [];
 	protected $afterDelete          = [];
+
+	// Query Builder
+	protected $kelasBuilder				= '';
+
+	public function __construct()
+	{
+		$this->kelasBuilder = $this->builder("kelas");
+		$this->builder();
+	}
+
+	public function get($id = false)
+	{
+		if ($id) {
+			return $this->kelasBuilder->where('id_kelas', $id)->join('jurusan', 'kelas.kompetensi_keahlian=jurusan.id_jurusan')->get()->getRowObject();
+		}
+		return $this->kelasBuilder->join('jurusan', 'kelas.kompetensi_keahlian=jurusan.id_jurusan')->get()->getResultObject();
+	}
+
+	public function cek($kelas)
+	{
+		if ($this->kelasBuilder->where("nama_kelas", $kelas)->countAllResults() >= 1) {
+			return true;
+		}
+		return false;
+	}
 }

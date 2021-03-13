@@ -52,4 +52,9 @@ class Validation
 		'nama_jurusan' => 'required|alpha_space|max_length[50]',
 		'alias' => 'required|alpha_space|max_length[5]'
 	];
+
+	// Validasi Kelas
+	public $kelas = [
+		'nama_kelas' => 'required|alpha_numeric_space|max_length[10]'
+	];
 }

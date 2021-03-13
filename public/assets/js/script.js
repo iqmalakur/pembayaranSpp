@@ -14,7 +14,7 @@ if ((konfirmasiHapus = document.querySelectorAll("span#delete"))) {
                 cancelButtonText: "Jangan hapus data!",
             }).then((result) => {
                 if (result.isConfirmed) {
-                    document.getElementById("form-delete").submit();
+                    item.parentElement.submit();
                 }
             });
         });
@@ -34,6 +34,23 @@ let alias;
 if ((alias = document.querySelector("input[name=alias]"))) {
     alias.addEventListener("input", function () {
         alias.value = alias.value.toUpperCase();
+    });
+}
+
+// Controller Kelas
+let namaKelas;
+if ((namaKelas = document.querySelector("input[name=nama_kelas]"))) {
+    namaKelas.addEventListener("input", function () {
+        namaKelas.value = namaKelas.value.toUpperCase();
+    });
+}
+
+// Error Exists
+let errorExists;
+if ((errorExists = document.getElementById("error-exists"))) {
+    Swal.fire({
+        icon: "error",
+        title: "Nama " + errorExists.dataset.title + " " + errorExists.dataset.item + " telah digunakan!",
     });
 }
 

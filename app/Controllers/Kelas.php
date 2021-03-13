@@ -3,9 +3,22 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\JurusanModel;
+use App\Models\KelasModel;
 
 class Kelas extends BaseController
 {
+	protected $model;
+	protected $jurusan;
+
+	public function __construct()
+	{
+		$this->model = new KelasModel();
+
+		$jurusanModel = new JurusanModel();
+		$this->jurusan = $jurusanModel->findAll();
+	}
+
 	public function index()
 	{
 		if (!$this->session->login) {
@@ -18,32 +31,108 @@ class Kelas extends BaseController
 		}
 
 		$this->data['title'] = "Kelas";
+		$this->data['kelas'] = $this->model->get();
 
 		return view("kelas/index", $this->data);
 	}
 
 	public function create()
 	{
-		// Create Data
+		if (!$this->session->login) {
+			$this->session->setFlashdata('loginInfo', false);
+			return redirect()->to('/login');
+		}
+
+		if ($this->session->user['role'] !== 'admin') {
+			return view('errors/html/error_404');
+		}
+
+		$this->data['title'] = "Tambah data Kelas";
+		$this->data['jurusan'] = $this->jurusan;
+		$this->data["errors"] = $this->session->get('errors');
+
+		return view("kelas/create", $this->data);
 	}
 
-	public function save($data)
+	public function save()
 	{
-		// Save Data
+		$data = $this->request->getPost(["nama_kelas", "kompetensi_keahlian"]);
+
+		helper(['form', 'url']);
+		$validation = \Config\Services::validation();
+
+		// Cek Validasi (Rules ada di app/Config/validation.php)
+		if (!$validation->run($data, 'kelas')) {
+			$this->session->setFlashdata('errors', $validation->getErrors());
+
+			// Kembali ke halaman login dan mengirimkan input sebelumnya
+			return redirect()->to('/kelas/add')->withInput();
+		} else {
+			if ($this->model->cek($data['nama_kelas'])) {
+				$this->session->setFlashdata('exists', true);
+				return redirect()->to('/kelas/add')->withInput();
+			}
+
+			$this->model->save($data);
+
+			$this->session->setFlashdata('successInfo', 'Menambahkan');
+
+			return redirect()->to("/kelas");
+		}
 	}
 
-	public function edit($data)
+	public function edit($id)
 	{
-		// Edit Data
+		if (!$this->session->login) {
+			$this->session->setFlashdata('loginInfo', false);
+			return redirect()->to('/login');
+		}
+
+		if ($this->session->user['role'] !== 'admin') {
+			return view('errors/html/error_404');
+		}
+
+		$this->data['title'] = "Ubah data Kelas";
+		$this->data['kelas'] = $this->model->get($id);
+		$this->data['jurusan'] = $this->jurusan;
+		$this->data["errors"] = $this->session->get('errors');
+
+		return view("kelas/edit", $this->data);
 	}
 
-	public function update($data)
+	public function update()
 	{
-		// Update Data
+		$data = $this->request->getPost(["id_kelas", "nama_kelas", "kompetensi_keahlian"]);
+
+		helper(['form', 'url']);
+		$validation = \Config\Services::validation();
+
+		// Cek Validasi (Rules ada di app/Config/validation.php)
+		if (!$validation->run($data, 'kelas')) {
+			$this->session->setFlashdata('errors', $validation->getErrors());
+
+			// Kembali ke halaman login dan mengirimkan input sebelumnya
+			return redirect()->to('/kelas/edit/' . $data["id_kelas"])->withInput();
+		} else {
+			if ($this->model->cek($data['nama_kelas'])) {
+				$this->session->setFlashdata('exists', true);
+				return redirect()->to('/kelas/edit/' . $data["id_kelas"])->withInput();
+			}
+
+			$this->model->save($data);
+
+			$this->session->setFlashdata('successInfo', 'Mengubah');
+
+			return redirect()->to("/kelas");
+		}
 	}
 
-	public function delete($data)
+	public function delete($id)
 	{
-		// Delete Data
+		$this->model->delete($id);
+
+		$this->session->setFlashdata('successInfo', 'Menghapus');
+
+		return redirect()->to("/kelas");
 	}
 }

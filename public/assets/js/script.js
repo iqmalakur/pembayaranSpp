@@ -54,6 +54,15 @@ if ((errorExists = document.getElementById("error-exists"))) {
     });
 }
 
+// Error Username
+let errorUsername;
+if ((errorUsername = document.getElementById("error-username"))) {
+    Swal.fire({
+        icon: "error",
+        title: "Username " + errorUsername.dataset.username + " telah digunakan!",
+    });
+}
+
 // Error Spp
 let errorSpp;
 if ((errorSpp = document.getElementById("error-spp"))) {

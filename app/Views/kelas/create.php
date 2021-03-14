@@ -26,7 +26,4 @@
     <button type="submit" class="btn btn-primary">Tambah Data</button>
     <a href="/kelas" class="btn btn-warning">Kembali</a>
 </form>
-<?php if (session()->exists) : ?>
-    <span id="error-exists" data-title="Kelas" data-item="<?= old('nama_kelas'); ?>"></span>
-<?php endif ?>
 <?= $this->endSection(); ?>

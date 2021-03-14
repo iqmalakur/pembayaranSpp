@@ -47,6 +47,7 @@ class Spp extends BaseController
 
 		$this->data['title'] = "Tambah data Spp";
 		$this->data['jurusan'] = $this->jurusan;
+		$this->data['spp'] = $this->model;
 		$this->data["errors"] = $this->session->get('errors');
 
 		return view("spp/create", $this->data);
@@ -55,6 +56,15 @@ class Spp extends BaseController
 	public function save()
 	{
 		$data = $this->request->getPost(["kompetensi_keahlian", "nominal"]);
+
+		if ($data['kompetensi_keahlian'] == 'null') {
+			$this->session->setFlashdata('message', [
+				'icon' => "error",
+				'title' => "Tidak dapat menambahkan data!",
+				'text' => "Silahkan isi Kompetensi Keahlian dengan benar!"
+			]);
+			return redirect()->to('/spp/add');
+		}
 
 		helper(['form', 'url']);
 		$validation = \Config\Services::validation();
@@ -66,11 +76,6 @@ class Spp extends BaseController
 			// Kembali ke halaman login dan mengirimkan input sebelumnya
 			return redirect()->to('/spp/add')->withInput();
 		} else {
-			if ($jurusan = $this->model->cek($data['kompetensi_keahlian'])) {
-				$this->session->setFlashdata('exists', $jurusan->nama_jurusan);
-				return redirect()->to('/spp/add')->withInput();
-			}
-
 			$this->model->save($data);
 
 			$this->session->setFlashdata('successInfo', 'Menambahkan');
@@ -99,7 +104,7 @@ class Spp extends BaseController
 
 	public function update()
 	{
-		$data = $this->request->getPost(["id_spp", "kompetensi_keahlian", "nominal"]);
+		$data = $this->request->getPost(["id_spp", "nominal"]);
 
 		helper(['form', 'url']);
 		$validation = \Config\Services::validation();
@@ -111,11 +116,6 @@ class Spp extends BaseController
 			// Kembali ke halaman login dan mengirimkan input sebelumnya
 			return redirect()->to('/spp/edit/' . $data["id_spp"])->withInput();
 		} else {
-			if ($jurusan = $this->model->cek($data['kompetensi_keahlian'])) {
-				$this->session->setFlashdata('exists', $jurusan->nama_jurusan);
-				return redirect()->to('/spp/edit/' . $data["id_spp"])->withInput();
-			}
-
 			$this->model->save($data);
 
 			$this->session->setFlashdata('successInfo', 'Mengubah');

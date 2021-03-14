@@ -61,7 +61,11 @@ class Jurusan extends BaseController
 			return redirect()->to('/jurusan/add')->withInput();
 		} else {
 			if ($this->model->cek($data['nama_jurusan'])) {
-				$this->session->setFlashdata('exists', true);
+				$this->session->setFlashdata('message', [
+					'icon' => "error",
+					'title' => "Tidak dapat menambahkan data!",
+					'text' => "Jurusan " . $data['nama_jurusan'] . " telah ada!"
+				]);
 				return redirect()->to('/jurusan/add')->withInput();
 			}
 
@@ -104,8 +108,12 @@ class Jurusan extends BaseController
 			// Kembali ke halaman login dan mengirimkan input sebelumnya
 			return redirect()->to('/jurusan/edit/' . $data["id_jurusan"])->withInput();
 		} else {
-			if ($this->model->cek($data['nama_jurusan'])) {
-				$this->session->setFlashdata('exists', true);
+			if ($this->model->cek($data['nama_jurusan']) && $data['nama_jurusan'] !== $this->model->find($data['id_jurusan'])->nama_jurusan) {
+				$this->session->setFlashdata('message', [
+					'icon' => "error",
+					'title' => "Tidak dapat menambahkan data!",
+					'text' => "Jurusan " . $data['nama_jurusan'] . " telah ada!"
+				]);
 				return redirect()->to('/jurusan/edit/' . $data['id_jurusan'])->withInput();
 			}
 

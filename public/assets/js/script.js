@@ -45,30 +45,23 @@ if ((namaKelas = document.querySelector("input[name=nama_kelas]"))) {
     });
 }
 
-// Error Exists
-let errorExists;
-if ((errorExists = document.getElementById("error-exists"))) {
-    Swal.fire({
-        icon: "error",
-        title: "Nama " + errorExists.dataset.title + " " + errorExists.dataset.item + " telah digunakan!",
+// Controller Spp
+let sppSelect;
+if ((sppSelect = document.querySelector("select#kompetensi_keahlian"))) {
+    sppSelect.addEventListener("change", function () {
+        if (sppSelect.value === "tambahJurusan") {
+            window.location.href = "/jurusan/add";
+        }
     });
 }
 
-// Error Username
-let errorUsername;
-if ((errorUsername = document.getElementById("error-username"))) {
+// Message
+let message;
+if ((message = document.getElementById("message"))) {
     Swal.fire({
-        icon: "error",
-        title: "Username " + errorUsername.dataset.username + " telah digunakan!",
-    });
-}
-
-// Error Spp
-let errorSpp;
-if ((errorSpp = document.getElementById("error-spp"))) {
-    Swal.fire({
-        icon: "error",
-        title: "Spp untuk Kompetensi Keahlian " + errorSpp.dataset.jurusan + " telah tersedia!",
+        icon: message.dataset.icon,
+        title: message.dataset.title,
+        text: message.dataset.text,
     });
 }
 

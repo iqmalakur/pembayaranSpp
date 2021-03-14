@@ -42,7 +42,4 @@
     <button type="submit" class="btn btn-primary">Tambah Data</button>
     <a href="/petugas" class="btn btn-warning">Kembali</a>
 </form>
-<?php if (session()->exists) : ?>
-    <span id="error-username" data-username="<?= old('username'); ?>"></span>
-<?php endif ?>
 <?= $this->endSection(); ?>

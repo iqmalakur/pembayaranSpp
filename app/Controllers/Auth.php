@@ -53,7 +53,6 @@ class Auth extends BaseController
 					'login' => true,
 					'user' => [
 						'username' => $role == 'siswa' ? $user->nisn : $user->username,
-						// 'password' => $role == 'siswa' ? $user->nis : $user->password,
 						'role' => $role,
 					],
 				]);

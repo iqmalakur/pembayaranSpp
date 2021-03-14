@@ -62,7 +62,11 @@ class Petugas extends BaseController
 			return redirect()->to('/petugas/add')->withInput();
 		} else {
 			if ($this->model->find($data['username'])) {
-				$this->session->setFlashdata('exists', true);
+				$this->session->setFlashdata('message', [
+					'icon' => "error",
+					'title' => "Tidak dapat menambahkan data!",
+					'text' => "Username " . $data['username'] . " telah digunakan!"
+				]);
 				return redirect()->to('/petugas/add')->withInput();
 			}
 

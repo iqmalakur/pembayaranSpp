@@ -67,7 +67,11 @@ class Kelas extends BaseController
 			return redirect()->to('/kelas/add')->withInput();
 		} else {
 			if ($this->model->cek($data['nama_kelas'])) {
-				$this->session->setFlashdata('exists', true);
+				$this->session->setFlashdata('message', [
+					'icon' => "error",
+					'title' => "Tidak dapat menambahkan data!",
+					'text' => "Kelas " . $data['nama_kelas'] . " telah ada!"
+				]);
 				return redirect()->to('/kelas/add')->withInput();
 			}
 
@@ -111,9 +115,13 @@ class Kelas extends BaseController
 			// Kembali ke halaman login dan mengirimkan input sebelumnya
 			return redirect()->to('/kelas/edit/' . $data["id_kelas"])->withInput();
 		} else {
-			if ($this->model->cek($data['nama_kelas'])) {
-				$this->session->setFlashdata('exists', true);
-				return redirect()->to('/kelas/edit/' . $data["id_kelas"])->withInput();
+			if ($this->model->cek($data['nama_kelas']) && $data['nama_kelas'] !== $this->model->find($data['id_kelas'])->nama_kelas) {
+				$this->session->setFlashdata('message', [
+					'icon' => "error",
+					'title' => "Tidak dapat menambahkan data!",
+					'text' => "Kelas " . $data['nama_kelas'] . " telah ada!"
+				]);
+				return redirect()->to('/kelas/edit/' . $data['id_kelas'])->withInput();
 			}
 
 			$this->model->save($data);

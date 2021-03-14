@@ -40,25 +40,20 @@ class SppModel extends Model
 	protected $beforeDelete         = [];
 	protected $afterDelete          = [];
 
-	// Query Builder
-	protected $sppBuilder			= '';
-
-	public function __construct()
-	{
-		$this->sppBuilder = $this->builder("spp");
-		$this->builder();
-	}
-
 	public function get($id = false)
 	{
+		$builder = $this->builder("spp");
+
 		if ($id) {
-			return $this->sppBuilder->where('id_spp', $id)->join('jurusan', 'spp.kompetensi_keahlian=jurusan.id_jurusan')->get()->getRowObject();
+			return $builder->where('id_spp', $id)->join('jurusan', 'spp.kompetensi_keahlian=jurusan.id_jurusan')->get()->getRowObject();
 		}
-		return $this->sppBuilder->join('jurusan', 'spp.kompetensi_keahlian=jurusan.id_jurusan')->get()->getResultObject();
+		return $builder->join('jurusan', 'spp.kompetensi_keahlian=jurusan.id_jurusan')->get()->getResultObject();
 	}
 
 	public function cek($jurusan)
 	{
-		return $this->sppBuilder->join('jurusan', 'spp.kompetensi_keahlian=jurusan.id_jurusan')->where('id_jurusan', $jurusan)->get()->getRowObject();
+		$builder = $this->builder("spp");
+
+		return $builder->join('jurusan', 'spp.kompetensi_keahlian=jurusan.id_jurusan')->where('id_jurusan', $jurusan)->get()->getRowObject();
 	}
 }

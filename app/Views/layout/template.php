@@ -36,6 +36,10 @@
     if (isset(session()->successInfo)) {
         echo '<span id="success-info" data-title="' . session()->successInfo . '"></span>';
     }
+
+    if (session()->message) {
+        echo '<span id="message" data-icon="' . session()->message['icon'] . '" data-title="' . session()->message['title'] . '" data-text="' . session()->message['text'] . '"></span>';
+    }
     ?>
 
     <!-- Bootstrap Bundle with Popper -->

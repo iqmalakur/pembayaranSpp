@@ -9,7 +9,6 @@ class Auth extends BaseController
 	public function index()
 	{
 		if ($this->session->login) {
-			$this->session->setFlashdata('loginInfo', true);
 			return redirect()->to(previous_url());
 		}
 

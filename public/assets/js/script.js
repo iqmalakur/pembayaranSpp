@@ -111,19 +111,3 @@ if ((login = document.getElementById("login-success"))) {
         title: "Login berhasil",
     });
 }
-
-// Alert Informasi Login
-let loginInfo;
-if ((loginInfo = document.getElementById("login-info"))) {
-    let login = loginInfo.dataset.login;
-
-    console.log(login);
-
-    Swal.fire({
-        icon: login ? "info" : "warning",
-        title: login ? "Anda Telah Login!" : "Anda Belum Login!",
-        text: login ? "" : "Silahkan Login terlebih dahulu!",
-        timer: 3000,
-        timerProgressBar: true,
-    });
-}

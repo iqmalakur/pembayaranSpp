@@ -22,7 +22,6 @@ class Kelas extends BaseController
 	public function index()
 	{
 		if (!$this->session->login) {
-			$this->session->setFlashdata('loginInfo', false);
 			return redirect()->to('/login');
 		}
 
@@ -39,7 +38,6 @@ class Kelas extends BaseController
 	public function create()
 	{
 		if (!$this->session->login) {
-			$this->session->setFlashdata('loginInfo', false);
 			return redirect()->to('/login');
 		}
 
@@ -84,7 +82,6 @@ class Kelas extends BaseController
 	public function edit($id)
 	{
 		if (!$this->session->login) {
-			$this->session->setFlashdata('loginInfo', false);
 			return redirect()->to('/login');
 		}
 

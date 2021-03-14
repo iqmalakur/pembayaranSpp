@@ -9,7 +9,6 @@ class Main extends BaseController
 	public function index()
 	{
 		if (!$this->session->login) {
-			$this->session->setFlashdata('loginInfo', false);
 			return redirect()->to('/login');
 		}
 
@@ -22,7 +21,6 @@ class Main extends BaseController
 	public function payment()
 	{
 		if (!$this->session->login) {
-			$this->session->setFlashdata('loginInfo', false);
 			return redirect()->to('/login');
 		}
 
@@ -49,7 +47,6 @@ class Main extends BaseController
 	{
 		echo "Kuitansi";
 		if (!$this->session->login) {
-			$this->session->setFlashdata('loginInfo', false);
 			return redirect()->to('/login');
 		}
 		// Kuitansi

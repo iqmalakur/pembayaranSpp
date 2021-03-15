@@ -41,6 +41,7 @@ class Siswa extends Migration
 		$this->forge->addKey('nisn', true);
 		$this->forge->addForeignKey('id_kelas', 'kelas', 'id_kelas');
 		$this->forge->addForeignKey('id_spp', 'spp', 'id_spp');
+		$this->forge->addUniqueKey('nis');
 		$this->forge->createTable('siswa');
 
 		$this->db->enableForeignKeyChecks();

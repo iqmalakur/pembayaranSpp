@@ -23,6 +23,7 @@ class Spp extends Migration
 		]);
 
 		$this->forge->addKey('id_spp', true);
+		$this->forge->addUniqueKey('tahun');
 		$this->forge->createTable('spp');
 	}
 

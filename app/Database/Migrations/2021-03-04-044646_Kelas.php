@@ -26,6 +26,7 @@ class Kelas extends Migration
 
 		$this->forge->addKey('id_kelas', true);
 		$this->forge->addForeignKey('kompetensi_keahlian', 'jurusan', 'id_jurusan');
+		$this->forge->addUniqueKey('nama_kelas');
 		$this->forge->createTable('kelas');
 
 		$this->db->enableForeignKeyChecks();

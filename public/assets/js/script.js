@@ -39,19 +39,24 @@ if ((alias = document.querySelector("input[name=alias]"))) {
 
 // Controller Kelas
 let namaKelas;
-if ((namaKelas = document.querySelector("input[name=nama_kelas]"))) {
+if ((namaKelas = document.querySelector("input[name=nama_kelas]")) || (namaKelas = document.getElementById("select-kelas"))) {
     namaKelas.addEventListener("input", function () {
         namaKelas.value = namaKelas.value.toUpperCase();
     });
 }
 
 // Controller Spp
-let sppSelect;
-if ((sppSelect = document.querySelector("select#kompetensi_keahlian"))) {
-    sppSelect.addEventListener("change", function () {
-        if (sppSelect.value === "tambahJurusan") {
-            window.location.href = "/jurusan/add";
+let tahun;
+if ((tahun = document.querySelector("input[name=tahun]"))) {
+    tahun.addEventListener("input", function () {
+        if (parseInt(tahun.value) < 1000 || parseInt(tahun.value) > 9999 || tahun.value == "") {
+            tahun.classList.add("is-invalid");
+            document.getElementById("tahunFeedback").innerHTML = "Tahun terdiri dari 4 digit angka!";
+        } else {
+            tahun.classList.remove("is-invalid");
+            document.getElementById("tahunFeedback").innerHTML = "";
         }
+        document.querySelector("input[name=tahun2]").value = tahun.value == "" ? 0 : parseInt(tahun.value) + 1;
     });
 }
 

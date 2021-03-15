@@ -6,12 +6,10 @@
     <?= csrf_field(); ?>
     <input type="hidden" name="id_spp" value="<?= $spp->id_spp; ?>">
     <div class="mb-3">
-        <label class="form-label">Kompetensi Keahlian</label>
-        <select class="form-select" disabled>
-            <option value="<?= $spp->id_jurusan; ?>"><?= $spp->nama_jurusan; ?></option>
-        </select>
+        <label for="tahun" class="form-label">Tahun Ajaran</label>
+        <input type="text" value="<?= $spp->tahun; ?>" name="tahun" class="form-control" readonly>
     </div>
-    <div class="mb-3">
+    <div class=" mb-3">
         <label for="nominal" class="form-label">Nominal</label>
         <input type="text" name="nominal" class="form-control <?= isset($errors['nominal']) ? 'is-invalid' : ''; ?>" id="nominal" value="<?= old('nominal') ? old('nominal') : $spp->nominal; ?>">
         <div id="nominalFeedback" class="invalid-feedback">

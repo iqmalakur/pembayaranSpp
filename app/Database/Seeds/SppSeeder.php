@@ -11,23 +11,23 @@ class SppSeeder extends Seeder
 		// Menyiapkan Data
 		$data = [
 			[
-				'kompetensi_keahlian' => 1,
+				'tahun' => "2017/2018",
 				'nominal' => 110000
 			],
 			[
-				'kompetensi_keahlian' => 2,
+				'tahun' => "2018/2019",
 				'nominal' => 130000
 			],
 			[
-				'kompetensi_keahlian' => 3,
+				'tahun' => "2019/2020",
 				'nominal' => 140000
 			],
 			[
-				'kompetensi_keahlian' => 4,
+				'tahun' => "2020/2021",
 				'nominal' => 120000
 			],
 			[
-				'kompetensi_keahlian' => 5,
+				'tahun' => "2021/2022",
 				'nominal' => 150000
 			],
 		];

@@ -7,7 +7,7 @@
     <thead>
         <tr>
             <th scope="col">No.</th>
-            <th scope="col">Kompetensi Keahlian</th>
+            <th scope="col">Tahun</th>
             <th scope="col">Nominal</th>
             <th scope="col">Aksi</th>
         </tr>
@@ -16,14 +16,14 @@
         <?php foreach ($spp as $i => $s) : ?>
             <tr>
                 <th scope="row"><?= $i + 1; ?></th>
-                <td><?= $s->nama_jurusan; ?></td>
-                <td><?= $s->nominal; ?></td>
+                <td><?= $s->tahun; ?></td>
+                <td><?= "Rp " . number_format($s->nominal, 2, ',', '.'); ?></td>
                 <td>
                     <a href="/spp/edit/<?= $s->id_spp; ?>" class="btn btn-primary">Ubah</a>
                     <form action="/spp/delete/<?= $s->id_spp; ?>" method="POST" class="d-inline">
                         <?= csrf_field(); ?>
                         <input type="hidden" name="_method" value="DELETE">
-                        <span id="delete" class="btn btn-danger" data-item="Spp untuk Kompetensi Keahlian <?= $s->nama_jurusan; ?>">Hapus</span>
+                        <span id="delete" class="btn btn-danger" data-item="Spp untuk Kompetensi Keahlian <?= $s->tahun; ?>">Hapus</span>
                     </form>
                 </td>
             </tr>

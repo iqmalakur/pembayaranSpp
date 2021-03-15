@@ -4,24 +4,17 @@
 <h1>Tambah Data Spp</h1>
 <form action="/spp/save" method="POST">
     <?= csrf_field(); ?>
-    <div class="mb-3">
-        <?php
-        $i = 0
-        ?>
-        <label for="kompetensi_keahlian" class="form-label">Kompetensi Keahlian</label>
-        <select class="form-select" id="kompetensi_keahlian" name="kompetensi_keahlian">
-            <?php foreach ($jurusan as $j) : ?>
-                <?php if (old('kompetensi_keahlian')) : ?>
-                    <option value="<?= $j->id_jurusan; ?>" <?= old('kompetensi_keahlian') == $j->id_jurusan ? 'selected' : ''; ?>><?= $j->nama_jurusan; ?></option>
-                <?php else : ?>
-                    <option value="<?= $j->id_jurusan; ?>" <?= $spp->cek($j->id_jurusan) ? 'disabled' : $i++; ?>><?= $j->nama_jurusan; ?></option>
-                <?php endif ?>
-            <?php endforeach ?>
-            <?php if ($i == 0) : ?>
-                <option value="null">Semua jurusan telah memiliki spp</option>
-            <?php endif ?>
-            <option value="tambahJurusan">Tambah Jurusan</option>
-        </select>
+    <div class="mb-3 row">
+        <label for="tahun" class="form-label">Tahun Ajaran</label>
+        <div class="col-6">
+            <input type="number" min="1900" max="2100" name="tahun" class="form-control <?= isset($errors['tahun']) ? 'is-invalid' : ''; ?>" id="tahun" value="<?= old('tahun') ? old('tahun') : date('Y'); ?>">
+            <div id="tahunFeedback" class="invalid-feedback">
+                <?= isset($errors['tahun']) ? $errors['tahun'] : ''; ?>
+            </div>
+        </div>
+        <div class="col-6">
+            <input type="text" name="tahun2" class="form-control" value="<?= old('tahun') ? old('tahun') + 1 : date('Y') + 1; ?>" readonly>
+        </div>
     </div>
     <div class="mb-3">
         <label for="nominal" class="form-label">Nominal</label>

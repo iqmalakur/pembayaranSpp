@@ -14,7 +14,7 @@ class SppModel extends Model
 	protected $returnType           = 'object';
 	protected $useSoftDelete        = false;
 	protected $protectFields        = true;
-	protected $allowedFields        = ['kompetensi_keahlian', 'nominal'];
+	protected $allowedFields        = ['tahun', 'nominal'];
 
 	// Dates
 	protected $useTimestamps        = false;
@@ -40,20 +40,10 @@ class SppModel extends Model
 	protected $beforeDelete         = [];
 	protected $afterDelete          = [];
 
-	public function get($id = false)
+	public function cek($tahun)
 	{
 		$builder = $this->builder("spp");
 
-		if ($id) {
-			return $builder->where('id_spp', $id)->join('jurusan', 'spp.kompetensi_keahlian=jurusan.id_jurusan')->get()->getRowObject();
-		}
-		return $builder->join('jurusan', 'spp.kompetensi_keahlian=jurusan.id_jurusan')->get()->getResultObject();
-	}
-
-	public function cek($jurusan)
-	{
-		$builder = $this->builder("spp");
-
-		return $builder->join('jurusan', 'spp.kompetensi_keahlian=jurusan.id_jurusan')->where('id_jurusan', $jurusan)->get()->getRowObject();
+		return $builder->where('tahun', $tahun)->get()->getRowObject();
 	}
 }

@@ -3,20 +3,15 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\JurusanModel;
 use App\Models\SppModel;
 
 class Spp extends BaseController
 {
 	protected $model;
-	protected $jurusan;
 
 	public function __construct()
 	{
 		$this->model = new SppModel();
-
-		$jurusanModel = new JurusanModel();
-		$this->jurusan = $jurusanModel->findAll();
 	}
 
 	public function index()
@@ -30,7 +25,7 @@ class Spp extends BaseController
 		}
 
 		$this->data['title'] = "Spp";
-		$this->data['spp'] = $this->model->get();
+		$this->data['spp'] = $this->model->findAll();
 
 		return view("spp/index", $this->data);
 	}
@@ -46,7 +41,6 @@ class Spp extends BaseController
 		}
 
 		$this->data['title'] = "Tambah data Spp";
-		$this->data['jurusan'] = $this->jurusan;
 		$this->data['spp'] = $this->model;
 		$this->data["errors"] = $this->session->get('errors');
 
@@ -55,16 +49,7 @@ class Spp extends BaseController
 
 	public function save()
 	{
-		$data = $this->request->getPost(["kompetensi_keahlian", "nominal"]);
-
-		if ($data['kompetensi_keahlian'] == 'null') {
-			$this->session->setFlashdata('message', [
-				'icon' => "error",
-				'title' => "Tidak dapat menambahkan data!",
-				'text' => "Silahkan isi Kompetensi Keahlian dengan benar!"
-			]);
-			return redirect()->to('/spp/add');
-		}
+		$data = $this->request->getPost(["tahun", "nominal"]);
 
 		helper(['form', 'url']);
 		$validation = \Config\Services::validation();
@@ -76,6 +61,17 @@ class Spp extends BaseController
 			// Kembali ke halaman login dan mengirimkan input sebelumnya
 			return redirect()->to('/spp/add')->withInput();
 		} else {
+			$data['tahun'] .= ('/' . $this->request->getPost('tahun2'));
+
+			if ($this->model->cek($data['tahun'])) {
+				$this->session->setFlashdata('message', [
+					'icon' => "error",
+					'title' => "Tidak dapat menambahkan data!",
+					'text' => "SPP untuk tahun ajaran {$data['tahun']} telah ada!"
+				]);
+				return redirect()->to('/spp/add')->withInput();
+			}
+
 			$this->model->save($data);
 
 			$this->session->setFlashdata('successInfo', 'Menambahkan');
@@ -95,8 +91,7 @@ class Spp extends BaseController
 		}
 
 		$this->data['title'] = "Ubah data Spp";
-		$this->data['spp'] = $this->model->get($id);
-		$this->data['jurusan'] = $this->jurusan;
+		$this->data['spp'] = $this->model->find($id);
 		$this->data["errors"] = $this->session->get('errors');
 
 		return view("spp/edit", $this->data);
@@ -104,7 +99,7 @@ class Spp extends BaseController
 
 	public function update()
 	{
-		$data = $this->request->getPost(["id_spp", "nominal"]);
+		$data = $this->request->getPost(["id_spp", "tahun", "nominal"]);
 
 		helper(['form', 'url']);
 		$validation = \Config\Services::validation();

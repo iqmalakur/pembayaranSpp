@@ -45,13 +45,40 @@ if ((namaKelas = document.querySelector("input[name=nama_kelas]")) || (namaKelas
     });
 }
 
+// Controller Siswa
+let nisn;
+if ((nisn = document.querySelector("input[name=nisn]"))) {
+    nisn.addEventListener("input", function () {
+        if (nisn.value.length < 10 || nisn.value.length > 10 || nisn.value == "") {
+            nisn.classList.add("is-invalid");
+            document.getElementById("nisnFeedback").innerHTML = "NISN harus terdiri dari 10 karakter!";
+        } else {
+            nisn.classList.remove("is-invalid");
+            document.getElementById("nisnFeedback").innerHTML = "";
+        }
+    });
+}
+
+let nis;
+if ((nis = document.querySelector("input[name=nis]"))) {
+    nis.addEventListener("input", function () {
+        if (nis.value.length < 8 || nis.value.length > 8 || nis.value == "") {
+            nis.classList.add("is-invalid");
+            document.getElementById("nisFeedback").innerHTML = "NIS harus terdiri dari 8 karakter!";
+        } else {
+            nis.classList.remove("is-invalid");
+            document.getElementById("nisFeedback").innerHTML = "";
+        }
+    });
+}
+
 // Controller Spp
 let tahun;
 if ((tahun = document.querySelector("input[name=tahun]"))) {
     tahun.addEventListener("input", function () {
         if (parseInt(tahun.value) < 1000 || parseInt(tahun.value) > 9999 || tahun.value == "") {
             tahun.classList.add("is-invalid");
-            document.getElementById("tahunFeedback").innerHTML = "Tahun terdiri dari 4 digit angka!";
+            document.getElementById("tahunFeedback").innerHTML = "Tahun harus terdiri dari 4 digit angka!";
         } else {
             tahun.classList.remove("is-invalid");
             document.getElementById("tahunFeedback").innerHTML = "";

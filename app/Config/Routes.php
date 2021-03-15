@@ -69,6 +69,7 @@ $routes->delete('/spp/delete/(:segment)', 'Spp::delete/$1');
 $routes->get('/siswa', 'Siswa::index');
 $routes->get('/siswa/add', 'Siswa::create');
 $routes->get('/siswa/edit/(:segment)', 'Siswa::edit/$1');
+$routes->get('/siswa/detail/(:segment)', 'Siswa::detail/$1');
 $routes->post('/siswa/save', 'Siswa::save');
 $routes->post('/siswa/update', 'Siswa::update');
 $routes->delete('/siswa/delete/(:segment)', 'Siswa::delete/$1');

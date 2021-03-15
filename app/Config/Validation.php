@@ -60,6 +60,7 @@ class Validation
 
 	// Validasi Spp
 	public $spp = [
+		'tahun' => 'required',
 		'nominal' => 'required|numeric|max_length[11]'
 	];
 
@@ -75,5 +76,14 @@ class Validation
 		'username' => 'required|alpha_numeric|max_length[25]',
 		'editPassword' => 'max_length[32]',
 		'nama_petugas' => 'required|alpha|max_length[35]',
+	];
+
+	// Validasi Siswa
+	public $siswa = [
+		'nisn' => 'required|numeric|max_length[10]|min_length[10]',
+		'nis' => 'required|numeric|max_length[8]|min_length[8]',
+		'nama' => 'required|alpha_space|max_length[35]',
+		'alamat' => 'required',
+		'no_telp' => 'required|numeric|max_length[13]',
 	];
 }

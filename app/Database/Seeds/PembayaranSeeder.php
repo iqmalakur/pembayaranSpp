@@ -14,7 +14,7 @@ class PembayaranSeeder extends Seeder
 		// Menyiapkan Data
 		$data = [
 			[
-				'id_petugas' => 3,
+				'petugas' => 'ekasantoso',
 				'nisn' => '0025111328',
 				'tgl_bayar' => '2019-03-21',
 				'bulan_dibayar' => 'Maret',
@@ -25,7 +25,7 @@ class PembayaranSeeder extends Seeder
 				'updated_at' => $time,
 			],
 			[
-				'id_petugas' => 1,
+				'petugas' => 'admin',
 				'nisn' => '0052871453',
 				'tgl_bayar' => '2019-08-16',
 				'bulan_dibayar' => 'Agustus',
@@ -36,7 +36,7 @@ class PembayaranSeeder extends Seeder
 				'updated_at' => $time,
 			],
 			[
-				'id_petugas' => 3,
+				'petugas' => 'ekasantoso',
 				'nisn' => '0031243215',
 				'tgl_bayar' => '2020-01-05',
 				'bulan_dibayar' => 'Januari',
@@ -47,7 +47,7 @@ class PembayaranSeeder extends Seeder
 				'updated_at' => $time,
 			],
 			[
-				'id_petugas' => 5,
+				'petugas' => 'hildafitri',
 				'nisn' => '0023214211',
 				'tgl_bayar' => '2020-01-20',
 				'bulan_dibayar' => 'Januari',
@@ -58,7 +58,7 @@ class PembayaranSeeder extends Seeder
 				'updated_at' => $time,
 			],
 			[
-				'id_petugas' => 4,
+				'petugas' => 'farah123',
 				'nisn' => '0051232245',
 				'tgl_bayar' => '2020-02-12',
 				'bulan_dibayar' => 'Februari',

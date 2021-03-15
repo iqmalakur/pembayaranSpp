@@ -26,6 +26,7 @@ class Petugas extends Migration
 				'constraint' => array('admin', 'petugas'),
 			],
 		]);
+
 		$this->forge->addKey('username', true);
 		$this->forge->createTable('petugas');
 	}

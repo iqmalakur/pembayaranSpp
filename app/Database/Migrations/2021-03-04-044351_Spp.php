@@ -21,6 +21,7 @@ class Spp extends Migration
 				'type' => 'INT',
 			],
 		]);
+
 		$this->forge->addKey('id_spp', true);
 		$this->forge->createTable('spp');
 	}

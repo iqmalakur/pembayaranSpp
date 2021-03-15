@@ -8,6 +8,8 @@ class Siswa extends Migration
 {
 	public function up()
 	{
+		$this->db->disableForeignKeyChecks();
+
 		$this->forge->addField([
 			'nisn' => [
 				'type' => 'CHAR',
@@ -35,8 +37,13 @@ class Siswa extends Migration
 				'type' => 'INT'
 			],
 		]);
+
 		$this->forge->addKey('nisn', true);
+		$this->forge->addForeignKey('id_kelas', 'kelas', 'id_kelas');
+		$this->forge->addForeignKey('id_spp', 'spp', 'id_spp');
 		$this->forge->createTable('siswa');
+
+		$this->db->enableForeignKeyChecks();
 	}
 
 	public function down()

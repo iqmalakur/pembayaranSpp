@@ -8,6 +8,8 @@ class Kelas extends Migration
 {
 	public function up()
 	{
+		$this->db->disableForeignKeyChecks();
+
 		$this->forge->addField([
 			'id_kelas' => [
 				'type' => 'INT',
@@ -21,8 +23,12 @@ class Kelas extends Migration
 				'type' => 'INT',
 			],
 		]);
+
 		$this->forge->addKey('id_kelas', true);
+		$this->forge->addForeignKey('kompetensi_keahlian', 'jurusan', 'id_jurusan');
 		$this->forge->createTable('kelas');
+
+		$this->db->enableForeignKeyChecks();
 	}
 
 	public function down()

@@ -22,6 +22,7 @@ class Jurusan extends Migration
 				'constraint' => 5,
 			],
 		]);
+
 		$this->forge->addKey('id_jurusan', true);
 		$this->forge->createTable('jurusan');
 	}

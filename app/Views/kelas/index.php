@@ -23,7 +23,7 @@
                     <form action="/kelas/delete/<?= $k->id_kelas; ?>" method="POST" class="d-inline">
                         <?= csrf_field(); ?>
                         <input type="hidden" name="_method" value="DELETE">
-                        <span id="delete" class="btn btn-danger" data-item="<?= $k->nama_kelas; ?>">Hapus</span>
+                        <span class="delete btn btn-danger" data-item="<?= $k->nama_kelas; ?>">Hapus</span>
                     </form>
                 </td>
             </tr>

@@ -1,108 +1,83 @@
 // Konfirmasi Hapus Data
-let konfirmasiHapus;
-if ((konfirmasiHapus = document.querySelectorAll("span#delete"))) {
-    konfirmasiHapus.forEach((item) => {
-        item.addEventListener("click", function () {
-            Swal.fire({
-                title: "Anda yakin akan Menghapus?",
-                text: item.dataset.item + " akan dihapus permanen!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Ya, hapus data ini!",
-                cancelButtonText: "Jangan hapus data!",
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    item.parentElement.submit();
-                }
-            });
-        });
+$("span.delete").click(function () {
+    Swal.fire({
+        title: "Anda yakin akan Menghapus?",
+        text: this.dataset.item + " akan dihapus permanen!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Ya, hapus data ini!",
+        cancelButtonText: "Jangan hapus data!",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $(this).parent().submit();
+        }
     });
-}
+});
 
 // Field Username
-let username;
-if ((username = document.querySelector("input[name=username]"))) {
-    username.addEventListener("input", function () {
-        username.value = username.value.toLowerCase();
-    });
-}
+$("input[name=username]").on("input", function () {
+    this.value = this.value.toLowerCase();
+});
 
 // Controller Jurusan
-let alias;
-if ((alias = document.querySelector("input[name=alias]"))) {
-    alias.addEventListener("input", function () {
-        alias.value = alias.value.toUpperCase();
-    });
-}
+$("input[name=alias]").on("input", function () {
+    this.value = this.value.toUpperCase();
+});
 
 // Controller Kelas
-let namaKelas;
-if ((namaKelas = document.querySelector("input[name=nama_kelas]")) || (namaKelas = document.getElementById("select-kelas"))) {
-    namaKelas.addEventListener("input", function () {
-        namaKelas.value = namaKelas.value.toUpperCase();
-    });
-}
+$("#nama-kelas").on("input", function () {
+    this.value = this.value.toUpperCase();
+});
 
 // Controller Siswa
-let nisn;
-if ((nisn = document.querySelector("input[name=nisn]"))) {
-    nisn.addEventListener("input", function () {
-        if (nisn.value.length < 10 || nisn.value.length > 10 || nisn.value == "") {
-            nisn.classList.add("is-invalid");
-            document.getElementById("nisnFeedback").innerHTML = "NISN harus terdiri dari 10 karakter!";
-        } else {
-            nisn.classList.remove("is-invalid");
-            document.getElementById("nisnFeedback").innerHTML = "";
-        }
-    });
-}
+$("input[name=nisn]").on("input", function () {
+    if (this.value.length < 10 || this.value.length > 10 || this.value == "") {
+        $(this).addClass("is-invalid");
+        $("#nisnFeedback").html("NISN harus terdiri dari 10 karakter!");
+    } else {
+        $(this).removeClass("is-invalid");
+        $("#nisnFeedback").html("");
+    }
+});
 
-let nis;
-if ((nis = document.querySelector("input[name=nis]"))) {
-    nis.addEventListener("input", function () {
-        if (nis.value.length < 8 || nis.value.length > 8 || nis.value == "") {
-            nis.classList.add("is-invalid");
-            document.getElementById("nisFeedback").innerHTML = "NIS harus terdiri dari 8 karakter!";
-        } else {
-            nis.classList.remove("is-invalid");
-            document.getElementById("nisFeedback").innerHTML = "";
-        }
-    });
-}
+$("input[name=nis]").on("input", function () {
+    if (this.value.length < 8 || this.value.length > 8 || this.value == "") {
+        $(this).addClass("is-invalid");
+        $("#nisFeedback").html("NIS harus terdiri dari 8 karakter!");
+    } else {
+        $(this).removeClass("is-invalid");
+        $("#nisFeedback").html("");
+    }
+});
 
 // Controller Spp
-let tahun;
-if ((tahun = document.querySelector("input[name=tahun]"))) {
-    tahun.addEventListener("input", function () {
-        if (parseInt(tahun.value) < 1000 || parseInt(tahun.value) > 9999 || tahun.value == "") {
-            tahun.classList.add("is-invalid");
-            document.getElementById("tahunFeedback").innerHTML = "Tahun harus terdiri dari 4 digit angka!";
-        } else {
-            tahun.classList.remove("is-invalid");
-            document.getElementById("tahunFeedback").innerHTML = "";
-        }
-        document.querySelector("input[name=tahun2]").value = tahun.value == "" ? 0 : parseInt(tahun.value) + 1;
-    });
-}
+$("input[name=tahun]").on("input", function () {
+    if (parseInt(this.value) < 1000 || parseInt(this.value) > 9999 || this.value == "") {
+        $(this).addClass("is-invalid");
+        $("#tahunFeedback").html("Tahun harus terdiri dari 4 digit angka!");
+    } else {
+        $(this).removeClass("is-invalid");
+        $("#tahunFeedback").html("");
+    }
+    $("input[name=tahun2]").val(this.value == "" ? 0 : parseInt(this.value) + 1);
+});
 
 // Message
-let message;
-if ((message = document.getElementById("message"))) {
+if ($("#message").length) {
     Swal.fire({
-        icon: message.dataset.icon,
-        title: message.dataset.title,
-        text: message.dataset.text,
+        icon: $("#message").data("icon"),
+        title: $("#message").data("title"),
+        text: $("#message").data("text"),
     });
 }
 
 // Alert Berhasil
-let succesInfo;
-if ((succesInfo = document.getElementById("success-info"))) {
+if ($("#success-info").length) {
     // Swal.fire({
     //     icon: "success",
-    //     title: "Berhasil " + succesInfo.dataset.title + " data",
+    //     title: "Berhasil " + $('#success-info').data('title') + " data",
     //     timer: 3000,
     //     timerProgressBar: true,
     // });
@@ -121,13 +96,12 @@ if ((succesInfo = document.getElementById("success-info"))) {
 
     Toast.fire({
         icon: "success",
-        title: "Berhasil " + succesInfo.dataset.title + " data",
+        title: "Berhasil " + $("#success-info").data("title") + " data",
     });
 }
 
 // Alert Berhasil Login
-let login;
-if ((login = document.getElementById("login-success"))) {
+if ($("#login-success").length) {
     const Toast = Swal.mixin({
         toast: true,
         position: "bottom-right",

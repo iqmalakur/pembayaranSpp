@@ -23,7 +23,7 @@
                     <form action="/jurusan/delete/<?= $j->id_jurusan; ?>" method="POST" class="d-inline">
                         <?= csrf_field(); ?>
                         <input type="hidden" name="_method" value="DELETE">
-                        <span id="delete" class="btn btn-danger" data-item="<?= $j->nama_jurusan; ?>">Hapus</span>
+                        <span class="delete btn btn-danger" data-item="<?= $j->nama_jurusan; ?>">Hapus</span>
                     </form>
                 </td>
             </tr>

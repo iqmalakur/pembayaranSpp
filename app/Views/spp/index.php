@@ -23,7 +23,7 @@
                     <form action="/spp/delete/<?= $s->id_spp; ?>" method="POST" class="d-inline">
                         <?= csrf_field(); ?>
                         <input type="hidden" name="_method" value="DELETE">
-                        <span id="delete" class="btn btn-danger" data-item="Spp untuk Kompetensi Keahlian <?= $s->tahun; ?>">Hapus</span>
+                        <span class="delete btn btn-danger" data-item="Spp untuk Kompetensi Keahlian <?= $s->tahun; ?>">Hapus</span>
                     </form>
                 </td>
             </tr>

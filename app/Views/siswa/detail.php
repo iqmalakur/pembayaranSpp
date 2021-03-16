@@ -16,7 +16,7 @@
 <form action="/siswa/delete/<?= $siswa->nisn; ?>" method="POST" class="d-inline">
     <?= csrf_field(); ?>
     <input type="hidden" name="_method" value="DELETE">
-    <span id="delete" class="btn btn-danger" data-item="<?= $siswa->nama; ?>">Hapus</span>
+    <span class="delete btn btn-danger" data-item="<?= $siswa->nama; ?>">Hapus</span>
 </form>
 <a href="/siswa" class="btn btn-warning">Kembali</a>
 <?= $this->endSection(); ?>

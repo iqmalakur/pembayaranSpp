@@ -3,9 +3,17 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\SiswaModel;
 
 class Main extends BaseController
 {
+	protected $siswaModel;
+
+	public function __construct()
+	{
+		$this->siswaModel = new SiswaModel();
+	}
+
 	public function index()
 	{
 		if (!$this->session->login) {
@@ -29,12 +37,15 @@ class Main extends BaseController
 		}
 
 		$this->data['title'] = "Pembayaran Spp";
+		$this->data['bulan'] = date('M');
+		$this->data['siswa'] = $this->siswaModel->get();
 
 		return view("main/payment", $this->data);
 	}
 
-	public function pay($data)
+	public function pay()
 	{
+
 		// Proses Pembayaran
 	}
 
@@ -50,5 +61,17 @@ class Main extends BaseController
 			return redirect()->to('/login');
 		}
 		// Kuitansi
+	}
+
+	public function ajaxPembayaran()
+	{
+		$keyword = $this->request->getPost("keyword");
+		return view('ajax/pembayaran', ['siswa' => $this->siswaModel->searchAjax($keyword)]);
+	}
+
+	public function getSiswa()
+	{
+		$siswa = $this->siswaModel->get($this->request->getPost("nisn"));
+		return "$siswa->nisn,$siswa->nama - $siswa->nama_kelas,$siswa->id_spp,$siswa->tahun,$siswa->nominal";
 	}
 }

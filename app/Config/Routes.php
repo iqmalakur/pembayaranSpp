@@ -35,6 +35,7 @@ $routes->setAutoRoute(true);
 // Controller Main
 $routes->get('/', 'Main::index');
 $routes->get('/pembayaran', 'Main::payment');
+$routes->post('/bayar', 'Main::pay');
 
 // Controller Auth
 $routes->get('/login', 'Auth::index');
@@ -81,6 +82,10 @@ $routes->get('/petugas/edit/(:segment)', 'Petugas::edit/$1');
 $routes->post('/petugas/save', 'Petugas::save');
 $routes->post('/petugas/update', 'Petugas::update');
 $routes->delete('/petugas/delete/(:segment)', 'Petugas::delete/$1');
+
+// AJAX
+$routes->post('/ajaxPembayaran', 'Main::ajaxPembayaran');
+$routes->post('/getSiswa', 'Main::getSiswa');
 
 // Kuitansi atau Bukti Pembayaran
 $routes->get('/(:any)', 'Main::receipt/$1');

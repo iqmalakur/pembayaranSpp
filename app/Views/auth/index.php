@@ -4,7 +4,7 @@
 <div class="container justify-content-center d-flex login-container">
     <div class="card shadow-lg">
         <div class="card-body px-4">
-            <h1 class="card-title text-center">Login</h1>
+            <h1 class="card-title text-center title">Login</h1>
             <?php if (isset($errors['login-fail'])) : ?>
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     Username atau Password <strong>salah!</strong>

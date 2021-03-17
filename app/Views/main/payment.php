@@ -1,7 +1,7 @@
 <?= $this->extend("layout/template"); ?>
 
 <?= $this->section("content"); ?>
-<h1>Pembayaran Spp</h1>
+<h1 class="title text-center">Pembayaran Spp</h1>
 <div class="accordion mt-5" id="accordionExample">
     <div class="accordion-item">
         <h2 class="accordion-header" id="headingOne">

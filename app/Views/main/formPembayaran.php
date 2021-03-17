@@ -21,19 +21,19 @@
     </div>
     <div class="mb-3">
         <label for="bulan_dibayar" class="form-label">Bulan Dibayar</label>
-        <select class="form-select" aria-label="Default select example">
-            <option value="Jan" <?= $bulan == "Jan" ? "selected" : ""; ?>>Januari</option>
-            <option value="Feb" <?= $bulan == "Feb" ? "selected" : ""; ?>>Februari</option>
-            <option value="Mar" <?= $bulan == "Mar" ? "selected" : ""; ?>>Maret</option>
-            <option value="Apr" <?= $bulan == "Apr" ? "selected" : ""; ?>>April</option>
-            <option value="May" <?= $bulan == "May" ? "selected" : ""; ?>>Mei</option>
-            <option value="Jun" <?= $bulan == "Jun" ? "selected" : ""; ?>>Juni</option>
-            <option value="Jul" <?= $bulan == "Jul" ? "selected" : ""; ?>>Juli</option>
-            <option value="Aug" <?= $bulan == "Aug" ? "selected" : ""; ?>>Agustus</option>
-            <option value="Sep" <?= $bulan == "Sep" ? "selected" : ""; ?>>September</option>
-            <option value="Oct" <?= $bulan == "Oct" ? "selected" : ""; ?>>Oktober</option>
-            <option value="Nov" <?= $bulan == "Nov" ? "selected" : ""; ?>>November</option>
-            <option value="Dec" <?= $bulan == "Dec" ? "selected" : ""; ?>>Desember</option>
+        <select class="form-select" aria-label="Default select example" name="bulan_dibayar">
+            <option value="Januari" <?= $bulan == "Jan" ? "selected" : ""; ?>>Januari</option>
+            <option value="Februari" <?= $bulan == "Feb" ? "selected" : ""; ?>>Februari</option>
+            <option value="Maret" <?= $bulan == "Mar" ? "selected" : ""; ?>>Maret</option>
+            <option value="April" <?= $bulan == "Apr" ? "selected" : ""; ?>>April</option>
+            <option value="Mei" <?= $bulan == "May" ? "selected" : ""; ?>>Mei</option>
+            <option value="Juni" <?= $bulan == "Jun" ? "selected" : ""; ?>>Juni</option>
+            <option value="Juli" <?= $bulan == "Jul" ? "selected" : ""; ?>>Juli</option>
+            <option value="Agustus" <?= $bulan == "Aug" ? "selected" : ""; ?>>Agustus</option>
+            <option value="September" <?= $bulan == "Sep" ? "selected" : ""; ?>>September</option>
+            <option value="Oktober" <?= $bulan == "Oct" ? "selected" : ""; ?>>Oktober</option>
+            <option value="November" <?= $bulan == "Nov" ? "selected" : ""; ?>>November</option>
+            <option value="Desember" <?= $bulan == "Dec" ? "selected" : ""; ?>>Desember</option>
         </select>
     </div>
     <div class="mb-3">
@@ -56,38 +56,36 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="" method="post">
-                    <div class="mb-3">
-                        <input type="text" class="form-control" id="cari-siswa" placeholder="Masukan NISN / NIS / Kelas / Nama Siswa">
-                    </div>
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col">No.</th>
-                                <th scope="col">NISN</th>
-                                <th scope="col">NIS</th>
-                                <th scope="col">Nama</th>
-                                <th scope="col">Kelas</th>
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="cari-siswa" placeholder="Masukan NISN / NIS / Kelas / Nama Siswa">
+                </div>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">No.</th>
+                            <th scope="col">NISN</th>
+                            <th scope="col">NIS</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Kelas</th>
+                        </tr>
+                    </thead>
+                    <tbody id="container-cari">
+                        <?php foreach ($siswa as $index => $item) : ?>
+                            <tr class="data-siswa" style="cursor: pointer;">
+                                <th scope="row"><?= $index + 1; ?></th>
+                                <td><?= $item->nisn; ?></td>
+                                <td><?= $item->nis; ?></td>
+                                <td><?= $item->nama; ?></td>
+                                <td><?= $item->nama_kelas; ?></td>
                             </tr>
-                        </thead>
-                        <tbody id="container-cari">
-                            <?php foreach ($siswa as $index => $item) : ?>
-                                <tr class="data-siswa" style="cursor: pointer;">
-                                    <th scope="row"><?= $index + 1; ?></th>
-                                    <td><?= $item->nisn; ?></td>
-                                    <td><?= $item->nis; ?></td>
-                                    <td><?= $item->nama; ?></td>
-                                    <td><?= $item->nama_kelas; ?></td>
-                                </tr>
-                            <?php endforeach ?>
-                        </tbody>
-                    </table>
-                    <div class="text-center d-none" id="loader">
-                        <div class="spinner-border text-secondary mt-2" role="status">
-                            <span class="visually-hidden">Tunggu Sebentar...</span>
-                        </div>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
+                <div class="text-center d-none" id="loader">
+                    <div class="spinner-border text-secondary mt-2" role="status">
+                        <span class="visually-hidden">Tunggu Sebentar...</span>
                     </div>
-                </form>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>

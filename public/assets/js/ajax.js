@@ -9,25 +9,35 @@ $(document).on({
     },
 });
 
-$("#cari-siswa").on("keyup", function () {
-    $.ajax({
-        url: "/ajaxPembayaran/",
-        type: "POST",
-        data: { keyword: this.value },
-        success: function (result) {
-            $("#container-cari").html(result);
-            $(".data-siswa").click(cariSiswa);
-        },
-    });
+$("#cari-siswa").on("keyup", function (e) {
+    if (e.keyCode === 13) {
+        if ($("#container-cari").children().length !== 0) {
+            cariSiswa($("#container-cari").children()[0].children[1].innerHTML);
+        }
+    } else {
+        $.ajax({
+            url: "/ajaxPembayaran/",
+            type: "POST",
+            data: { keyword: this.value },
+            success: function (result) {
+                $("#container-cari").html(result);
+                $(".data-siswa").click(function () {
+                    cariSiswa($(this).children()[1].innerHTML);
+                });
+            },
+        });
+    }
 });
 
-$(".data-siswa").click(cariSiswa);
+$(".data-siswa").click(function () {
+    cariSiswa($(this).children()[1].innerHTML);
+});
 
-function cariSiswa() {
+function cariSiswa(siswa) {
     $.ajax({
         url: "/getSiswa/",
         type: "POST",
-        data: { nisn: $(this).children()[1].innerHTML },
+        data: { nisn: siswa },
         success: function (result) {
             let siswa = result.split(",");
 

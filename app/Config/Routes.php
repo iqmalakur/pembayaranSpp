@@ -35,6 +35,8 @@ $routes->setAutoRoute(true);
 // Controller Main
 $routes->get('/', 'Main::index');
 $routes->get('/pembayaran', 'Main::payment');
+$routes->get('/pembayaran/detail/(:segment)', 'Main::detail/$1');
+$routes->post('/pembayaran/print/', 'Main::print');
 $routes->post('/bayar', 'Main::pay');
 
 // Controller Auth

@@ -15,13 +15,13 @@ class PembayaranModel extends Model
 	protected $useSoftDelete        = false;
 	protected $protectFields        = true;
 	protected $allowedFields        = [
-		'id_petugas', 'nisn', 'tgl_bayar',
+		'petugas', 'nisn', 'tgl_bayar',
 		'bulan_dibayar', 'tahun_dibayar',
 		'id_spp', 'jumlah_bayar'
 	];
 
 	// Dates
-	protected $useTimestamps        = true;
+	protected $useTimestamps        = false;
 	protected $dateFormat           = 'datetime';
 	protected $createdField         = 'created_at';
 	protected $updatedField         = 'updated_at';
@@ -43,4 +43,19 @@ class PembayaranModel extends Model
 	protected $afterFind            = [];
 	protected $beforeDelete         = [];
 	protected $afterDelete          = [];
+
+	public function get($id = false)
+	{
+		$builder = $this->builder("pembayaran");
+
+		if ($id) {
+			return $builder->where('id_pembayaran', $id)->join('petugas', 'pembayaran.petugas=petugas.username')->join('siswa', 'pembayaran.nisn=siswa.nisn')->join('kelas', 'siswa.id_kelas=kelas.id_kelas')->get()->getRowObject();
+		}
+		return $builder->join('petugas', 'pembayaran.petugas=petugas.username')->join('siswa', 'pembayaran.nisn=siswa.nisn')->join('kelas', 'siswa.id_kelas=kelas.id_kelas')->orderBy('pembayaran.tgl_bayar', 'DESC')->get()->getResultObject();
+	}
+
+	public function bulanSpp($nisn, $bulan, $tahun)
+	{
+		return $this->builder('pembayaran')->select('id_pembayaran')->getWhere(['nisn' => $nisn, 'bulan_dibayar' => $bulan, 'tahun_dibayar' => $tahun])->getRowObject();
+	}
 }

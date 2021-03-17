@@ -86,4 +86,9 @@ class Validation
 		'alamat' => 'required',
 		'no_telp' => 'required|numeric|max_length[13]',
 	];
+
+	// Validasi Pembayaran
+	public $pembayaran = [
+		'nisn' => 'required',
+	];
 }

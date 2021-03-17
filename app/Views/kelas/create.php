@@ -14,11 +14,11 @@
     <div class="mb-3">
         <label for="kompetensi_keahlian" class="form-label">Kompetensi Keahlian</label>
         <select class="form-select" id="kompetensi_keahlian" name="kompetensi_keahlian">
-            <?php foreach ($jurusan as $j) : ?>
+            <?php foreach ($jurusan as $item) : ?>
                 <?php if (old('kompetensi_keahlian')) : ?>
-                    <option value="<?= $j->id_jurusan; ?>" <?= old('kompetensi_keahlian') == $j->id_jurusan ? 'selected' : ''; ?>><?= $j->nama_jurusan; ?></option>
+                    <option value="<?= $item->id_jurusan; ?>" <?= old('kompetensi_keahlian') == $item->id_jurusan ? 'selected' : ''; ?>><?= $item->nama_jurusan; ?></option>
                 <?php else : ?>
-                    <option value="<?= $j->id_jurusan; ?>"><?= $j->nama_jurusan; ?></option>
+                    <option value="<?= $item->id_jurusan; ?>"><?= $item->nama_jurusan; ?></option>
                 <?php endif ?>
             <?php endforeach ?>
         </select>

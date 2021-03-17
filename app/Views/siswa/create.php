@@ -28,8 +28,8 @@
     <div class="mb-3">
         <label for="id_kelas" class="form-label">Kelas</label>
         <select class="form-select" id="id_kelas" name="id_kelas">
-            <?php foreach ($kelas as $k) : ?>
-                <option value="<?= $k->id_kelas; ?>" <?= old('id_kelas') == $k->id_kelas ? 'selected' : ''; ?>><?= $k->nama_kelas; ?></option>
+            <?php foreach ($kelas as $item) : ?>
+                <option value="<?= $item->id_kelas; ?>" <?= old('id_kelas') == $item->id_kelas ? 'selected' : ''; ?>><?= $item->nama_kelas; ?></option>
             <?php endforeach ?>
         </select>
     </div>
@@ -50,8 +50,8 @@
     <div class="mb-3">
         <label for="id_spp" class="form-label">SPP</label>
         <select class="form-select" id="id_spp" name="id_spp">
-            <?php foreach ($spp as $s) : ?>
-                <option value="<?= $s->id_spp; ?>" <?= old('id_spp') == $s->id_spp ? 'selected' : ''; ?>><?= $s->tahun . " | Rp " . number_format($s->nominal, 2, ',', '.'); ?></option>
+            <?php foreach ($spp as $item) : ?>
+                <option value="<?= $item->id_spp; ?>" <?= old('id_spp') == $item->id_spp ? 'selected' : ''; ?>><?= $item->tahun . " | Rp " . number_format($item->nominal, 2, ',', '.'); ?></option>
             <?php endforeach ?>
         </select>
     </div>

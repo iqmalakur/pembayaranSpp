@@ -15,15 +15,15 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($siswa as $i => $s) : ?>
+        <?php foreach ($siswa as $index => $item) : ?>
             <tr>
-                <th scope="row"><?= $i + 1; ?></th>
-                <td><?= $s->nisn; ?></td>
-                <td><?= $s->nis; ?></td>
-                <td><?= $s->nama; ?></td>
-                <td><?= $s->nama_kelas; ?></td>
+                <th scope="row"><?= $index + 1; ?></th>
+                <td><?= $item->nisn; ?></td>
+                <td><?= $item->nis; ?></td>
+                <td><?= $item->nama; ?></td>
+                <td><?= $item->nama_kelas; ?></td>
                 <td>
-                    <a href="/siswa/detail/<?= $s->nisn; ?>" class="btn btn-success">Detail</a>
+                    <a href="/siswa/detail/<?= $item->nisn; ?>" class="btn btn-success">Detail</a>
                 </td>
             </tr>
         <?php endforeach ?>

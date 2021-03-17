@@ -30,7 +30,7 @@ class Siswa extends BaseController
 			return view('errors/html/error_404');
 		}
 
-		$this->data['title'] = "Siswa";
+		$this->data['title'] = "CRUD Data Siswa";
 		$this->data['siswa'] = $this->model->get();
 
 		return view("siswa/index", $this->data);
@@ -46,7 +46,7 @@ class Siswa extends BaseController
 			return view('errors/html/error_404');
 		}
 
-		$this->data['title'] = "Tambah data Siswa";
+		$this->data['title'] = "Tambah Data Siswa";
 		$this->data['kelas'] = $this->kelasModel->findAll();
 		$this->data['spp'] = $this->sppModel->findAll();
 		$this->data["errors"] = $this->session->get('errors');
@@ -108,7 +108,7 @@ class Siswa extends BaseController
 			return view('errors/html/error_404');
 		}
 
-		$this->data['title'] = "Ubah data Siswa";
+		$this->data['title'] = "Ubah Data Siswa";
 		$this->data['siswa'] = $this->model->get($nisn);
 		$this->data['kelas'] = $this->kelasModel->findAll();
 		$this->data['spp'] = $this->sppModel->find($this->data['siswa']->id_spp);

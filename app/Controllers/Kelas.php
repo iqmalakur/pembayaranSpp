@@ -29,7 +29,7 @@ class Kelas extends BaseController
 			return view('errors/html/error_404');
 		}
 
-		$this->data['title'] = "Kelas";
+		$this->data['title'] = "CRUD Data Kelas";
 		$this->data['kelas'] = $this->model->get();
 
 		return view("kelas/index", $this->data);
@@ -45,7 +45,7 @@ class Kelas extends BaseController
 			return view('errors/html/error_404');
 		}
 
-		$this->data['title'] = "Tambah data Kelas";
+		$this->data['title'] = "Tambah Data Kelas";
 		$this->data['jurusan'] = $this->jurusan;
 		$this->data["errors"] = $this->session->get('errors');
 
@@ -93,7 +93,7 @@ class Kelas extends BaseController
 			return view('errors/html/error_404');
 		}
 
-		$this->data['title'] = "Ubah data Kelas";
+		$this->data['title'] = "Ubah Data Kelas";
 		$this->data['kelas'] = $this->model->get($id);
 		$this->data['jurusan'] = $this->jurusan;
 		$this->data["errors"] = $this->session->get('errors');

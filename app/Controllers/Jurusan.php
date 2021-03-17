@@ -24,7 +24,7 @@ class Jurusan extends BaseController
 			return view('errors/html/error_404');
 		}
 
-		$this->data['title'] = "Jurusan";
+		$this->data['title'] = "CRUD Data Jurusan";
 		$this->data['jurusan'] = $this->model->findAll();
 
 		return view("jurusan/index", $this->data);
@@ -40,7 +40,7 @@ class Jurusan extends BaseController
 			return view('errors/html/error_404');
 		}
 
-		$this->data['title'] = "Tambah data Jurusan";
+		$this->data['title'] = "Tambah Data Jurusan";
 		$this->data["errors"] = $this->session->get('errors');
 
 		return view("jurusan/create", $this->data);
@@ -87,7 +87,7 @@ class Jurusan extends BaseController
 			return view('errors/html/error_404');
 		}
 
-		$this->data['title'] = "Ubah data Jurusan";
+		$this->data['title'] = "Ubah Data Jurusan";
 		$this->data['jurusan'] = $this->model->find($id);
 		$this->data["errors"] = $this->session->get('errors');
 

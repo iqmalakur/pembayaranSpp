@@ -22,11 +22,11 @@
     <div class="mb-3">
         <label for="id_kelas" class="form-label">Kelas</label>
         <select class="form-select" id="id_kelas" name="id_kelas">
-            <?php foreach ($kelas as $k) : ?>
+            <?php foreach ($kelas as $item) : ?>
                 <?php if (old('id_kelas')) : ?>
-                    <option value="<?= $k->id_kelas; ?>" <?= old('id_kelas') == $k->id_kelas ? 'selected' : ''; ?>><?= $k->nama_kelas; ?></option>
+                    <option value="<?= $item->id_kelas; ?>" <?= old('id_kelas') == $item->id_kelas ? 'selected' : ''; ?>><?= $item->nama_kelas; ?></option>
                 <?php else : ?>
-                    <option value="<?= $k->id_kelas; ?>" <?= $siswa->id_kelas == $k->id_kelas ? 'selected' : ''; ?>><?= $k->nama_kelas; ?></option>
+                    <option value="<?= $item->id_kelas; ?>" <?= $siswa->id_kelas == $item->id_kelas ? 'selected' : ''; ?>><?= $item->nama_kelas; ?></option>
                 <?php endif ?>
             <?php endforeach ?>
         </select>

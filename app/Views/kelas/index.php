@@ -13,17 +13,17 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($kelas as $i => $k) : ?>
+        <?php foreach ($kelas as $index => $item) : ?>
             <tr>
-                <th scope="row"><?= $i + 1; ?></th>
-                <td><?= $k->nama_kelas; ?></td>
-                <td><?= $k->nama_jurusan; ?></td>
+                <th scope="row"><?= $index + 1; ?></th>
+                <td><?= $item->nama_kelas; ?></td>
+                <td><?= $item->nama_jurusan; ?></td>
                 <td>
-                    <a href="/kelas/edit/<?= $k->id_kelas; ?>" class="btn btn-primary">Ubah</a>
-                    <form action="/kelas/delete/<?= $k->id_kelas; ?>" method="POST" class="d-inline">
+                    <a href="/kelas/edit/<?= $item->id_kelas; ?>" class="btn btn-primary">Ubah</a>
+                    <form action="/kelas/delete/<?= $item->id_kelas; ?>" method="POST" class="d-inline">
                         <?= csrf_field(); ?>
                         <input type="hidden" name="_method" value="DELETE">
-                        <span class="delete btn btn-danger" data-item="<?= $k->nama_kelas; ?>">Hapus</span>
+                        <span class="delete btn btn-danger" data-item="<?= $item->nama_kelas; ?>">Hapus</span>
                     </form>
                 </td>
             </tr>

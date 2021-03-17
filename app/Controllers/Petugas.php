@@ -24,7 +24,7 @@ class Petugas extends BaseController
 			return view('errors/html/error_404');
 		}
 
-		$this->data['title'] = "Petugas";
+		$this->data['title'] = "CRUD Data Petugas";
 		$this->data['petugas'] = $this->model->findAll();
 
 		return view("petugas/index", $this->data);
@@ -40,7 +40,7 @@ class Petugas extends BaseController
 			return view('errors/html/error_404');
 		}
 
-		$this->data['title'] = "Tambah data Petugas";
+		$this->data['title'] = "Tambah Data Petugas";
 		$this->data["errors"] = $this->session->get('errors');
 
 		return view("petugas/create", $this->data);
@@ -99,7 +99,7 @@ class Petugas extends BaseController
 			return redirect()->to('/petugas');
 		}
 
-		$this->data['title'] = "Ubah data Petugas";
+		$this->data['title'] = "Ubah Data Petugas";
 		$this->data['petugas'] = $this->model->find($username);
 		$this->data["errors"] = $this->session->get('errors');
 

@@ -23,7 +23,12 @@ class Main extends BaseController
 			return redirect()->to('/login');
 		}
 
-		$this->data['title'] = "dashboard";
+		if ($this->session->user['role'] === 'siswa') {
+			$this->data['title'] = "Sistem Pembayaran Spp";
+		} else {
+			$this->data['title'] = "Dashboard";
+		}
+
 		$this->data['loginStatus'] = $this->session->get('success');
 
 		return view("main/index", $this->data);
@@ -112,7 +117,7 @@ class Main extends BaseController
 		}
 
 		$this->data['pembayaran'] = $this->model->get($id);
-		$this->data['title'] = "Detail Pembayaran";
+		$this->data['title'] = "Detail Pembayaran Spp";
 
 		return view("main/detail", $this->data);
 	}
@@ -120,7 +125,7 @@ class Main extends BaseController
 	public function print()
 	{
 		$this->data['pembayaran'] = $this->model->get($this->request->getPost('id'));
-		$this->data['title'] = "Detail Pembayaran";
+		$this->data['title'] = $this->data['pembayaran']->id_pembayaran . '-' . $this->data['pembayaran']->nisn . '.pdf';
 
 		return view("main/print", $this->data);
 	}

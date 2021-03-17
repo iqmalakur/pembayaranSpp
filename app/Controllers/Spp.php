@@ -24,7 +24,7 @@ class Spp extends BaseController
 			return view('errors/html/error_404');
 		}
 
-		$this->data['title'] = "Spp";
+		$this->data['title'] = "CRUD Data Spp";
 		$this->data['spp'] = $this->model->findAll();
 
 		return view("spp/index", $this->data);
@@ -40,7 +40,7 @@ class Spp extends BaseController
 			return view('errors/html/error_404');
 		}
 
-		$this->data['title'] = "Tambah data Spp";
+		$this->data['title'] = "Tambah Data Spp";
 		$this->data['spp'] = $this->model;
 		$this->data["errors"] = $this->session->get('errors');
 
@@ -90,7 +90,7 @@ class Spp extends BaseController
 			return view('errors/html/error_404');
 		}
 
-		$this->data['title'] = "Ubah data Spp";
+		$this->data['title'] = "Ubah Data Spp";
 		$this->data['spp'] = $this->model->find($id);
 		$this->data["errors"] = $this->session->get('errors');
 

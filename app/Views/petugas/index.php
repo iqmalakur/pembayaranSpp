@@ -14,18 +14,18 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($petugas as $i => $p) : ?>
+        <?php foreach ($petugas as $index => $item) : ?>
             <tr>
-                <th scope="row"><?= $i + 1; ?></th>
-                <td><?= $p->username; ?></td>
-                <td><?= $p->nama_petugas; ?></td>
-                <td><?= $p->level; ?></td>
+                <th scope="row"><?= $index + 1; ?></th>
+                <td><?= $item->username; ?></td>
+                <td><?= $item->nama_petugas; ?></td>
+                <td><?= $item->level; ?></td>
                 <td>
-                    <a href="/petugas/edit/<?= $p->username; ?>" class="btn btn-primary <?= $p->username === 'admin' && $user->username !== 'admin' ? 'disabled' : ''; ?>">Ubah</a>
-                    <form action="/petugas/delete/<?= $p->username; ?>" method="POST" class="d-inline">
+                    <a href="/petugas/edit/<?= $item->username; ?>" class="btn btn-primary <?= $item->username === 'admin' && $user->username !== 'admin' ? 'disabled' : ''; ?>">Ubah</a>
+                    <form action="/petugas/delete/<?= $item->username; ?>" method="POST" class="d-inline">
                         <?= csrf_field(); ?>
                         <input type="hidden" name="_method" value="DELETE">
-                        <span class="delete btn btn-danger <?= $p->username == 'admin' || $p->username == $user->username ? 'disabled' : ''; ?>" data-item="<?= $p->nama_petugas; ?>">Hapus</span>
+                        <span class="delete btn btn-danger <?= $item->username == 'admin' || $item->username == $user->username ? 'disabled' : ''; ?>" data-item="<?= $item->nama_petugas; ?>">Hapus</span>
                     </form>
                 </td>
             </tr>

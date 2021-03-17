@@ -47,7 +47,6 @@ class PetugasModel extends Model
 				return true;
 			}
 		}
-
 		return false;
 	}
 

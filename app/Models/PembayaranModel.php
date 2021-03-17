@@ -49,9 +49,10 @@ class PembayaranModel extends Model
 		$builder = $this->builder("pembayaran");
 
 		if ($id) {
-			return $builder->where('id_pembayaran', $id)->join('petugas', 'pembayaran.petugas=petugas.username')->join('siswa', 'pembayaran.nisn=siswa.nisn')->join('kelas', 'siswa.id_kelas=kelas.id_kelas')->get()->getRowObject();
+			return $builder->select('pembayaran.*, petugas.nama_petugas, siswa.nis, siswa.nama, kelas.nama_kelas')->where('id_pembayaran', $id)->join('petugas', 'pembayaran.petugas=petugas.username')->join('siswa', 'pembayaran.nisn=siswa.nisn')->join('kelas', 'siswa.id_kelas=kelas.id_kelas')->get()->getRowObject();
 		}
-		return $builder->join('petugas', 'pembayaran.petugas=petugas.username')->join('siswa', 'pembayaran.nisn=siswa.nisn')->join('kelas', 'siswa.id_kelas=kelas.id_kelas')->orderBy('pembayaran.tgl_bayar', 'DESC')->get()->getResultObject();
+
+		return $builder->select('siswa.nisn, siswa.nama, kelas.nama_kelas, pembayaran.id_pembayaran, pembayaran.tgl_bayar, pembayaran.tahun_dibayar, pembayaran.bulan_dibayar, petugas.nama_petugas')->join('petugas', 'pembayaran.petugas=petugas.username')->join('siswa', 'pembayaran.nisn=siswa.nisn')->join('kelas', 'siswa.id_kelas=kelas.id_kelas')->orderBy('pembayaran.tgl_bayar', 'DESC')->get()->getResultObject();
 	}
 
 	public function bulanSpp($nisn, $bulan, $tahun)

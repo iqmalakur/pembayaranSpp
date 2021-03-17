@@ -15,7 +15,7 @@
     <tbody>
         <?php foreach ($jurusan as $index => $item) : ?>
             <tr>
-                <th scope="row"><?= $item + 1; ?></th>
+                <th scope="row"><?= $index + 1; ?></th>
                 <td><?= $item->nama_jurusan; ?></td>
                 <td><?= $item->alias; ?></td>
                 <td>

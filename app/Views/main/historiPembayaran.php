@@ -5,6 +5,7 @@
             <th scope="col">NISN</th>
             <th scope="col">Nama</th>
             <th scope="col">Kelas</th>
+            <th scope="col">Petugas</th>
             <th scope="col">Tanggal Bayar</th>
             <th scope="col">Spp</th>
             <th scope="col">Aksi</th>
@@ -17,6 +18,7 @@
                 <td><?= $item->nisn; ?></td>
                 <td><?= $item->nama; ?></td>
                 <td><?= $item->nama_kelas; ?></td>
+                <td><?= $item->nama_petugas; ?></td>
                 <td><?= $item->tgl_bayar; ?></td>
                 <td><?= "$item->bulan_dibayar - $item->tahun_dibayar"; ?></td>
                 <td><a href="/pembayaran/detail/<?= $item->id_pembayaran; ?>" class="btn btn-success">Detail</a></td>

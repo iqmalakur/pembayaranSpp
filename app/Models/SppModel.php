@@ -42,8 +42,6 @@ class SppModel extends Model
 
 	public function cek($tahun)
 	{
-		$builder = $this->builder("spp");
-
-		return $builder->where('tahun', $tahun)->get()->getRowObject();
+		return $this->builder("spp")->where('tahun', $tahun)->countAllResults();
 	}
 }

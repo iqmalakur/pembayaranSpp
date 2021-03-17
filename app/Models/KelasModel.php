@@ -47,16 +47,12 @@ class KelasModel extends Model
 		if ($id) {
 			return $builder->where('id_kelas', $id)->join('jurusan', 'kelas.kompetensi_keahlian=jurusan.id_jurusan')->get()->getRowObject();
 		}
+
 		return $builder->join('jurusan', 'kelas.kompetensi_keahlian=jurusan.id_jurusan')->get()->getResultObject();
 	}
 
 	public function cek($kelas)
 	{
-		$builder = $this->builder("kelas");
-
-		if ($builder->where("nama_kelas", $kelas)->countAllResults() >= 1) {
-			return true;
-		}
-		return false;
+		return $this->builder("kelas")->where("nama_kelas", $kelas)->countAllResults();
 	}
 }

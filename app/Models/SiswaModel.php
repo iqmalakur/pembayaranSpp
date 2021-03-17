@@ -44,6 +44,17 @@ class SiswaModel extends Model
 	protected $beforeDelete         = [];
 	protected $afterDelete          = [];
 
+	public function get($nisn = false)
+	{
+		$builder = $this->builder("siswa");
+
+		if ($nisn) {
+			return $builder->select('siswa.*, kelas.nama_kelas, jurusan.nama_jurusan, spp.tahun, spp.nominal')->where('nisn', $nisn)->join('kelas', 'siswa.id_kelas=kelas.id_kelas')->join('spp', 'siswa.id_spp=spp.id_spp')->join('jurusan', 'kelas.kompetensi_keahlian=jurusan.id_jurusan')->get()->getRowObject();
+		}
+
+		return $builder->select('siswa.nisn, siswa.nis, siswa.nama, kelas.nama_kelas')->join('kelas', 'siswa.id_kelas=kelas.id_kelas')->orderBy('siswa.nama', "ASC")->get()->getResultObject();
+	}
+
 	public function getLogin($data)
 	{
 		if ($siswa = $this->find($data['username'])) {
@@ -51,23 +62,12 @@ class SiswaModel extends Model
 				return true;
 			}
 		}
-
 		return false;
-	}
-
-	public function get($nisn = false)
-	{
-		$builder = $this->builder("siswa");
-
-		if ($nisn) {
-			return $builder->where('nisn', $nisn)->join('kelas', 'siswa.id_kelas=kelas.id_kelas')->join('spp', 'siswa.id_spp=spp.id_spp')->join('jurusan', 'kelas.kompetensi_keahlian=jurusan.id_jurusan')->get()->getRowObject();
-		}
-		return $builder->join('kelas', 'siswa.id_kelas=kelas.id_kelas')->orderBy('siswa.nama', "ASC")->get()->getResultObject();
 	}
 
 	public function cekNis($nis)
 	{
-		return $this->builder('siswa')->where('nis', $nis)->get()->getRowObject();
+		return $this->builder('siswa')->where('nis', $nis)->countAllResults();
 	}
 
 	public function searchAjax($keyword)

@@ -1,7 +1,7 @@
 <?= $this->extend("layout/template"); ?>
 
 <?= $this->section("content"); ?>
-<h1>Siswa</h1>
+<h1 class="title">Siswa</h1>
 <a href="/siswa/add" class="btn btn-success">Tambah Data</a>
 <table class="table table-hover table-striped">
     <thead>

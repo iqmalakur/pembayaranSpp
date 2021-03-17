@@ -1,0 +1,18 @@
+#content {
+    display: grid;
+    grid-template-areas: "sidebar main";
+    grid-template-columns: 1fr 5fr;
+}
+
+#content aside {
+    grid-area: sidebar;
+}
+
+#content main {
+    grid-area: main;
+}
+
+#content aside nav {
+    position: sticky;
+    top: 5rem;
+}

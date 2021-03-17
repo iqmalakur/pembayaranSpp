@@ -15,6 +15,13 @@
     <!-- My CSS -->
     <link rel="stylesheet" href="/assets/css/style.css">
 
+    <!-- Layout CSS -->
+    <?php if ($role === 'siswa') : ?>
+        <link rel="stylesheet" href="/assets/css/siswa.css">
+    <?php elseif ($controller !== 'Auth') : ?>
+        <link rel="stylesheet" href="/assets/css/petugas.css">
+    <?php endif ?>
+
     <title><?= $title; ?></title>
 </head>
 
@@ -23,24 +30,28 @@
     <?php
     if ($controller != 'Auth') {
         echo $this->include('layout/navbar');
-
-        if ($role != 'siswa') {
-            echo $this->include("layout/admin");
-        } else {
-            echo $this->include("layout/siswa");
-        }
-    } else {
-        $this->renderSection('content');
-    }
-
-    if (isset(session()->successInfo)) {
-        echo '<span id="success-info" data-title="' . session()->successInfo . '"></span>';
-    }
-
-    if (session()->message) {
-        echo '<span id="message" data-icon="' . session()->message['icon'] . '" data-title="' . session()->message['title'] . '" data-text="' . session()->message['text'] . '"></span>';
     }
     ?>
+    <div id="content">
+        <?php
+        if ($role != 'siswa' && $controller != 'Auth') {
+            echo $this->include("layout/sidebar");
+        }
+        ?>
+        <main class="container mb-5">
+            <?= $this->renderSection('content'); ?>
+        </main>
+
+        <?php
+        if (isset(session()->successInfo)) {
+            echo '<span id="success-info" data-title="' . session()->successInfo . '"></span>';
+        }
+
+        if (session()->message) {
+            echo '<span id="message" data-icon="' . session()->message['icon'] . '" data-title="' . session()->message['title'] . '" data-text="' . session()->message['text'] . '"></span>';
+        }
+        ?>
+    </div>
 
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>

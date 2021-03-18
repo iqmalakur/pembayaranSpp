@@ -1,4 +1,4 @@
-<aside class="bg-light">
+<aside class="bg-light shadow">
     <nav class="list-group px-2">
         <a href="/" class="list-group-item list-group-item-action">Dashboard</a>
         <a href="/pembayaran" class="list-group-item list-group-item-action">Pembayaran Spp</a>

@@ -1,5 +1,11 @@
 body {
     font-family: "PT Serif", serif;
+    min-height: 100vh;
+}
+
+.bg-my {
+    background: #00b4db;
+    background: linear-gradient(to right, #0083b0, #00b4db);
 }
 
 .title {
@@ -10,23 +16,26 @@ nav.navbar {
     opacity: 0.95;
 }
 
+#content {
+    min-height: 100vh;
+}
+
 #content main {
     margin-top: 5rem;
 }
 
-div.login-container {
-    height: 100vh;
-    flex-direction: column;
+#content main.login-container {
+    margin: 0 !important;
 }
 
-div.login-container div.card {
-    height: 80vh;
+main.login-container {
+    width: 50vmax;
 }
 
-div.login-container div.card form {
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+main.login-container button[type="submit"] {
+    width: 100%;
 }
 
-div.login-container div.card h1 {
-    font-size: 3em;
+main.login-container .card {
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.5);
 }

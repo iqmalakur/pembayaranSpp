@@ -13,6 +13,9 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
+    <!-- Bootstrap Icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+
     <!-- Sweet Alert 2 CSS -->
     <link rel="stylesheet" href="/assets/package/dist/sweetalert2.min.css">
 
@@ -29,20 +32,20 @@
     <title><?= $title; ?></title>
 </head>
 
-<body>
+<body class="<?= $controller == 'Auth' ? 'bg-my' : 'bg-light'; ?>">
 
     <?php
     if ($controller != 'Auth') {
         echo $this->include('layout/navbar');
     }
     ?>
-    <div id="content">
+    <div id="content" <?= $controller == 'Auth' ? 'class="d-flex justify-content-center align-items-center"' : ''; ?>>
         <?php
         if ($role != 'siswa' && $controller != 'Auth') {
             echo $this->include("layout/sidebar");
         }
         ?>
-        <main class="container mb-5">
+        <main class="container mb-5<?= $controller == 'Auth' ? ' login-container' : ''; ?>">
             <?= $this->renderSection('content'); ?>
         </main>
 

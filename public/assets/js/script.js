@@ -16,6 +16,36 @@ $("span.delete").click(function () {
     });
 });
 
+// Sidebar
+$("#content aside span i").click(function () {
+    $(this).parent().toggleClass("aktif");
+    $("#content").toggleClass("sidebar-collapse");
+
+    setTimeout(
+        () => {
+            $(".list-text").toggleClass("d-none");
+        },
+        $(".list-text").hasClass("d-none") ? 700 : 50
+    );
+
+    setTimeout(
+        () => {
+            $("#sidebar-list a").toggleClass("text-center");
+        },
+        $("#sidebar-list a").hasClass("text-center") ? 0 : 850
+    );
+
+    setTimeout(() => {
+        $("main").toggleClass("px-5");
+    }, 500);
+
+    $.ajax({
+        url: "/sidebar",
+        type: "POST",
+        data: { sidebar: $("#content").hasClass("sidebar-collapse") ? true : false },
+    });
+});
+
 // Field Username
 $("input[name=username]").on("input", function () {
     this.value = this.value.toLowerCase();

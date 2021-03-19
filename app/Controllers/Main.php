@@ -30,6 +30,7 @@ class Main extends BaseController
 		}
 
 		$this->data['loginStatus'] = $this->session->get('success');
+		$this->data['pembayaran'] = $this->model->get();
 
 		return view("main/index", $this->data);
 	}
@@ -130,6 +131,7 @@ class Main extends BaseController
 		return view("main/print", $this->data);
 	}
 
+	// AJAX
 	public function ajaxPembayaran()
 	{
 		$keyword = $this->request->getPost("keyword");
@@ -140,5 +142,10 @@ class Main extends BaseController
 	{
 		$siswa = $this->siswaModel->get($this->request->getPost("nisn"));
 		return "$siswa->nisn,$siswa->nama - $siswa->nama_kelas,$siswa->id_spp,$siswa->tahun,$siswa->nominal";
+	}
+
+	public function sidebar()
+	{
+		$this->session->set('sidebar', $this->request->getPost('sidebar'));
 	}
 }

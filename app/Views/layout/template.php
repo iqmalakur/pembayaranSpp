@@ -39,13 +39,13 @@
         echo $this->include('layout/navbar');
     }
     ?>
-    <div id="content" <?= $controller == 'Auth' ? 'class="d-flex justify-content-center align-items-center"' : ''; ?>>
+    <div id="content" class="<?= $controller == 'Auth' ? 'd-flex justify-content-center align-items-center' : ''; ?> <?= session()->sidebar == "true" ? 'sidebar-collapse' : ''; ?>">
         <?php
         if ($role != 'siswa' && $controller != 'Auth') {
             echo $this->include("layout/sidebar");
         }
         ?>
-        <main class="container mb-5<?= $controller == 'Auth' ? ' login-container' : ''; ?>">
+        <main class="container mb-5 <?= session()->sidebar == "true" ? '' : 'px-5'; ?> <?= $controller == 'Auth' ? 'login-container' : ''; ?>">
             <?= $this->renderSection('content'); ?>
         </main>
 

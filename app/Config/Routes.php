@@ -88,6 +88,7 @@ $routes->delete('/petugas/delete/(:segment)', 'Petugas::delete/$1');
 // AJAX
 $routes->post('/ajaxPembayaran', 'Main::ajaxPembayaran');
 $routes->post('/getSiswa', 'Main::getSiswa');
+$routes->post('/sidebar', 'Main::sidebar');
 
 // Kuitansi atau Bukti Pembayaran
 $routes->get('/(:any)', 'Main::receipt/$1');

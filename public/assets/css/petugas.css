@@ -1,7 +1,12 @@
 #content {
     display: grid;
     grid-template-areas: "sidebar main";
-    grid-template-columns: 1fr 5fr;
+    grid-template-columns: 230px 1fr;
+    transition: 1s;
+}
+
+#content.sidebar-collapse {
+    grid-template-columns: 65px 1fr;
 }
 
 #content aside {
@@ -15,4 +20,23 @@
 #content aside nav {
     position: sticky;
     top: 5rem;
+}
+
+#content aside span i {
+    cursor: pointer;
+    font-size: 1.75rem;
+}
+
+#content aside span {
+    transition: 1s;
+    width: 1.75rem;
+    text-align: center;
+}
+
+#content aside span.aktif {
+    transform: rotate(180deg);
+}
+
+#content aside span i:hover {
+    color: rgb(112, 112, 112);
 }

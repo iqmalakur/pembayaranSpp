@@ -14,6 +14,11 @@ body {
 
 nav.navbar {
     opacity: 0.95;
+    padding-right: 70px;
+}
+
+#sidebar-collapse {
+    display: none;
 }
 
 #content {
@@ -38,4 +43,10 @@ main.login-container button[type="submit"] {
 
 main.login-container .card {
     box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.5);
+}
+
+@media only screen and (max-width: 992px) {
+    nav.navbar {
+        padding-right: 1rem;
+    }
 }

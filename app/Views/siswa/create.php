@@ -20,7 +20,7 @@
     </div>
     <div class="mb-3">
         <label for="nama" class="form-label">Nama</label>
-        <input type="text" name="nama" class="form-control <?= isset($errors['nama']) ? 'is-invalid' : ''; ?>" id="nama" value="<?= old('nama') ? old('nama') : ''; ?>">
+        <input type="text" name="nama" class="form-control text-capitalize <?= isset($errors['nama']) ? 'is-invalid' : ''; ?>" id="nama" value="<?= old('nama') ? old('nama') : ''; ?>">
         <div id="namaFeedback" class="invalid-feedback">
             <?= isset($errors['nama']) ? $errors['nama'] : ''; ?>
         </div>
@@ -55,7 +55,7 @@
             <?php endforeach ?>
         </select>
     </div>
-    <button type="submit" class="btn btn-primary">Tambah Data</button>
-    <a href="/siswa" class="btn btn-warning">Kembali</a>
+    <button type="submit" class="btn btn-success">Simpan</button>
+    <a href="/siswa" class="btn btn-warning"><i class="bi bi-arrow-return-left"></i> Kembali</a>
 </form>
 <?= $this->endSection(); ?>

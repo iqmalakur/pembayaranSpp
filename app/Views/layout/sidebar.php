@@ -7,7 +7,7 @@ $link = session()->sidebar == "true" ? 'text-center' : '';
         <span class="mb-3 mx-auto <?= session()->sidebar == "true" ? 'aktif' : ''; ?>"><i class="bi bi-arrow-left-circle"></i></span>
         <div id="sidebar-list">
             <a href="/" class="list-group-item list-group-item-action <?= $link; ?>">
-                <i class="bi bi-house-door-fill"></i> <span class="list-text <?= $listText; ?>">Dashboard</span>
+                <i class="bi bi-clipboard-data"></i> <span class="list-text <?= $listText; ?>">Dashboard</span>
             </a>
             <a href="/pembayaran" class="list-group-item list-group-item-action <?= $link; ?>">
                 <i class="bi bi-pencil-square"></i> <span class="list-text <?= $listText; ?>">Pembayaran Spp</span>

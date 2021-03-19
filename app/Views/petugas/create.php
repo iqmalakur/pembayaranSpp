@@ -6,7 +6,7 @@
     <?= csrf_field(); ?>
     <div class="mb-3">
         <label for="username" class="form-label">Username</label>
-        <input type="text" name="username" class="form-control <?= isset($errors['username']) ? 'is-invalid' : ''; ?>" id="username" value="<?= old('username') ? old('username') : ''; ?>">
+        <input type="text" name="username" class="form-control text-lowercase <?= isset($errors['username']) ? 'is-invalid' : ''; ?>" id="username" value="<?= old('username') ? old('username') : ''; ?>">
         <div id="usernameFeedback" class="invalid-feedback">
             <?= isset($errors['username']) ? $errors['username'] : ''; ?>
         </div>
@@ -27,7 +27,7 @@
     </div>
     <div class="mb-3">
         <label for="nama_petugas" class="form-label">Nama Petugas</label>
-        <input type="text" name="nama_petugas" class="form-control <?= isset($errors['nama_petugas']) ? 'is-invalid' : ''; ?>" id="nama_petugas" value="<?= old('nama_petugas') ? old('nama_petugas') : ''; ?>">
+        <input type="text" name="nama_petugas" class="form-control text-capitalize <?= isset($errors['nama_petugas']) ? 'is-invalid' : ''; ?>" id="nama_petugas" value="<?= old('nama_petugas') ? old('nama_petugas') : ''; ?>">
         <div id="nama_petugasFeedback" class="invalid-feedback">
             <?= isset($errors['nama_petugas']) ? $errors['nama_petugas'] : ''; ?>
         </div>
@@ -39,7 +39,7 @@
             <option value="petugas" <?= old('level') == 'petugas' ? 'selected' : ''; ?>>petugas</option>
         </select>
     </div>
-    <button type="submit" class="btn btn-primary">Tambah Data</button>
-    <a href="/petugas" class="btn btn-warning">Kembali</a>
+    <button type="submit" class="btn btn-success">Simpan</button>
+    <a href="/petugas" class="btn btn-warning"><i class="bi bi-arrow-return-left"></i> Kembali</a>
 </form>
 <?= $this->endSection(); ?>

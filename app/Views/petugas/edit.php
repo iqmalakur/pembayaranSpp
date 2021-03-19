@@ -25,7 +25,7 @@
     </div>
     <div class="mb-3">
         <label for="nama_petugas" class="form-label">Nama Petugas</label>
-        <input type="text" name="nama_petugas" class="form-control <?= isset($errors['nama_petugas']) ? 'is-invalid' : ''; ?>" id="nama_petugas" value="<?= old('nama_petugas') ? old('nama_petugas') : $petugas->nama_petugas; ?>">
+        <input type="text" name="nama_petugas" class="form-control text-capitalize <?= isset($errors['nama_petugas']) ? 'is-invalid' : ''; ?>" id="nama_petugas" value="<?= old('nama_petugas') ? old('nama_petugas') : $petugas->nama_petugas; ?>">
         <div id="nama_petugasFeedback" class="invalid-feedback">
             <?= isset($errors['nama_petugas']) ? $errors['nama_petugas'] : ''; ?>
         </div>
@@ -42,7 +42,7 @@
             <?php endif ?>
         </select>
     </div>
-    <button type="submit" class="btn btn-success">Ubah Data</button>
-    <a href="/petugas" class="btn btn-warning">Kembali</a>
+    <button type="submit" class="btn btn-success">Ubah</button>
+    <a href="/petugas" class="btn btn-warning"><i class="bi bi-arrow-return-left"></i> Kembali</a>
 </form>
 <?= $this->endSection(); ?>

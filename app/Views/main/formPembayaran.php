@@ -5,7 +5,7 @@
         <div class="input-group">
             <input type="text" class="form-control" name="nisn" placeholder="Terisi otomatis" id="pembayaran-siswa" readonly>
             <input type="text" class="form-control" id="pembayaran-siswa-info" readonly>
-            <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#siswaModal">Cari Siswa</button>
+            <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#siswaModal" title="Cari Siswa"><i class="bi bi-search"></i></button>
         </div>
     </div>
     <div class="mb-3">

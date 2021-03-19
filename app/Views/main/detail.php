@@ -14,7 +14,7 @@
 </ul>
 <form action="/pembayaran/print/" method="post" class="d-inline">
     <input type="hidden" name="id" value="<?= $pembayaran->id_pembayaran; ?>">
-    <button type="submit" class="btn btn-primary">Cetak Bukti Pembayaran</button>
+    <button type="submit" class="btn btn-primary"><i class="bi bi-printer"></i> Cetak Bukti Pembayaran</button>
 </form>
-<a href="/pembayaran" class="btn btn-warning">Kembali</a>
+<a href="/pembayaran" class="btn btn-warning"><i class="bi bi-arrow-return-left"></i> Kembali</a>
 <?= $this->endSection(); ?>

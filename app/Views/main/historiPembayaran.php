@@ -1,4 +1,4 @@
-<table class="table table-hover">
+<table class="table table-hover table-bordered table-striped">
     <thead>
         <tr>
             <th scope="col">No.</th>
@@ -21,7 +21,7 @@
                 <td><?= $item->nama_petugas; ?></td>
                 <td><?= $item->tgl_bayar; ?></td>
                 <td><?= "$item->bulan_dibayar - $item->tahun_dibayar"; ?></td>
-                <td><a href="/pembayaran/detail/<?= $item->id_pembayaran; ?>" class="btn btn-success">Detail</a></td>
+                <td><a href="/pembayaran/detail/<?= $item->id_pembayaran; ?>" class="btn btn-success" title="Detail"><i class="bi bi-clipboard-plus"></i></a></td>
             </tr>
         <?php endforeach ?>
     </tbody>

@@ -14,7 +14,7 @@
     </div>
     <div class="mb-3">
         <label for="nama" class="form-label">Nama</label>
-        <input type="text" name="nama" class="form-control <?= isset($errors['nama']) ? 'is-invalid' : ''; ?>" id="nama" value="<?= old('nama') ? old('nama') : $siswa->nama; ?>">
+        <input type="text" name="nama" class="form-control text-capitalize <?= isset($errors['nama']) ? 'is-invalid' : ''; ?>" id="nama" value="<?= old('nama') ? old('nama') : $siswa->nama; ?>">
         <div id="namaFeedback" class="invalid-feedback">
             <?= isset($errors['nama']) ? $errors['nama'] : ''; ?>
         </div>
@@ -49,7 +49,7 @@
         <label class="form-label">SPP</label>
         <input type="text" class="form-control" value="<?= $spp->tahun . " | Rp " . number_format($spp->nominal, 2, ',', '.'); ?>" readonly>
     </div>
-    <button type="submit" class="btn btn-success">Ubah Data</button>
-    <a href="/siswa" class="btn btn-warning">Kembali</a>
+    <button type="submit" class="btn btn-success">Ubah</button>
+    <a href="/siswa" class="btn btn-warning"><i class="bi bi-arrow-return-left"></i> Kembali</a>
 </form>
 <?= $this->endSection(); ?>

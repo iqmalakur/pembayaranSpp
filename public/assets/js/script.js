@@ -79,21 +79,6 @@ function sidebarTop() {
     }
 }
 
-// Field Username
-$("input[name=username]").on("input", function () {
-    this.value = this.value.toLowerCase();
-});
-
-// Controller Jurusan
-$("input[name=alias]").on("input", function () {
-    this.value = this.value.toUpperCase();
-});
-
-// Controller Kelas
-$("#nama-kelas").on("input", function () {
-    this.value = this.value.toUpperCase();
-});
-
 // Controller Siswa
 $("input[name=nisn]").on("input", function () {
     if (this.value.length < 10 || this.value.length > 10 || this.value == "") {

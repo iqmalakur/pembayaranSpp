@@ -2,8 +2,8 @@
 
 <?= $this->section("content"); ?>
 <h1 class="title text-center">Data Petugas</h1>
-<a href="/petugas/add" class="btn btn-success">Tambah Data</a>
-<table class="table table-hover table-striped">
+<a href="/petugas/add" class="btn btn-primary my-3">Tambah Data</a>
+<table class="table table-hover table-striped table-bordered">
     <thead>
         <tr>
             <th scope="col">No.</th>
@@ -21,11 +21,11 @@
                 <td><?= $item->nama_petugas; ?></td>
                 <td><?= $item->level; ?></td>
                 <td>
-                    <a href="/petugas/edit/<?= $item->username; ?>" class="btn btn-primary <?= $item->username === 'admin' && $user->username !== 'admin' ? 'disabled' : ''; ?>">Ubah</a>
+                    <a href="/petugas/edit/<?= $item->username; ?>" class="btn btn-primary <?= $item->username === 'admin' && $user->username !== 'admin' ? 'disabled' : ''; ?>" title="Ubah"><i class="bi bi-pencil"></i></a>
                     <form action="/petugas/delete/<?= $item->username; ?>" method="POST" class="d-inline">
                         <?= csrf_field(); ?>
                         <input type="hidden" name="_method" value="DELETE">
-                        <span class="delete btn btn-danger <?= $item->username == 'admin' || $item->username == $user->username ? 'disabled' : ''; ?>" data-item="<?= $item->nama_petugas; ?>">Hapus</span>
+                        <span class="delete btn btn-danger <?= $item->username == 'admin' || $item->username == $user->username ? 'disabled' : ''; ?>" data-item="<?= $item->nama_petugas; ?>" title="Hapus"><i class="bi bi-trash"></i></span>
                     </form>
                 </td>
             </tr>

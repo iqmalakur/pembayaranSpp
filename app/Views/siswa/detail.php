@@ -12,11 +12,11 @@
     <li class="list-group-item">No. Telepon : <?= $siswa->no_telp; ?></li>
     <li class="list-group-item">SPP : <?= $siswa->tahun . " | Rp " . number_format($siswa->nominal, 2, ',', '.'); ?></li>
 </ul>
-<a href="/siswa/edit/<?= $siswa->nisn; ?>" class="btn btn-primary">Ubah</a>
+<a href="/siswa/edit/<?= $siswa->nisn; ?>" class="btn btn-primary"><i class="bi bi-pencil"></i> Ubah</a>
 <form action="/siswa/delete/<?= $siswa->nisn; ?>" method="POST" class="d-inline">
     <?= csrf_field(); ?>
     <input type="hidden" name="_method" value="DELETE">
-    <span class="delete btn btn-danger" data-item="<?= $siswa->nama; ?>">Hapus</span>
+    <span class="delete btn btn-danger" data-item="<?= $siswa->nama; ?>"><i class="bi bi-trash"></i> Hapus</span>
 </form>
-<a href="/siswa" class="btn btn-warning">Kembali</a>
+<a href="/siswa" class="btn btn-warning"><i class="bi bi-arrow-return-left"></i> Kembali</a>
 <?= $this->endSection(); ?>

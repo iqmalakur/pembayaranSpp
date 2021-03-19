@@ -13,12 +13,12 @@
     </div>
     <div class="mb-3">
         <label for="alias" class="form-label">Alias</label>
-        <input type="text" name="alias" class="form-control <?= isset($errors['alias']) ? 'is-invalid' : ''; ?>" id="alias" value="<?= old('alias') ? old('alias') : ''; ?>">
+        <input type="text" name="alias" class="form-control text-uppercase <?= isset($errors['alias']) ? 'is-invalid' : ''; ?>" id="alias" value="<?= old('alias') ? old('alias') : ''; ?>">
         <div id="aliasFeedback" class="invalid-feedback">
             <?= isset($errors['alias']) ? $errors['alias'] : ''; ?>
         </div>
     </div>
-    <button type="submit" class="btn btn-primary">Tambah Data</button>
-    <a href="/jurusan" class="btn btn-warning">Kembali</a>
+    <button type="submit" class="btn btn-success">Simpan</button>
+    <a href="/jurusan" class="btn btn-warning"><i class="bi bi-arrow-return-left"></i> Kembali</a>
 </form>
 <?= $this->endSection(); ?>

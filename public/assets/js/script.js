@@ -18,33 +18,66 @@ $("span.delete").click(function () {
 
 // Sidebar
 $("#content aside span i").click(function () {
-    $(this).parent().toggleClass("aktif");
-    $("#content").toggleClass("sidebar-collapse");
+    if (window.innerWidth <= 768) {
+        let height = window.innerWidth <= 400 ? 50 : 64;
+        $(this).parent().toggleClass("expand");
+        $("#content aside span").hasClass("expand") ? $("aside#sidebar").css("height", "354px") : $("aside#sidebar").css("height", height + "px");
+    } else {
+        $(this).parent().toggleClass("aktif");
+        $("#content").toggleClass("sidebar-collapse");
 
-    setTimeout(
-        () => {
-            $(".list-text").toggleClass("d-none");
-        },
-        $(".list-text").hasClass("d-none") ? 700 : 50
-    );
+        setTimeout(
+            () => {
+                $(".list-text").toggleClass("d-none");
+            },
+            $(".list-text").hasClass("d-none") ? 350 : 25
+        );
 
-    setTimeout(
-        () => {
-            $("#sidebar-list a").toggleClass("text-center");
-        },
-        $("#sidebar-list a").hasClass("text-center") ? 0 : 850
-    );
+        setTimeout(
+            () => {
+                $("#sidebar-list a").toggleClass("text-center");
+            },
+            $("#sidebar-list a").hasClass("text-center") ? 0 : 425
+        );
 
-    setTimeout(() => {
-        $("main").toggleClass("px-5");
-    }, 500);
+        setTimeout(() => {
+            $("main").toggleClass("px-5");
+        }, 250);
 
-    $.ajax({
-        url: "/sidebar",
-        type: "POST",
-        data: { sidebar: $("#content").hasClass("sidebar-collapse") ? true : false },
-    });
+        $.ajax({
+            url: "/sidebar",
+            type: "POST",
+            data: { sidebar: $("#content").hasClass("sidebar-collapse") ? true : false },
+        });
+    }
 });
+
+sidebarTop();
+$(window).resize(sidebarTop);
+
+function sidebarTop() {
+    if (window.innerWidth <= 768) {
+        let height = window.innerWidth <= 400 ? 50 : 64;
+        $("aside#sidebar").css("height", height + "px");
+        $("aside nav").removeClass("px-2");
+        $(".login-container").removeClass("container");
+
+        if ($("#content").hasClass("sidebar-collapse")) {
+            $(".list-text").removeClass("d-none");
+            $("#content aside span").removeClass("aktif");
+        }
+    } else {
+        $("aside#sidebar").css("height", "auto");
+        $("aside nav").addClass("px-2");
+        $(".login-container").addClass("container");
+        $("#content aside span").removeClass("expand");
+
+        if ($("#content").hasClass("sidebar-collapse")) {
+            $(".list-text").addClass("d-none");
+            $("#content aside span").addClass("aktif");
+        }
+    }
+}
 
 // Field Username
 $("input[name=username]").on("input", function () {

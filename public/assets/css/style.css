@@ -34,7 +34,7 @@ nav.navbar {
 }
 
 main.login-container {
-    width: 50vmax;
+    width: 40vmax;
 }
 
 main.login-container button[type="submit"] {
@@ -48,5 +48,11 @@ main.login-container .card {
 @media only screen and (max-width: 992px) {
     nav.navbar {
         padding-right: 1rem;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    main.login-container {
+        width: 90vw;
     }
 }

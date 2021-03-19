@@ -2,7 +2,7 @@
     display: grid;
     grid-template-areas: "sidebar main";
     grid-template-columns: 230px 1fr;
-    transition: 1s;
+    transition: 0.5s;
 }
 
 #content.sidebar-collapse {
@@ -28,7 +28,7 @@
 }
 
 #content aside span {
-    transition: 1s;
+    transition: 0.5s;
     width: 1.75rem;
     text-align: center;
 }
@@ -39,4 +39,66 @@
 
 #content aside span i:hover {
     color: rgb(112, 112, 112);
+}
+
+@media only screen and (max-width: 768px) {
+    #content {
+        margin-top: 10rem;
+        display: block;
+    }
+
+    aside#sidebar {
+        margin-top: 3.5rem;
+        background-color: #fff !important;
+        height: 64px;
+        overflow: hidden;
+        transition: 0.5s;
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 999;
+    }
+
+    #content aside span {
+        margin-top: 0.5rem;
+        transform: rotate(-90deg);
+    }
+
+    #content aside span.expand {
+        transform: rotate(90deg);
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    nav.navbar a.title {
+        font-size: 0.9rem;
+    }
+
+    .navbar-toggler {
+        font-size: 0.9rem;
+    }
+
+    aside#sidebar {
+        top: -10px;
+        height: 50px;
+    }
+
+    #content aside span {
+        margin-top: 0.23rem;
+    }
+
+    #content {
+        margin-top: 8rem;
+    }
+}
+
+@media only screen and (max-width: 280px) {
+    nav.navbar a.title {
+        font-size: 0.7rem;
+    }
+
+    .navbar-toggler {
+        font-size: 0.7rem;
+    }
 }

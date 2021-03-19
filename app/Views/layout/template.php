@@ -45,7 +45,7 @@
             echo $this->include("layout/sidebar");
         }
         ?>
-        <main class="container mb-5 <?= session()->sidebar == "true" ? '' : 'px-5'; ?> <?= $controller == 'Auth' ? 'login-container' : ''; ?>">
+        <main class="container mb-5 <?= session()->sidebar == "true" || $controller == 'Auth' ? '' : 'px-5'; ?> <?= $controller == 'Auth' ? 'login-container' : ''; ?>">
             <?= $this->renderSection('content'); ?>
         </main>
 

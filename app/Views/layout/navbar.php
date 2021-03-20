@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm fixed-top ps-3">
+<nav class="navbar navbar-expand-lg navbar-light bg-nav shadow-sm fixed-top ps-3">
     <a class="navbar-brand title" href="/">Sistem Pembayaran SPP</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

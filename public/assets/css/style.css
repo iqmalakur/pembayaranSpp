@@ -3,9 +3,16 @@ body {
     min-height: 100vh;
 }
 
-.bg-my {
-    background: #00b4db;
-    background: linear-gradient(to right, #0083b0, #00b4db);
+.bg-content {
+    background-image: url(/assets/img/bg-content.png);
+}
+
+.bg-nav {
+    background-image: url(/assets/img/bg-nav.png);
+}
+
+.bg-login {
+    background-image: url(/assets/img/bg-login.png);
 }
 
 .title {
@@ -42,7 +49,7 @@ main.login-container button[type="submit"] {
 }
 
 main.login-container .card {
-    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.5);
 }
 
 @media only screen and (max-width: 992px) {

@@ -32,7 +32,7 @@
     <title><?= $title; ?></title>
 </head>
 
-<body class="<?= $controller == 'Auth' ? 'bg-my' : 'bg-light'; ?>">
+<body class="<?= $controller == 'Auth' ? 'bg-login' : 'bg-content'; ?>">
 
     <?php
     if ($controller != 'Auth') {

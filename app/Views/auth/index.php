@@ -2,10 +2,10 @@
 
 <?= $this->section("content"); ?>
 <div class="card">
-    <div class="card-header pt-4">
+    <div class="card-header pt-4 bg-nav">
         <h1 class="card-title text-center title mb-3">Login</h1>
     </div>
-    <div class="card-body p-4">
+    <div class="card-body p-4 bg-content">
         <?php if (isset($errors['login-fail'])) : ?>
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 Username atau Password <strong>salah!</strong>

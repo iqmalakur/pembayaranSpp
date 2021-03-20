@@ -2,7 +2,7 @@
 $listText = session()->sidebar == "true" ? 'd-none' : '';
 $link = session()->sidebar == "true" ? 'text-center' : '';
 ?>
-<aside class="bg-light shadow" id="sidebar">
+<aside class="bg-nav shadow" id="sidebar">
     <nav class="list-group px-2">
         <span class="mb-3 mx-auto <?= session()->sidebar == "true" ? 'aktif' : ''; ?>"><i class="bi bi-arrow-left-circle"></i></span>
         <div id="sidebar-list">

@@ -72,6 +72,6 @@ class SiswaModel extends Model
 
 	public function searchAjax($keyword)
 	{
-		return $this->builder('siswa')->select('nisn, nis, nama, nama_kelas')->like('nisn', $keyword, 'after')->orLike('nis', $keyword, 'after')->orLike('nama', $keyword, 'after')->orLike('nama_kelas', $keyword)->join('kelas', 'siswa.id_kelas=kelas.id_kelas')->get()->getResultObject();
+		return $this->builder('siswa')->select('nisn, nis, nama, nama_kelas, nama_jurusan')->like('nisn', $keyword, 'after')->orLike('nis', $keyword, 'after')->orLike('nama', $keyword, 'after')->orLike('nama_kelas', $keyword)->join('kelas', 'siswa.id_kelas=kelas.id_kelas')->join('jurusan', 'kelas.kompetensi_keahlian=jurusan.id_jurusan')->get()->getResultObject();
 	}
 }

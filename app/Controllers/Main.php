@@ -23,16 +23,16 @@ class Main extends BaseController
 			return redirect()->to('/login');
 		}
 
+		$this->data['loginStatus'] = $this->session->get('success');
+
 		if ($this->session->user['role'] === 'siswa') {
+			$this->data['pembayaran'] = $this->model->getPembayaran($this->user->nisn);
 			$this->data['title'] = "Sistem Pembayaran Spp";
+			return view("main/home", $this->data);
 		} else {
 			$this->data['title'] = "Dashboard";
+			return view("main/index", $this->data);
 		}
-
-		$this->data['loginStatus'] = $this->session->get('success');
-		$this->data['pembayaran'] = $this->model->get();
-
-		return view("main/index", $this->data);
 	}
 
 	public function payment()
@@ -48,7 +48,8 @@ class Main extends BaseController
 		$this->data['title'] = "Pembayaran Spp";
 		$this->data['bulan'] = date('M');
 		$this->data['siswa'] = $this->siswaModel->get();
-		$this->data['pembayaran'] = $this->model->get();
+		$this->data['sppSiswa'] = $this->session->nisn != null ? $this->siswaModel->get($this->session->nisn) : false;
+		$this->data['pembayaran'] = $this->model->getPembayaran($this->session->nisn);
 
 		return view("main/payment", $this->data);
 	}
@@ -78,6 +79,8 @@ class Main extends BaseController
 					'text' => "Spp {$data['bulan_dibayar']} - {$data['tahun_dibayar']} untuk Siswa dengan NISN {$data['nisn']} telah dibayar"
 				]);
 
+				$this->session->setFlashdata('nisn', $data['nisn']);
+
 				// Kembali ke halaman login dan mengirimkan input sebelumnya
 				return redirect()->to('/pembayaran');
 			}
@@ -88,6 +91,7 @@ class Main extends BaseController
 			$this->model->save($data);
 
 			$this->session->setFlashdata('successInfo', 'Menambahkan');
+			$this->session->setFlashdata('nisn', $data['nisn']);
 
 			return redirect()->to("/pembayaran");
 		}
@@ -98,13 +102,17 @@ class Main extends BaseController
 		// Generate Laporan
 	}
 
-	public function receipt($data)
+	public function receipt($id)
 	{
-		echo "Kuitansi";
 		if (!$this->session->login) {
 			return redirect()->to('/login');
 		}
-		// Kuitansi
+
+		$id = (int)$id;
+
+		helper(['pembayaran', 'date']);
+
+		return view("main/kuitansi", ['pembayaran' => $this->model->get($id), 'role' => $this->role]);
 	}
 
 	public function detail($id)
@@ -138,10 +146,16 @@ class Main extends BaseController
 		return view('ajax/pembayaran', ['siswa' => $this->siswaModel->searchAjax($keyword)]);
 	}
 
+	public function ajaxSiswa()
+	{
+		$nisn = $this->request->getPost("nisn");
+		return view('ajax/siswa', ['siswa' => $this->model->getPembayaran($nisn)]);
+	}
+
 	public function getSiswa()
 	{
 		$siswa = $this->siswaModel->get($this->request->getPost("nisn"));
-		return "$siswa->nisn,$siswa->nama - $siswa->nama_kelas,$siswa->id_spp,$siswa->tahun,$siswa->nominal";
+		return json_encode($siswa);
 	}
 
 	public function sidebar()

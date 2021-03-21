@@ -38,15 +38,25 @@ function cariSiswa(siswa) {
         url: "/getSiswa/",
         type: "POST",
         data: { nisn: siswa },
-        success: function (result) {
-            let siswa = result.split(",");
+        dataType: "json",
+        success: function (siswa) {
+            $("#pembayaran-siswa").val(siswa.nisn);
+            $("#pembayaran-siswa-info").val(siswa.nama + " - " + siswa.nama_kelas);
+            $("#pembayaran-spp").val(siswa.id_spp);
+            $("#pembayaran-spp-info").val(siswa.tahun);
+            $("#pembayaran-tahun").val(siswa.tahun);
+            $("#pembayaran-jumlah").val(siswa.nominal);
 
-            $("#pembayaran-siswa").val(siswa[0]);
-            $("#pembayaran-siswa-info").val(siswa[1]);
-            $("#pembayaran-spp").val(siswa[2]);
-            $("#pembayaran-spp-info").val(siswa[3]);
-            $("#pembayaran-tahun").val(siswa[3]);
-            $("#pembayaran-jumlah").val(siswa[4]);
+            let nisn = siswa.nisn;
+
+            $.ajax({
+                url: "/ajaxSiswa/",
+                type: "POST",
+                data: { nisn },
+                success: function (result) {
+                    $("tbody#data-pembayaran").html(result);
+                },
+            });
 
             let modal = bootstrap.Modal.getInstance(document.getElementById("siswaModal"));
             modal.hide();

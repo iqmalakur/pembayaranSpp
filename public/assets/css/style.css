@@ -1,6 +1,11 @@
 body {
     font-family: "PT Serif", serif;
     min-height: 100vh;
+    color: #333;
+}
+
+.title {
+    font-family: "Libre Baskerville", serif;
 }
 
 .bg-content {
@@ -13,10 +18,6 @@ body {
 
 .bg-login {
     background-image: url(/assets/img/bg-login.png);
-}
-
-.title {
-    font-family: "Libre Baskerville", serif;
 }
 
 nav.navbar {
@@ -61,5 +62,25 @@ main.login-container .card {
 @media only screen and (max-width: 600px) {
     main.login-container {
         width: 90vw;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    nav.navbar a.title {
+        font-size: 0.9rem;
+    }
+
+    .navbar-toggler {
+        font-size: 0.9rem;
+    }
+}
+
+@media only screen and (max-width: 280px) {
+    nav.navbar a.title {
+        font-size: 0.7rem;
+    }
+
+    .navbar-toggler {
+        font-size: 0.7rem;
     }
 }

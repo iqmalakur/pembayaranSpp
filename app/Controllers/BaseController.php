@@ -61,11 +61,11 @@ class BaseController extends Controller
 
 			if ($this->role == 'siswa') {
 				$model = new SiswaModel();
+				$this->user = $model->get($username);
 			} else {
 				$model = new PetugasModel();
+				$this->user = $model->find($username);
 			}
-
-			$this->user = $model->find($username);
 		}
 
 		$this->data = [

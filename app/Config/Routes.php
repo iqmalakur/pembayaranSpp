@@ -87,6 +87,7 @@ $routes->delete('/petugas/delete/(:segment)', 'Petugas::delete/$1');
 
 // AJAX
 $routes->post('/ajaxPembayaran', 'Main::ajaxPembayaran');
+$routes->post('/ajaxSiswa', 'Main::ajaxSiswa');
 $routes->post('/getSiswa', 'Main::getSiswa');
 $routes->post('/sidebar', 'Main::sidebar');
 

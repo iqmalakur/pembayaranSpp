@@ -55,4 +55,9 @@ class KelasModel extends Model
 	{
 		return $this->builder("kelas")->where("nama_kelas", $kelas)->countAllResults();
 	}
+
+	public function getCount()
+	{
+		return $this->builder("kelas")->select("COUNT(*) AS count")->get()->getRowObject()->count;
+	}
 }

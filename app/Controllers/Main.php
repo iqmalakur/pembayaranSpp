@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\KelasModel;
 use App\Models\PembayaranModel;
 use App\Models\SiswaModel;
 use App\Models\SppModel;
@@ -26,14 +27,23 @@ class Main extends BaseController
 			return redirect()->to('/login');
 		}
 
+		$kelasModel = new KelasModel();
+
 		$this->data['loginStatus'] = $this->session->get('success');
 
 		if ($this->session->user['role'] === 'siswa') {
 			$this->data['pembayaran'] = $this->model->getPembayaran($this->user->nisn);
 			$this->data['title'] = "Sistem Pembayaran Spp";
+
 			return view("main/home", $this->data);
 		} else {
 			$this->data['title'] = "Dashboard";
+			$this->data['pembayaran'] = json_encode($this->model->getReport());
+			$this->data['countPembayaran'] = $this->model->getCount();
+			$this->data['siswa'] = $this->siswaModel->getCount();
+			$this->data['kelas'] = $kelasModel->getCount();
+			$this->data['spp'] = $this->model->getReport();
+
 			return view("main/index", $this->data);
 		}
 	}

@@ -5,16 +5,19 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\PembayaranModel;
 use App\Models\SiswaModel;
+use App\Models\SppModel;
 
 class Main extends BaseController
 {
 	protected $model;
 	protected $siswaModel;
+	protected $sppModel;
 
 	public function __construct()
 	{
 		$this->model = new PembayaranModel();
 		$this->siswaModel = new SiswaModel();
+		$this->sppModel = new SppModel();
 	}
 
 	public function index()
@@ -51,7 +54,7 @@ class Main extends BaseController
 		$this->data['sppSiswa'] = $this->session->nisn != null ? $this->siswaModel->get($this->session->nisn) : false;
 		$this->data['pembayaran'] = $this->model->getPembayaran($this->session->nisn);
 
-		return view("main/payment", $this->data);
+		return view("main/pembayaran", $this->data);
 	}
 
 	public function pay()
@@ -97,9 +100,22 @@ class Main extends BaseController
 		}
 	}
 
-	public function report($data)
+	public function report()
 	{
-		// Generate Laporan
+		if (!$this->session->login) {
+			return redirect()->to('/login');
+		}
+
+		if ($this->session->user['role'] !== 'admin') {
+			return view('errors/html/error_404');
+		}
+
+		$this->data['title'] = "Laporan Pembayaran Spp";
+		$this->data['spp'] = $this->sppModel->findAll();
+		$this->data['pembayaran'] = $this->model->laporan($this->data['spp'][0]->tahun);
+		$this->data['total'] = $this->model->getSum($this->data['spp'][0]->tahun);
+
+		return view('main/laporan', $this->data);
 	}
 
 	public function receipt($id)
@@ -112,54 +128,24 @@ class Main extends BaseController
 
 		helper(['pembayaran', 'date']);
 
-		return view("main/kuitansi", ['pembayaran' => $this->model->get($id), 'role' => $this->role]);
-	}
-
-	public function detail($id)
-	{
-		if (!$this->session->login) {
-			return redirect()->to('/login');
-		}
-
-		if ($this->session->user['role'] === 'siswa') {
+		if ($id == 0) {
 			return view('errors/html/error_404');
 		}
 
-		$this->data['pembayaran'] = $this->model->get($id);
-		$this->data['title'] = "Detail Pembayaran Spp";
-
-		return view("main/detail", $this->data);
+		return view("main/kuitansi", ['pembayaran' => $this->model->get($id), 'role' => $this->role]);
 	}
 
-	public function print()
+	public function print($tahun)
 	{
-		$this->data['pembayaran'] = $this->model->get($this->request->getPost('id'));
-		$this->data['title'] = $this->data['pembayaran']->id_pembayaran . '-' . $this->data['pembayaran']->nisn . '.pdf';
+		$spp = implode("/", explode("-", $tahun));
 
-		return view("main/print", $this->data);
-	}
+		$data = [
+			'title' => "Laporan-Spp-Tahun-$tahun.pdf",
+			'pembayaran' => $this->model->laporan($spp),
+			'total' => $this->model->getSum($spp),
+			'tahun' => $spp,
+		];
 
-	// AJAX
-	public function ajaxPembayaran()
-	{
-		$keyword = $this->request->getPost("keyword");
-		return view('ajax/pembayaran', ['siswa' => $this->siswaModel->searchAjax($keyword)]);
-	}
-
-	public function ajaxSiswa()
-	{
-		$nisn = $this->request->getPost("nisn");
-		return view('ajax/siswa', ['siswa' => $this->model->getPembayaran($nisn)]);
-	}
-
-	public function getSiswa()
-	{
-		$siswa = $this->siswaModel->get($this->request->getPost("nisn"));
-		return json_encode($siswa);
-	}
-
-	public function sidebar()
-	{
-		$this->session->set('sidebar', $this->request->getPost('sidebar'));
+		return view("main/printLaporan", $data);
 	}
 }

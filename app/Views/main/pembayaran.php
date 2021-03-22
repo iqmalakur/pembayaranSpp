@@ -11,14 +11,14 @@
         <div class="input-group">
             <input type="text" class="form-control" name="nisn" placeholder="Terisi otomatis" id="pembayaran-siswa" value="<?= $sppSiswa ? $sppSiswa->nisn : ''; ?>" readonly>
             <input type="text" class="form-control" id="pembayaran-siswa-info" value="<?= $sppSiswa ? "$sppSiswa->nama - $sppSiswa->nama_kelas" : ''; ?>" readonly>
-            <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#siswaModal" title="Cari Siswa"><i class="bi bi-search"></i></button>
+            <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#siswaModal" title="Cari Siswa" id="btn-cari-siswa"><i class="bi bi-search"></i></button>
         </div>
     </div>
     <div class="mb-3">
         <label class="form-label">Id Spp</label>
         <div class="input-group">
             <input type="text" class="form-control" name="id_spp" placeholder="Terisi otomatis" id="pembayaran-spp" value="<?= $sppSiswa ? $sppSiswa->id_spp : ''; ?>" readonly>
-            <input type="text" class="form-control" id="pembayaran-spp-info" readonly>
+            <input type="text" class="form-control" id="pembayaran-spp-info" value="<?= $sppSiswa ? $sppSiswa->tahun : ''; ?>" readonly>
         </div>
     </div>
     <div class="mb-3">
@@ -54,7 +54,7 @@
 </form>
 
 <!-- Tabel Pembayaran -->
-<table class="table table-hover table-striped table-bordered">
+<table class="table table-hover table-striped table-bordered mt-5">
     <thead>
         <tr>
             <th scope="col">No.</th>
@@ -121,6 +121,7 @@
                     </tbody>
                 </table>
                 <div class="text-center d-none" id="loader">
+                    <div class="text-muted">Sedang mengambil data...</div>
                     <div class="spinner-border text-secondary mt-2" role="status">
                         <span class="visually-hidden">Tunggu Sebentar...</span>
                     </div>

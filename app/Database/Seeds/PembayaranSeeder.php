@@ -18,7 +18,7 @@ class PembayaranSeeder extends Seeder
 				'bulan_dibayar' => 'Maret',
 				'tahun_dibayar' => '2018/2019',
 				'id_spp' => 3,
-				'jumlah_bayar' => 140000,
+				'jumlah_bayar' => 130000,
 			],
 			[
 				'petugas' => 'admin',
@@ -27,7 +27,7 @@ class PembayaranSeeder extends Seeder
 				'bulan_dibayar' => 'Agustus',
 				'tahun_dibayar' => '2019/2020',
 				'id_spp' => 4,
-				'jumlah_bayar' => 120000,
+				'jumlah_bayar' => 140000,
 			],
 			[
 				'petugas' => 'ekasantoso',
@@ -36,7 +36,7 @@ class PembayaranSeeder extends Seeder
 				'bulan_dibayar' => 'Januari',
 				'tahun_dibayar' => '2019/2020',
 				'id_spp' => 1,
-				'jumlah_bayar' => 110000,
+				'jumlah_bayar' => 140000,
 			],
 			[
 				'petugas' => 'hildafitri',
@@ -54,7 +54,7 @@ class PembayaranSeeder extends Seeder
 				'bulan_dibayar' => 'Februari',
 				'tahun_dibayar' => '2019/2020',
 				'id_spp' => 5,
-				'jumlah_bayar' => 150000,
+				'jumlah_bayar' => 140000,
 			],
 		];
 

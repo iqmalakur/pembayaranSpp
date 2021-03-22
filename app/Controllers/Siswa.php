@@ -160,7 +160,7 @@ class Siswa extends BaseController
 			return redirect()->to('/login');
 		}
 
-		if ($this->session->user['role'] === 'petugas') {
+		if ($this->session->user['role'] !== 'admin') {
 			return view('errors/html/error_404');
 		}
 

@@ -167,3 +167,9 @@ if ($("#login-success").length) {
         title: "Login berhasil",
     });
 }
+
+$("#btn-cari-siswa").click(function () {
+    setTimeout(() => {
+        $("#cari-siswa").focus();
+    }, 500);
+});

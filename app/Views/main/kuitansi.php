@@ -133,7 +133,7 @@
             <h3 style="margin: 0 0 5px 5px;">Keterangan</h3>
             <div class="keterangan">
                 <span>Pembayaran Spp Bulan <?= $pembayaran->bulan_dibayar; ?> Tahun Ajaran <?= $pembayaran->tahun_dibayar; ?></span>
-                <span>Total: <?= $pembayaran->jumlah_bayar; ?></span>
+                <span>Total: <?= "Rp. " . number_format($pembayaran->jumlah_bayar, 2, ',', '.'); ?></span>
             </div>
             <footer>
                 <div class="notice">

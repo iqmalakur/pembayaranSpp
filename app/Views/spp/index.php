@@ -17,7 +17,7 @@
             <tr>
                 <th scope="row"><?= $index + 1; ?></th>
                 <td><?= $item->tahun; ?></td>
-                <td><?= "Rp " . number_format($item->nominal, 2, ',', '.'); ?></td>
+                <td><?= "Rp. " . number_format($item->nominal, 2, ',', '.'); ?></td>
                 <td>
                     <a href="/spp/edit/<?= $item->id_spp; ?>" class="btn btn-primary" title="Ubah"><i class="bi bi-pencil"></i></a>
                     <form action="/spp/delete/<?= $item->id_spp; ?>" method="POST" class="d-inline">

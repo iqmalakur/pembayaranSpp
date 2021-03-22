@@ -64,4 +64,14 @@ class PembayaranModel extends Model
 	{
 		return $this->builder('pembayaran')->select('id_pembayaran')->getWhere(['nisn' => $nisn, 'bulan_dibayar' => $bulan, 'tahun_dibayar' => $tahun])->getRowObject();
 	}
+
+	public function laporan($val)
+	{
+		return $this->builder("pembayaran")->select('pembayaran.*, siswa.nis, siswa.nama, kelas.nama_kelas, jurusan.nama_jurusan')->where('pembayaran.tahun_dibayar', $val)->join('siswa', 'pembayaran.nisn=siswa.nisn')->join('kelas', 'siswa.id_kelas=kelas.id_kelas')->join('jurusan', 'kelas.kompetensi_keahlian=jurusan.id_jurusan')->orderBy('tgl_bayar', 'DESC')->get()->getResultObject();
+	}
+
+	public function getSum($val)
+	{
+		return $this->builder("pembayaran")->select('SUM(pembayaran.jumlah_bayar) AS total')->where('pembayaran.tahun_dibayar', $val)->get()->getRowObject()->total;
+	}
 }

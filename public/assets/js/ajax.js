@@ -47,12 +47,10 @@ function cariSiswa(siswa) {
             $("#pembayaran-tahun").val(siswa.tahun);
             $("#pembayaran-jumlah").val(siswa.nominal);
 
-            let nisn = siswa.nisn;
-
             $.ajax({
                 url: "/ajaxSiswa/",
                 type: "POST",
-                data: { nisn },
+                data: { nisn: siswa.nisn },
                 success: function (result) {
                     $("tbody#data-pembayaran").html(result);
                 },
@@ -63,3 +61,15 @@ function cariSiswa(siswa) {
         },
     });
 }
+
+$("#filter-laporan").change(function () {
+    $.ajax({
+        url: "/ajaxLaporan/",
+        type: "POST",
+        data: { tahun: $(this).val() },
+        success: function (result) {
+            $("tbody#container-cari").html(result);
+            $("#print-laporan").attr("href", "/laporan/" + $("#filter-laporan").val());
+        },
+    });
+});

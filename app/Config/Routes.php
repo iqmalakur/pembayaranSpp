@@ -35,9 +35,9 @@ $routes->setAutoRoute(true);
 // Controller Main
 $routes->get('/', 'Main::index');
 $routes->get('/pembayaran', 'Main::payment');
-$routes->get('/pembayaran/detail/(:segment)', 'Main::detail/$1');
-$routes->post('/pembayaran/print/', 'Main::print');
 $routes->post('/bayar', 'Main::pay');
+$routes->get('/laporan', 'Main::report');
+$routes->get('/laporan/(:segment)', 'Main::print/$1');
 
 // Controller Auth
 $routes->get('/login', 'Auth::index');
@@ -86,10 +86,11 @@ $routes->post('/petugas/update', 'Petugas::update');
 $routes->delete('/petugas/delete/(:segment)', 'Petugas::delete/$1');
 
 // AJAX
-$routes->post('/ajaxPembayaran', 'Main::ajaxPembayaran');
-$routes->post('/ajaxSiswa', 'Main::ajaxSiswa');
-$routes->post('/getSiswa', 'Main::getSiswa');
-$routes->post('/sidebar', 'Main::sidebar');
+$routes->post('/ajaxPembayaran', 'Ajax::pembayaran');
+$routes->post('/ajaxSiswa', 'Ajax::siswa');
+$routes->post('/ajaxLaporan', 'Ajax::laporan');
+$routes->post('/getSiswa', 'Ajax::dataSiswa');
+$routes->post('/sidebar', 'Ajax::sidebar');
 
 // Kuitansi atau Bukti Pembayaran
 $routes->get('/(:any)', 'Main::receipt/$1');

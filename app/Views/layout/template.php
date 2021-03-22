@@ -39,7 +39,7 @@
         echo $this->include('layout/navbar');
     }
     ?>
-    <div id="content" class="<?= $controller == 'Auth' ? 'd-flex justify-content-center align-items-center' : ''; ?> <?= session()->sidebar == "true" ? 'sidebar-collapse' : ''; ?>">
+    <div id="content" class="<?= $controller == 'Auth' ? 'd-flex justify-content-center align-items-center' : ''; ?>">
         <?php
         if ($role != 'siswa' && $controller != 'Auth') {
             echo $this->include("layout/sidebar");
@@ -75,7 +75,9 @@
     <!-- My JavaScript -->
     <script src="/assets/js/script.js"></script>
     <script src="/assets/js/ajax.js"></script>
-    <script src="/assets/js/diagram.js"></script>
+    <?php if (isset($diagram)) : ?>
+        <script src="/assets/js/diagram.js"></script>
+    <?php endif ?>
 </body>
 
 </html>

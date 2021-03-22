@@ -43,6 +43,7 @@ class Main extends BaseController
 			$this->data['siswa'] = $this->siswaModel->getCount();
 			$this->data['kelas'] = $kelasModel->getCount();
 			$this->data['spp'] = $this->model->getReport();
+			$this->data['diagram'] = true;
 
 			return view("main/index", $this->data);
 		}

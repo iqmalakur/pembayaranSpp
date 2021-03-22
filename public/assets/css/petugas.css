@@ -1,20 +1,14 @@
 #content {
-    display: grid;
-    grid-template-areas: "sidebar main";
-    grid-template-columns: 230px 1fr;
-    transition: 0.5s;
-}
-
-#content.sidebar-collapse {
-    grid-template-columns: 65px 1fr;
+    display: flex;
 }
 
 #content aside {
-    grid-area: sidebar;
+    width: 270px;
+    transition: 0.5s;
 }
 
-#content main {
-    grid-area: main;
+#content aside.sidebar-collapse {
+    width: 65px;
 }
 
 #content aside nav {

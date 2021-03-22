@@ -2,9 +2,9 @@
 $listText = session()->sidebar == "true" ? 'd-none' : '';
 $link = session()->sidebar == "true" ? 'text-center' : '';
 ?>
-<aside class="bg-nav shadow" id="sidebar">
+<aside class="bg-nav shadow <?= session()->sidebar == "true" ? 'sidebar-collapse' : ''; ?>" id="sidebar">
     <nav class="list-group px-2">
-        <span class="mb-3 mx-auto <?= session()->sidebar == "true" ? 'aktif' : ''; ?>"><i class="bi bi-arrow-left-circle"></i></span>
+        <span class="mb-3 mx-auto <?= session()->sidebar == "true" ? 'aktif' : ''; ?>" title="CTRL + ;"><i class="bi bi-arrow-left-circle"></i></span>
         <div id="sidebar-list">
             <a href="/" class="list-group-item list-group-item-action <?= $link; ?>" title="Dashboard">
                 <i class="bi bi-clipboard-data"></i> <span class="list-text <?= $listText; ?>">Dashboard</span>

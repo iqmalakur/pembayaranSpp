@@ -17,20 +17,31 @@ $("span.delete").click(function () {
 });
 
 // Sidebar
-$("#content aside span i").click(function () {
+$("#content aside span i").click(sidebar);
+
+$(document).keydown(function (event) {
+    if (event.ctrlKey && event.keyCode == 59 && !event.shiftKey && !event.altKey) {
+        sidebar();
+    }
+});
+
+sidebarTop();
+$(window).resize(sidebarTop);
+
+function sidebar() {
     if (window.innerWidth <= 768) {
         let height = window.innerWidth <= 400 ? 50 : 64;
-        $(this).parent().toggleClass("expand");
+        $("#content aside span").toggleClass("expand");
         $("#content aside span").hasClass("expand") ? $("aside#sidebar").css("height", "354px") : $("aside#sidebar").css("height", height + "px");
     } else {
-        $(this).parent().toggleClass("aktif");
-        $("#content").toggleClass("sidebar-collapse");
+        $("#content aside span").toggleClass("aktif");
+        $("aside").toggleClass("sidebar-collapse");
 
         setTimeout(
             () => {
                 $(".list-text").toggleClass("d-none");
             },
-            $(".list-text").hasClass("d-none") ? 350 : 25
+            $(".list-text").hasClass("d-none") ? 450 : 10
         );
 
         setTimeout(
@@ -47,13 +58,10 @@ $("#content aside span i").click(function () {
         $.ajax({
             url: "/sidebar",
             type: "POST",
-            data: { sidebar: $("#content").hasClass("sidebar-collapse") ? true : false },
+            data: { sidebar: $("aside").hasClass("sidebar-collapse") ? true : false },
         });
     }
-});
-
-sidebarTop();
-$(window).resize(sidebarTop);
+}
 
 function sidebarTop() {
     if (window.innerWidth <= 768) {
@@ -62,7 +70,7 @@ function sidebarTop() {
         $("aside nav").removeClass("px-2");
         $(".login-container").removeClass("container");
 
-        if ($("#content").hasClass("sidebar-collapse")) {
+        if ($("aside").hasClass("sidebar-collapse")) {
             $(".list-text").removeClass("d-none");
             $("#content aside span").removeClass("aktif");
         }
@@ -72,7 +80,7 @@ function sidebarTop() {
         $(".login-container").addClass("container");
         $("#content aside span").removeClass("expand");
 
-        if ($("#content").hasClass("sidebar-collapse")) {
+        if ($("aside").hasClass("sidebar-collapse")) {
             $(".list-text").addClass("d-none");
             $("#content aside span").addClass("aktif");
         }

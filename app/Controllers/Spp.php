@@ -41,7 +41,6 @@ class Spp extends BaseController
 		}
 
 		$this->data['title'] = "Tambah Data Spp";
-		$this->data['spp'] = $this->model;
 		$this->data["errors"] = $this->session->get('errors');
 
 		return view("spp/create", $this->data);

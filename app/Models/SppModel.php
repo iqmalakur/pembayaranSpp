@@ -44,4 +44,9 @@ class SppModel extends Model
 	{
 		return $this->builder("spp")->where('tahun', $tahun)->countAllResults();
 	}
+
+	public function cari($keyword)
+	{
+		return $this->builder('spp')->like('angkatan', $keyword)->orLike('nominal', $keyword)->orderBy('angkatan')->get()->getResultObject();
+	}
 }

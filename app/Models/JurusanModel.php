@@ -44,4 +44,9 @@ class JurusanModel extends Model
 	{
 		return $this->builder('jurusan')->where("nama_jurusan", $jurusan)->countAllResults();
 	}
+
+	public function cari($keyword)
+	{
+		return $this->builder('jurusan')->like('nama_jurusan', $keyword)->orLike('alias', $keyword)->orderBy('nama_jurusan')->get()->getResultObject();
+	}
 }

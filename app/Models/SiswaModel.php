@@ -79,4 +79,9 @@ class SiswaModel extends Model
 	{
 		return $this->builder("siswa")->select("COUNT(*) AS count")->get()->getRowObject()->count;
 	}
+
+	public function cari($keyword)
+	{
+		return $this->builder('siswa')->like('nisn', $keyword)->orLike('nis', $keyword)->orLike('nama', $keyword)->orLike('nama_kelas', $keyword)->join('kelas', 'siswa.id_kelas=kelas.id_kelas')->orderBy('nama')->get()->getResultObject();
+	}
 }

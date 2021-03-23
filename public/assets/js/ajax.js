@@ -72,3 +72,34 @@ $("#filter-laporan").change(function () {
         },
     });
 });
+
+$("input#search-jurusan").on("keyup", function () {
+    search("/cariJurusan/", $(this));
+});
+
+$("input#search-kelas").on("keyup", function () {
+    search("/cariKelas/", $(this));
+});
+
+$("input#search-spp").on("keyup", function () {
+    search("/cariSpp/", $(this));
+});
+
+$("input#search-petugas").on("keyup", function () {
+    search("/cariPetugas/", $(this));
+});
+
+$("input#search-siswa").on("keyup", function () {
+    search("/cariSiswa/", $(this));
+});
+
+function search(url, input) {
+    $.ajax({
+        url: url,
+        type: "POST",
+        data: { keyword: input.val() },
+        success: function (result) {
+            $("tbody#container-cari").html(result);
+        },
+    });
+}

@@ -86,6 +86,11 @@ $routes->post('/petugas/update', 'Petugas::update');
 $routes->delete('/petugas/delete/(:segment)', 'Petugas::delete/$1');
 
 // AJAX
+$routes->post('/cariJurusan', 'Ajax::cariJurusan');
+$routes->post('/cariKelas', 'Ajax::cariKelas');
+$routes->post('/cariSpp', 'Ajax::cariSpp');
+$routes->post('/cariPetugas', 'Ajax::cariPetugas');
+$routes->post('/cariSiswa', 'Ajax::cariSiswa');
 $routes->post('/ajaxPembayaran', 'Ajax::pembayaran');
 $routes->post('/ajaxSiswa', 'Ajax::siswa');
 $routes->post('/ajaxLaporan', 'Ajax::laporan');

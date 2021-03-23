@@ -60,4 +60,9 @@ class KelasModel extends Model
 	{
 		return $this->builder("kelas")->select("COUNT(*) AS count")->get()->getRowObject()->count;
 	}
+
+	public function cari($keyword)
+	{
+		return $this->builder('kelas')->like('nama_kelas', $keyword)->orLike('nama_jurusan', $keyword)->join('jurusan', 'kelas.kompetensi_keahlian=jurusan.id_jurusan')->orderBy('nama_kelas')->get()->getResultObject();
+	}
 }

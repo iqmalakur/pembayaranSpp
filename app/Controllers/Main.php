@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\JurusanModel;
 use App\Models\KelasModel;
 use App\Models\PembayaranModel;
 use App\Models\SiswaModel;
@@ -28,6 +29,7 @@ class Main extends BaseController
 		}
 
 		$kelasModel = new KelasModel();
+		$jurusanModel = new JurusanModel();
 
 		$this->data['loginStatus'] = $this->session->get('success');
 
@@ -38,11 +40,10 @@ class Main extends BaseController
 			return view("main/home", $this->data);
 		} else {
 			$this->data['title'] = "Dashboard";
-			$this->data['pembayaran'] = json_encode($this->model->getReport());
 			$this->data['countPembayaran'] = $this->model->getCount();
+			$this->data['pembayaran'] = json_encode($this->model->getReport());
 			$this->data['siswa'] = $this->siswaModel->getCount();
 			$this->data['kelas'] = $kelasModel->getCount();
-			$this->data['spp'] = $this->model->getReport();
 			$this->data['diagram'] = true;
 
 			return view("main/index", $this->data);

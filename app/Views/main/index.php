@@ -42,25 +42,11 @@
     </div>
 </div>
 
-<div class="row align-items-center">
-    <div class="col-md-4">
-        <div class="card" style="width: 18rem;">
-            <div class="card-header">
-                Filter Diagram
-            </div>
-            <ul class="list-group list-group-flush">
-                <?php foreach ($spp as $index => $item) : ?>
-                    <li class="list-group-item">
-                        <input class="form-check-input me-1" id="list-<?= $index; ?>" type="checkbox" value="<?= $item->tahun_dibayar; ?>" checked>
-                        <label for="list-<?= $index; ?>"><?= $item->tahun_dibayar; ?></label>
-                    </li>
-                <?php endforeach ?>
-            </ul>
-        </div>
-    </div>
-    <div class="col-md-8">
-        <textarea class="d-none"><?= $pembayaran; ?></textarea>
-        <canvas id="pembayaranChart"></canvas>
+<textarea class="d-none" id="pembayaran"><?= $pembayaran; ?></textarea>
+
+<div class="row justify-content-center mt-5">
+    <div class="col-10">
+        <canvas id="canvasPembayaran"></canvas>
     </div>
 </div>
 <?= $this->endSection(); ?>

@@ -2,13 +2,13 @@
 
 <?= $this->section('content'); ?>
 <h1 class="text-center">Laporan Pembayaran Spp</h1>
-<a href="/laporan/<?= implode("-", explode("/", $spp[0]->tahun)); ?>" class="btn btn-primary" target="_blank" id="print-laporan"><i class="bi bi-printer"></i> Print Laporan</a>
+<a href="/laporan/<?= implode("-", explode("/", $spp[0]->tahun_dibayar)); ?>" class="btn btn-primary" target="_blank" id="print-laporan"><i class="bi bi-printer"></i> Print Laporan</a>
 <div class="row mt-5">
     <label for="filter-laporan" class="col-sm-2 col-form-label">Laporan Tahun</label>
     <div class="col-sm-10">
         <select class="form-select" id="filter-laporan">
             <?php foreach ($spp as $item) : ?>
-                <option value="<?= implode("-", explode("/", $item->tahun)); ?>"><?= $item->tahun; ?></option>
+                <option value="<?= implode("-", explode("/", $item->tahun_dibayar)); ?>"><?= $item->tahun_dibayar; ?></option>
             <?php endforeach ?>
         </select>
     </div>

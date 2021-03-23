@@ -18,7 +18,7 @@
         <label class="form-label">Id Spp</label>
         <div class="input-group">
             <input type="text" class="form-control" name="id_spp" placeholder="Terisi otomatis" id="pembayaran-spp" value="<?= $sppSiswa ? $sppSiswa->id_spp : ''; ?>" readonly>
-            <input type="text" class="form-control" id="pembayaran-spp-info" value="<?= $sppSiswa ? $sppSiswa->tahun : ''; ?>" readonly>
+            <input type="text" class="form-control" id="pembayaran-spp-info" value="<?= $sppSiswa ? $sppSiswa->angkatan : ''; ?>" readonly>
         </div>
     </div>
     <div class="mb-3">
@@ -42,9 +42,14 @@
             <option value="Desember" <?= $bulan == "Dec" ? "selected" : ""; ?>>Desember</option>
         </select>
     </div>
-    <div class="mb-3">
-        <label class="form-label">Tahun Dibayar</label>
-        <input type="text" class="form-control" id="pembayaran-tahun" name="tahun_dibayar" placeholder="Terisi otomatis" value="<?= $sppSiswa ? $sppSiswa->tahun : ''; ?>" readonly>
+    <div class="mb-3 row">
+        <label for="tahun" class="form-label">Tahun Dibayar</label>
+        <div class="col-6">
+            <input type="number" min="1900" max="2100" name="tahun" class="form-control <?= isset($errors['tahun']) ? 'is-invalid' : ''; ?>" id="tahun" value="<?= date('Y'); ?>">
+        </div>
+        <div class="col-6">
+            <input type="text" name="tahun2" class="form-control" value="<?= date('Y') + 1; ?>" readonly>
+        </div>
     </div>
     <div class="mb-3">
         <label class="form-label">Jumlah Bayar</label>

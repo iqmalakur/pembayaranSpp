@@ -70,7 +70,8 @@ class Main extends BaseController
 
 	public function pay()
 	{
-		$data = $this->request->getPost(['nisn', 'id_spp', 'bulan_dibayar', 'tahun_dibayar', 'jumlah_bayar']);
+		$data = $this->request->getPost(['nisn', 'id_spp', 'bulan_dibayar', 'jumlah_bayar']);
+		$data['tahun_dibayar'] = $this->request->getPost('tahun') . '/' . $this->request->getPost('tahun2');
 
 		helper(['form', 'url', 'date']);
 		$validation = \Config\Services::validation();
@@ -122,9 +123,9 @@ class Main extends BaseController
 		}
 
 		$this->data['title'] = "Laporan Pembayaran Spp";
-		$this->data['spp'] = $this->sppModel->findAll();
-		$this->data['pembayaran'] = $this->model->laporan($this->data['spp'][0]->tahun);
-		$this->data['total'] = $this->model->getSum($this->data['spp'][0]->tahun);
+		$this->data['spp'] = $this->model->getTahun();
+		$this->data['pembayaran'] = $this->model->laporan($this->data['spp'][0]->tahun_dibayar);
+		$this->data['total'] = $this->model->getSum($this->data['spp'][0]->tahun_dibayar);
 
 		return view('main/laporan', $this->data);
 	}

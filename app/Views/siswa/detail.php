@@ -10,7 +10,7 @@
     <li class="list-group-item">Kompetensi Keahlian : <?= $siswa->nama_jurusan; ?></li>
     <li class="list-group-item">Alamat : <?= $siswa->alamat; ?></li>
     <li class="list-group-item">No. Telepon : <?= $siswa->no_telp; ?></li>
-    <li class="list-group-item">SPP : <?= $siswa->tahun . " | Rp " . number_format($siswa->nominal, 2, ',', '.'); ?></li>
+    <li class="list-group-item">SPP : <?= $siswa->angkatan . " | Rp " . number_format($siswa->nominal, 2, ',', '.'); ?></li>
 </ul>
 <a href="/siswa/edit/<?= $siswa->nisn; ?>" class="btn btn-primary"><i class="bi bi-pencil"></i> Ubah</a>
 <form action="/siswa/delete/<?= $siswa->nisn; ?>" method="POST" class="d-inline">

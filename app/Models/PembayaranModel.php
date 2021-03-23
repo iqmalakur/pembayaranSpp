@@ -84,4 +84,9 @@ class PembayaranModel extends Model
 	{
 		return $this->builder("pembayaran")->select("pembayaran.tahun_dibayar, COUNT(*) AS total")->groupBy('pembayaran.tahun_dibayar')->get()->getResultObject();
 	}
+
+	public function getTahun()
+	{
+		return $this->builder("pembayaran")->select('tahun_dibayar')->groupBy("tahun_dibayar")->get()->getResultObject();
+	}
 }

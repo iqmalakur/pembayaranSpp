@@ -47,7 +47,7 @@
     </div>
     <div class="mb-3">
         <label class="form-label">SPP</label>
-        <input type="text" class="form-control" value="<?= $spp->tahun . " | Rp " . number_format($spp->nominal, 2, ',', '.'); ?>" readonly>
+        <input type="text" class="form-control" value="<?= $spp->angkatan . " | Rp " . number_format($spp->nominal, 2, ',', '.'); ?>" readonly>
     </div>
     <button type="submit" class="btn btn-success">Ubah</button>
     <a href="/siswa" class="btn btn-warning"><i class="bi bi-arrow-return-left"></i> Kembali</a>

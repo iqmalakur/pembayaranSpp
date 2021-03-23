@@ -51,7 +51,7 @@
         <label for="id_spp" class="form-label">SPP</label>
         <select class="form-select" id="id_spp" name="id_spp">
             <?php foreach ($spp as $item) : ?>
-                <option value="<?= $item->id_spp; ?>" <?= old('id_spp') == $item->id_spp ? 'selected' : ''; ?>><?= $item->tahun . " | Rp " . number_format($item->nominal, 2, ',', '.'); ?></option>
+                <option value="<?= $item->id_spp; ?>" <?= old('id_spp') == $item->id_spp ? 'selected' : ''; ?>><?= $item->angkatan . " | Rp " . number_format($item->nominal, 2, ',', '.'); ?></option>
             <?php endforeach ?>
         </select>
     </div>

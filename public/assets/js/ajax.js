@@ -43,8 +43,7 @@ function cariSiswa(siswa) {
             $("#pembayaran-siswa").val(siswa.nisn);
             $("#pembayaran-siswa-info").val(siswa.nama + " - " + siswa.nama_kelas);
             $("#pembayaran-spp").val(siswa.id_spp);
-            $("#pembayaran-spp-info").val(siswa.tahun);
-            $("#pembayaran-tahun").val(siswa.tahun);
+            $("#pembayaran-spp-info").val(siswa.angkatan);
             $("#pembayaran-jumlah").val(siswa.nominal);
 
             $.ajax({

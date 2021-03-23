@@ -74,6 +74,7 @@
 
     <!-- My JavaScript -->
     <script src="/assets/js/script.js"></script>
+    <script src="/assets/js/alert.js"></script>
     <script src="/assets/js/ajax.js"></script>
     <?php if (isset($diagram)) : ?>
         <script src="/assets/js/diagram.js"></script>

@@ -13,7 +13,7 @@ class Spp extends Migration
 				'type' => 'INT',
 				'auto_increment' => true,
 			],
-			'tahun' => [
+			'angkatan' => [
 				'type' => 'CHAR',
 				'constraint' => 9
 			],

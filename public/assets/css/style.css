@@ -10,14 +10,17 @@ body {
 
 .bg-content {
     background-image: url(/assets/img/bg-content.png);
+    background-attachment: fixed;
 }
 
 .bg-nav {
     background-image: url(/assets/img/bg-nav.png);
+    background-attachment: fixed;
 }
 
 .bg-login {
     background-image: url(/assets/img/bg-login.png);
+    background-attachment: fixed;
 }
 
 nav.navbar {

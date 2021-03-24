@@ -1,8 +1,8 @@
 <?php foreach ($jurusan as $index => $item) : ?>
     <tr>
         <th scope="row"><?= $index + 1; ?></th>
-        <td><?= $item->nama_jurusan; ?></td>
-        <td><?= $item->alias; ?></td>
+        <td class="text-capitalize"><?= preg_replace("/dan/i", "<span class=\"text-lowercase\">dan</span>", preg_replace("/$keyword/i", "<mark>$keyword</mark>", $item->nama_jurusan)); ?></td>
+        <td class="text-uppercase"><?= preg_replace("/$keyword/i", "<mark>$keyword</mark>", $item->alias); ?></td>
         <td>
             <a href="/jurusan/edit/<?= $item->id_jurusan; ?>" class="btn btn-primary" title="Ubah"><i class="bi bi-pencil"></i></a>
             <form action="/jurusan/delete/<?= $item->id_jurusan; ?>" method="POST" class="d-inline">

@@ -12,9 +12,12 @@ use App\Models\SppModel;
 
 class Ajax extends BaseController
 {
-	protected $model;
+	protected $pembayaranModel;
 	protected $siswaModel;
 	protected $jurusanModel;
+	protected $kelasModel;
+	protected $sppModel;
+	protected $petugasModel;
 
 	public function __construct()
 	{
@@ -29,7 +32,13 @@ class Ajax extends BaseController
 	public function pembayaran()
 	{
 		$keyword = $this->request->getPost("keyword");
-		return view('ajax/pembayaran', ['siswa' => $this->siswaModel->searchAjax($keyword)]);
+		return view(
+			'ajax/pembayaran',
+			[
+				'siswa' => $this->siswaModel->searchAjax($keyword),
+				'keyword' => $keyword,
+			]
+		);
 	}
 
 	public function siswa()
@@ -66,9 +75,12 @@ class Ajax extends BaseController
 	{
 		return view(
 			"ajax/cariJurusan",
-			['jurusan' => $this->jurusanModel->cari(
-				$this->request->getPost('keyword')
-			)]
+			[
+				'jurusan' => $this->jurusanModel->cari(
+					$this->request->getPost('keyword')
+				),
+				'keyword' => $this->request->getPost('keyword')
+			]
 		);
 	}
 
@@ -76,9 +88,12 @@ class Ajax extends BaseController
 	{
 		return view(
 			"ajax/cariKelas",
-			['kelas' => $this->kelasModel->cari(
-				$this->request->getPost('keyword')
-			)]
+			[
+				'kelas' => $this->kelasModel->cari(
+					$this->request->getPost('keyword')
+				),
+				'keyword' => $this->request->getPost('keyword')
+			]
 		);
 	}
 
@@ -86,9 +101,12 @@ class Ajax extends BaseController
 	{
 		return view(
 			"ajax/cariSpp",
-			['spp' => $this->sppModel->cari(
-				$this->request->getPost('keyword')
-			)]
+			[
+				'spp' => $this->sppModel->cari(
+					$this->request->getPost('keyword')
+				),
+				'keyword' => $this->request->getPost('keyword')
+			]
 		);
 	}
 
@@ -100,7 +118,8 @@ class Ajax extends BaseController
 				'petugas' => $this->petugasModel->cari(
 					$this->request->getPost('keyword')
 				),
-				'user' => $this->user
+				'user' => $this->user,
+				'keyword' => $this->request->getPost('keyword')
 			]
 		);
 	}
@@ -109,9 +128,12 @@ class Ajax extends BaseController
 	{
 		return view(
 			"ajax/cariSiswa",
-			['siswa' => $this->siswaModel->cari(
-				$this->request->getPost('keyword')
-			)]
+			[
+				'siswa' => $this->siswaModel->cari(
+					$this->request->getPost('keyword')
+				),
+				'keyword' => $this->request->getPost('keyword')
+			]
 		);
 	}
 }

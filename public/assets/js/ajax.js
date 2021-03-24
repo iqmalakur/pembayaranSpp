@@ -100,6 +100,24 @@ function search(url, input) {
         data: { keyword: input.val() },
         success: function (result) {
             $("tbody#container-cari").html(result);
+
+            // Konfirmasi Hapus Data
+            $("span.delete").click(function () {
+                Swal.fire({
+                    title: "Anda yakin akan Menghapus?",
+                    text: this.dataset.item + " akan dihapus permanen!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Ya, hapus data ini!",
+                    cancelButtonText: "Jangan hapus data!",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $(this).parent().submit();
+                    }
+                });
+            });
         },
     });
 }

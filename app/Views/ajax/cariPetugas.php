@@ -1,9 +1,9 @@
 <?php foreach ($petugas as $index => $item) : ?>
     <tr>
         <th scope="row"><?= $index + 1; ?></th>
-        <td><?= $item->username; ?></td>
-        <td><?= $item->nama_petugas; ?></td>
-        <td><?= $item->level; ?></td>
+        <td class="text-lowercase"><?= preg_replace("/$keyword/i", "<mark>$keyword</mark>", $item->username); ?></td>
+        <td class="text-capitalize"><?= preg_replace("/$keyword/i", "<mark>$keyword</mark>", $item->nama_petugas); ?></td>
+        <td class="text-lowercase"><?= preg_replace("/$keyword/i", "<mark>$keyword</mark>", $item->level); ?></td>
         <td>
             <a href="/petugas/edit/<?= $item->username; ?>" class="btn btn-primary <?= $item->username === 'admin' && $user->username !== 'admin' ? 'disabled' : ''; ?>" title="Ubah"><i class="bi bi-pencil"></i></a>
             <form action="/petugas/delete/<?= $item->username; ?>" method="POST" class="d-inline">

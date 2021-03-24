@@ -101,16 +101,16 @@
             </div>
             <div class="modal-body">
                 <div class="mb-3">
-                    <input type="text" class="form-control" id="cari-siswa" placeholder="Masukan NISN / NIS / Kelas / Nama Siswa">
+                    <input type="text" class="form-control" id="cari-siswa" placeholder="Masukan NISN / Kelas / Spp / Nama Siswa">
                 </div>
                 <table class="table table-hover">
                     <thead>
                         <tr>
                             <th scope="col">No.</th>
                             <th scope="col">NISN</th>
-                            <th scope="col">NIS</th>
                             <th scope="col">Nama</th>
                             <th scope="col">Kelas</th>
+                            <th scope="col">Spp</th>
                         </tr>
                     </thead>
                     <tbody id="container-cari">
@@ -118,9 +118,9 @@
                             <tr class="data-siswa" style="cursor: pointer;">
                                 <th scope="row"><?= $index + 1; ?></th>
                                 <td><?= $item->nisn; ?></td>
-                                <td><?= $item->nis; ?></td>
                                 <td><?= $item->nama; ?></td>
                                 <td><?= $item->nama_kelas; ?></td>
+                                <td><?= $item->angkatan; ?></td>
                             </tr>
                         <?php endforeach ?>
                     </tbody>

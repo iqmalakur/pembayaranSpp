@@ -69,6 +69,9 @@ class Jurusan extends BaseController
 				return redirect()->to('/jurusan/add')->withInput();
 			}
 
+			$data['nama_jurusan'] = preg_replace("/Dan/", "dan", ucwords($data['nama_jurusan']));
+			$data['alias'] = strtoupper($data['alias']);
+
 			$this->model->save($data);
 
 			$this->session->setFlashdata('successInfo', 'Menambahkan');
@@ -116,6 +119,9 @@ class Jurusan extends BaseController
 				]);
 				return redirect()->to('/jurusan/edit/' . $data['id_jurusan'])->withInput();
 			}
+
+			$data['nama_jurusan'] = preg_replace("/Dan/", "dan", ucwords($data['nama_jurusan']));
+			$data['alias'] = strtoupper($data['alias']);
 
 			$this->model->save($data);
 

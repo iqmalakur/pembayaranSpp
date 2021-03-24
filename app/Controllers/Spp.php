@@ -60,9 +60,9 @@ class Spp extends BaseController
 			// Kembali ke halaman login dan mengirimkan input sebelumnya
 			return redirect()->to('/spp/add')->withInput();
 		} else {
-			$data['tahun'] .= ('/' . $this->request->getPost('tahun2'));
+			$data['angkatan'] = $this->request->getPost('tahun') . '/' . $this->request->getPost('tahun2');
 
-			if ($this->model->cek($data['tahun'])) {
+			if ($this->model->cek($data['angkatan'])) {
 				$this->session->setFlashdata('message', [
 					'icon' => "error",
 					'title' => "Tidak dapat menambahkan data!",
@@ -98,7 +98,7 @@ class Spp extends BaseController
 
 	public function update()
 	{
-		$data = $this->request->getPost(["id_spp", "tahun", "nominal"]);
+		$data = $this->request->getPost(["id_spp", "angkatan", "nominal"]);
 
 		helper(['form', 'url']);
 		$validation = \Config\Services::validation();

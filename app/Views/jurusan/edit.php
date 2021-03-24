@@ -7,7 +7,7 @@
     <input type="hidden" name="id_jurusan" value="<?= $jurusan->id_jurusan; ?>">
     <div class="mb-3">
         <label for="nama_jurusan" class="form-label">Nama Jurusan</label>
-        <input type="text" name="nama_jurusan" class="form-control <?= isset($errors['nama_jurusan']) ? 'is-invalid' : ''; ?>" id="nama_jurusan" value="<?= old('nama_jurusan') ? old('nama_jurusan') : $jurusan->nama_jurusan; ?>">
+        <input type="text" name="nama_jurusan" class="form-control text-capitalize <?= isset($errors['nama_jurusan']) ? 'is-invalid' : ''; ?>" id="nama_jurusan" value="<?= old('nama_jurusan') ? old('nama_jurusan') : $jurusan->nama_jurusan; ?>">
         <div id="nama_jurusanFeedback" class="invalid-feedback">
             <?= isset($errors['nama_jurusan']) ? $errors['nama_jurusan'] : ''; ?>
         </div>

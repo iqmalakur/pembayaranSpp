@@ -29,7 +29,6 @@ class Main extends BaseController
 		}
 
 		$kelasModel = new KelasModel();
-		$jurusanModel = new JurusanModel();
 
 		$this->data['loginStatus'] = $this->session->get('success');
 

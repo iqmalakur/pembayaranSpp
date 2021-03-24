@@ -74,6 +74,7 @@ class Kelas extends BaseController
 				]);
 				return redirect()->to('/kelas/add')->withInput();
 			}
+			$data['nama_kelas'] = strtoupper($data['nama_kelas']);
 
 			$this->model->save($data);
 
@@ -123,6 +124,7 @@ class Kelas extends BaseController
 				]);
 				return redirect()->to('/kelas/edit/' . $data['id_kelas'])->withInput();
 			}
+			$data['nama_kelas'] = strtoupper($data['nama_kelas']);
 
 			$this->model->save($data);
 

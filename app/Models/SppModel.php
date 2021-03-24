@@ -14,7 +14,7 @@ class SppModel extends Model
 	protected $returnType           = 'object';
 	protected $useSoftDelete        = false;
 	protected $protectFields        = true;
-	protected $allowedFields        = ['tahun', 'nominal'];
+	protected $allowedFields        = ['angkatan', 'nominal'];
 
 	// Dates
 	protected $useTimestamps        = false;
@@ -42,7 +42,7 @@ class SppModel extends Model
 
 	public function cek($tahun)
 	{
-		return $this->builder("spp")->where('tahun', $tahun)->countAllResults();
+		return $this->builder("spp")->where('angkatan', $tahun)->countAllResults();
 	}
 
 	public function cari($keyword)

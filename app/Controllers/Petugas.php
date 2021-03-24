@@ -75,6 +75,8 @@ class Petugas extends BaseController
 				return redirect()->to('/petugas/add')->withInput();
 			}
 
+			$data['username'] = strtolower($data['username']);
+			$data['nama_petugas'] = ucwords($data['nama_petugas']);
 			$data['password'] = password_hash($password['password'], PASSWORD_DEFAULT);
 
 			$this->model->save($data);
@@ -129,6 +131,8 @@ class Petugas extends BaseController
 
 				$data['password'] = password_hash($password['editPassword'], PASSWORD_DEFAULT);
 			}
+
+			$data['nama_petugas'] = ucwords($data['nama_petugas']);
 
 			$this->model->save($data);
 

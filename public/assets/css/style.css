@@ -23,6 +23,12 @@ body {
     background-attachment: fixed;
 }
 
+mark {
+    padding: 0;
+    background-color: inherit;
+    color: red;
+}
+
 nav.navbar {
     opacity: 0.95;
     padding-right: 70px;

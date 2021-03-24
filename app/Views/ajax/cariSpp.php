@@ -1,7 +1,7 @@
 <?php foreach ($spp as $index => $item) : ?>
     <tr>
         <th scope="row"><?= $index + 1; ?></th>
-        <td><?= $item->angkatan; ?></td>
+        <td><?= preg_replace("/" . preg_replace("/\//", "\/", $keyword) . "/i", "<mark>$keyword</mark>", $item->angkatan); ?></td>
         <td><?= "Rp. " . number_format($item->nominal, 2, ',', '.'); ?></td>
         <td>
             <a href="/spp/edit/<?= $item->id_spp; ?>" class="btn btn-primary" title="Ubah"><i class="bi bi-pencil"></i></a>

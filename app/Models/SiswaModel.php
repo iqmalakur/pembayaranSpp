@@ -52,7 +52,7 @@ class SiswaModel extends Model
 			return $builder->select('siswa.*, kelas.nama_kelas, jurusan.nama_jurusan, spp.angkatan, spp.nominal')->where('nisn', $nisn)->join('kelas', 'siswa.id_kelas=kelas.id_kelas')->join('spp', 'siswa.id_spp=spp.id_spp')->join('jurusan', 'kelas.kompetensi_keahlian=jurusan.id_jurusan')->get()->getRowObject();
 		}
 
-		return $builder->select('siswa.nisn, siswa.nis, siswa.nama, kelas.nama_kelas')->join('kelas', 'siswa.id_kelas=kelas.id_kelas')->orderBy('siswa.nama', "ASC")->get()->getResultObject();
+		return $builder->select('siswa.nisn, siswa.nis, siswa.nama, kelas.nama_kelas, spp.angkatan')->join('kelas', 'siswa.id_kelas=kelas.id_kelas')->join('spp', 'siswa.id_spp=spp.id_spp')->orderBy('siswa.nama', "ASC")->get()->getResultObject();
 	}
 
 	public function getLogin($data)
@@ -72,7 +72,7 @@ class SiswaModel extends Model
 
 	public function searchAjax($keyword)
 	{
-		return $this->builder('siswa')->select('nisn, nis, nama, nama_kelas, nama_jurusan')->like('nisn', $keyword, 'after')->orLike('nis', $keyword, 'after')->orLike('nama', $keyword, 'after')->orLike('nama_kelas', $keyword)->join('kelas', 'siswa.id_kelas=kelas.id_kelas')->join('jurusan', 'kelas.kompetensi_keahlian=jurusan.id_jurusan')->get()->getResultObject();
+		return $this->builder('siswa')->select('nisn, nama, nama_kelas, angkatan')->like('nisn', $keyword)->orLike('angkatan', $keyword)->orLike('nama', $keyword)->orLike('nama_kelas', $keyword)->join('kelas', 'siswa.id_kelas=kelas.id_kelas')->join('spp', 'siswa.id_spp=spp.id_spp')->get()->getResultObject();
 	}
 
 	public function getCount()

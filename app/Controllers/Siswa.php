@@ -90,6 +90,8 @@ class Siswa extends BaseController
 				return redirect()->to('/siswa/add')->withInput();
 			}
 
+			$data['nama'] = ucwords($data['nama']);
+
 			$this->model->save($data);
 
 			$this->session->setFlashdata('successInfo', 'Menambahkan');
@@ -136,6 +138,7 @@ class Siswa extends BaseController
 			return redirect()->to('/siswa/edit/' . $data["nisn"])->withInput();
 		} else {
 			$data['id_spp'] = $this->model->find($data['nisn'])->id_spp;
+			$data['nama'] = ucwords($data['nama']);
 
 			$this->model->save($data);
 

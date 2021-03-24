@@ -11,9 +11,9 @@
         <tr>
             <th scope="col">No.</th>
             <th scope="col">NISN</th>
-            <th scope="col">NIS</th>
             <th scope="col">Nama</th>
             <th scope="col">Kelas</th>
+            <th scope="col">Spp</th>
             <th scope="col">Aksi</th>
         </tr>
     </thead>
@@ -22,9 +22,9 @@
             <tr>
                 <th scope="row"><?= $index + 1; ?></th>
                 <td><?= $item->nisn; ?></td>
-                <td><?= $item->nis; ?></td>
                 <td><?= $item->nama; ?></td>
                 <td><?= $item->nama_kelas; ?></td>
+                <td><?= $item->angkatan; ?></td>
                 <td>
                     <a href="/siswa/detail/<?= $item->nisn; ?>" class="btn btn-success" title="Detail"><i class="bi bi-clipboard-plus"></i></a>
                 </td>

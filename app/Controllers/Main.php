@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\JurusanModel;
 use App\Models\KelasModel;
 use App\Models\PembayaranModel;
 use App\Models\SiswaModel;

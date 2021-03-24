@@ -1,148 +1,94 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+
     <title>Kuitansi</title>
+
     <style>
-        span.back {
-            display: block;
-            margin: 35px;
-        }
-
-        a.btn {
-            text-decoration: none;
-            background-color: #fff700;
-            padding: 10px;
-            border-radius: 5px;
-            color: white;
-        }
-
-        a.btn:hover {
-            background-color: #d6cf00;
-        }
-
         img {
             width: 200px;
         }
 
-        .container {
-            margin: 30px;
-            padding: 10px;
-            border: 2px solid black;
-        }
-
-        .container header {
-            text-align: center;
-            padding: 0 30px;
-            border-bottom: 2px solid black;
-        }
-
-        .container header h1 {
-            margin-top: -2px;
-        }
-
-        .container header h4 {
-            text-align: right;
+        header h5 {
             margin-top: -20px;
-            margin-bottom: 3px;
         }
 
         ul {
             list-style: none;
-            margin: 0;
-            padding: 15px 5px;
         }
 
-        ul.label {
-            text-align: right;
-        }
-
-        .identitas {
-            display: flex;
-            justify-content: center;
-        }
-
-        .keterangan {
-            display: flex;
-            justify-content: space-between;
-            padding: 20px;
-            border: 2px solid rgba(0, 0, 0, .5);
-            border-radius: 5px;
+        ul li {
+            line-height: 1.4;
         }
 
         footer {
-            display: flex;
-            justify-content: space-between;
-            padding: 20px 50px 20px 10px;
-        }
-
-        .tanda-tangan {
-            display: flex;
-            justify-content: space-between;
-            flex-direction: column;
-            height: 120px;
-            text-align: center;
-        }
-
-        .notice {
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
+            height: 165px;
         }
 
         @media print {
             a {
-                display: none;
+                display: none !important;
             }
         }
     </style>
 </head>
 
-<body>
+<body class="overflow-visible">
     <?php if ($role !== 'siswa') : ?>
-        <span class="back">
-            <a href="" class="btn btn-print">Print</a>
-        </span>
+        <div class="text-end">
+            <a href="" class="btn btn-primary btn-print mt-3 mx-5"><i class="bi bi-printer"></i> Print</a>
+        </div>
     <?php endif ?>
-    <div class="container">
-        <header>
+    <div class="border border-2 border-dark my-3 mx-5 p-3">
+        <header class="text-center border-bottom border-3 border-dark">
             <img src="/assets/img/logo.png" alt="Logo">
-            <h1>Kuitansi Pembayaran Spp</h1>
-            <h4><?= "No. " . sprintf("%03d", $pembayaran->id_pembayaran); ?></h4>
+            <h2 class="fw-bold">Kuitansi Pembayaran Spp</h2>
+            <h5 class="text-end me-5"><?= "No. " . sprintf("%03d", $pembayaran->id_pembayaran); ?></h5>
         </header>
-        <main>
-            <div class="identitas">
-                <ul class="label">
-                    <li>NISN / NIS</li>
-                    <li>Nama Siswa</li>
-                    <li>Kelas</li>
-                    <li>Kompetensi Keahlian</li>
-                    <li>Tanggal Pembayaran</li>
-                </ul>
-                <ul>
-                    <li><?= "$pembayaran->nisn / $pembayaran->nis"; ?></li>
-                    <li><?= $pembayaran->nama; ?></li>
-                    <li><?= $pembayaran->nama_kelas; ?></li>
-                    <li><?= $pembayaran->nama_jurusan; ?></li>
-                    <li><?= tanggal($pembayaran->tgl_bayar); ?></li>
-                </ul>
+        <main class="px-3 mt-2">
+            <div class="row">
+                <div class="col-6 d-flex justify-content-end p-2">
+                    <ul class="text-end p-0">
+                        <li>NISN / NIS</li>
+                        <li>Nama Siswa</li>
+                        <li>Kelas</li>
+                        <li>Kompetensi Keahlian</li>
+                        <li>Tanggal Pembayaran</li>
+                    </ul>
+                </div>
+                <div class="col-6  d-flex justify-content-start p-2">
+                    <ul class="p-0">
+                        <li><?= "$pembayaran->nisn / $pembayaran->nis"; ?></li>
+                        <li><?= $pembayaran->nama; ?></li>
+                        <li><?= $pembayaran->nama_kelas; ?></li>
+                        <li><?= $pembayaran->nama_jurusan; ?></li>
+                        <li><?= tanggal($pembayaran->tgl_bayar); ?></li>
+                    </ul>
+                </div>
             </div>
-            <h3 style="margin: 0 0 5px 5px;">Keterangan</h3>
-            <div class="keterangan">
+            <h6 class="ps-2 fw-bold">Keterangan</h6>
+            <div class="rounded border border-2 border-secondary p-2 d-flex justify-content-between">
                 <span>Pembayaran Spp Bulan <?= $pembayaran->bulan_dibayar; ?> Tahun Ajaran <?= $pembayaran->tahun_dibayar; ?></span>
                 <span>Total: <?= "Rp. " . number_format($pembayaran->jumlah_bayar, 2, ',', '.'); ?></span>
             </div>
-            <footer>
-                <div class="notice">
-                    <span>Perhatian!</span>
+            <footer class="d-flex justify-content-between px-2 pt-3">
+                <div class="d-flex flex-column justify-content-center">
+                    <span class="fw-bold">Perhatian!</span>
                     <span>Bukti Pembayaran harap disimpan dengan baik</span>
                 </div>
-                <div class="tanda-tangan">
+                <div class="d-flex flex-column justify-content-between">
                     <span>Bandung, <?= tanggal(date('Y-m-d', now("Asia/Jakarta"))); ?></span>
-                    <span style="border-top: 2px solid black; padding-top: 5px; font-weight: bold;"><?= $role === 'siswa' ? $pembayaran->nama_petugas : $user->nama_petugas; ?></span>
+                    <span class="text-center border-top border-2 pt-2 border-dark fw-bold"><?= $role === 'siswa' ? $pembayaran->nama_petugas : $user->nama_petugas; ?></span>
                 </div>
             </footer>
         </main>
@@ -154,6 +100,9 @@
             window.print();
         })
     </script>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 </body>
 
 </html>

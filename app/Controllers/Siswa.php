@@ -150,7 +150,19 @@ class Siswa extends BaseController
 
 	public function delete($nisn)
 	{
-		$this->model->delete($nisn);
+		try {
+			$this->model->delete($nisn);
+		} catch (\Exception $e) {
+			$siswa = $this->model->find($nisn)->nisn;
+
+			$this->session->setFlashdata('message', [
+				'icon' => "error",
+				'title' => "Tidak dapat menghapus data!",
+				'text' => "Siswa dengan NISN $siswa masih memiliki relasi data Pembayaran"
+			]);
+
+			return redirect()->to("/siswa");
+		}
 
 		$this->session->setFlashdata('successInfo', 'Menghapus');
 

@@ -133,7 +133,19 @@ class Jurusan extends BaseController
 
 	public function delete($id)
 	{
-		$this->model->delete($id);
+		try {
+			$this->model->delete($id);
+		} catch (\Exception $e) {
+			$jurusan = $this->model->find($id)->nama_jurusan;
+
+			$this->session->setFlashdata('message', [
+				'icon' => "error",
+				'title' => "Tidak dapat menghapus data!",
+				'text' => "Kompetensi Keahlian $jurusan masih memiliki relasi data Kelas"
+			]);
+
+			return redirect()->to("/jurusan");
+		}
 
 		$this->session->setFlashdata('successInfo', 'Menghapus');
 

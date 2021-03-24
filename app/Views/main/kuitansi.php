@@ -142,7 +142,7 @@
                 </div>
                 <div class="tanda-tangan">
                     <span>Bandung, <?= tanggal(date('Y-m-d', now("Asia/Jakarta"))); ?></span>
-                    <span style="border-top: 2px solid black; padding-top: 5px; font-weight: bold;"><?= $pembayaran->nama_petugas; ?></span>
+                    <span style="border-top: 2px solid black; padding-top: 5px; font-weight: bold;"><?= $role === 'siswa' ? $pembayaran->nama_petugas : $user->nama_petugas; ?></span>
                 </div>
             </footer>
         </main>

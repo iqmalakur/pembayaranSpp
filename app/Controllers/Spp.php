@@ -120,7 +120,19 @@ class Spp extends BaseController
 
 	public function delete($id)
 	{
-		$this->model->delete($id);
+		try {
+			$this->model->delete($id);
+		} catch (\Exception $e) {
+			$spp = $this->model->find($id)->angkatan;
+
+			$this->session->setFlashdata('message', [
+				'icon' => "error",
+				'title' => "Tidak dapat menghapus data!",
+				'text' => "Spp untuk angkatan $spp masih memiliki relasi data Siswa dan Pembayaran"
+			]);
+
+			return redirect()->to("/spp");
+		}
 
 		$this->session->setFlashdata('successInfo', 'Menghapus');
 

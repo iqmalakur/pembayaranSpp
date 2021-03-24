@@ -89,4 +89,13 @@ class PembayaranModel extends Model
 	{
 		return $this->builder('pembayaran')->select('tahun_dibayar')->groupBy('tahun_dibayar')->get()->getResultObject();
 	}
+
+	public function ubahPetugas($username)
+	{
+		$petugas = $this->builder('pembayaran')->select('id_pembayaran')->where('petugas', $username)->get()->getResultObject();
+
+		foreach ($petugas as $item) {
+			$this->update($item->id_pembayaran, ['petugas' => 'admin']);
+		}
+	}
 }

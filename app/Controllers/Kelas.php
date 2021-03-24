@@ -136,7 +136,19 @@ class Kelas extends BaseController
 
 	public function delete($id)
 	{
-		$this->model->delete($id);
+		try {
+			$this->model->delete($id);
+		} catch (\Exception $e) {
+			$kelas = $this->model->find($id)->nama_kelas;
+
+			$this->session->setFlashdata('message', [
+				'icon' => "error",
+				'title' => "Tidak dapat menghapus data!",
+				'text' => "Kelas $kelas masih memiliki relasi data  Siswa"
+			]);
+
+			return redirect()->to("/kelas");
+		}
 
 		$this->session->setFlashdata('successInfo', 'Menghapus');
 

@@ -144,7 +144,7 @@ class Main extends BaseController
 			return view('errors/html/error_404');
 		}
 
-		return view("main/kuitansi", ['pembayaran' => $this->model->get($id), 'role' => $this->role]);
+		return view("main/kuitansi", ['pembayaran' => $this->model->get($id), 'role' => $this->role, 'user' => $this->user]);
 	}
 
 	public function print($tahun)

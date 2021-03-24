@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\PembayaranModel;
 use App\Models\PetugasModel;
 
 class Petugas extends BaseController
@@ -144,7 +145,18 @@ class Petugas extends BaseController
 
 	public function delete($username)
 	{
-		$this->model->delete($username);
+		try {
+			$this->model->delete($username);
+		} catch (\Exception $e) {
+			$pembayaranModel = new PembayaranModel();
+
+			$pembayaranModel->ubahPetugas($username);
+			$this->model->delete($username);
+
+			$this->session->setFlashdata('successInfo', 'Menghapus');
+
+			return redirect()->to("/petugas");
+		}
 
 		$this->session->setFlashdata('successInfo', 'Menghapus');
 

@@ -35,24 +35,27 @@ class Auth extends BaseController
 			$petugasModel = new \App\Models\PetugasModel();
 			$role = false;
 
+			// Cek apakah user login sebagai admin / petugas
 			if ($petugasModel->getLogin($data)) {
 				$role = $petugasModel->getRole($data['username']);
 			} else {
 				$siswaModel = new \App\Models\SiswaModel();
 
+				// Cek apakah user login sebagai siswa
 				if ($siswaModel->getLogin($data)) {
 					$role = "siswa";
 				}
 			}
 
+			// Cek apakah user berhasil login
 			if ($role) {
 				$this->session->setFlashdata('success', true);
-				$user = $role == 'siswa' ? $siswaModel->find($data['username']) : $petugasModel->find($data['username']);
 
+				// Menyimpan data login (sementara)
 				$this->session->set([
 					'login' => true,
 					'user' => [
-						'username' => $role == 'siswa' ? $user->nisn : $user->username,
+						'username' => $data['username'],
 						'role' => $role,
 					],
 				]);

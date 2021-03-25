@@ -34,9 +34,9 @@ $routes->setAutoRoute(true);
 
 // Controller Main
 $routes->get('/', 'Main::index');
-$routes->get('/pembayaran', 'Main::payment');
-$routes->post('/bayar', 'Main::pay');
-$routes->get('/laporan', 'Main::report');
+$routes->get('/pembayaran', 'Main::pembayaran');
+$routes->post('/bayar', 'Main::bayar');
+$routes->get('/laporan', 'Main::laporan');
 $routes->get('/laporan/(:segment)', 'Main::print/$1');
 
 // Controller Auth
@@ -98,7 +98,7 @@ $routes->post('/getSiswa', 'Ajax::dataSiswa');
 $routes->post('/sidebar', 'Ajax::sidebar');
 
 // Kuitansi atau Bukti Pembayaran
-$routes->get('/(:any)', 'Main::receipt/$1');
+$routes->get('/(:any)', 'Main::kuitansi/$1');
 
 /*
  * --------------------------------------------------------------------

@@ -69,27 +69,34 @@ class Siswa extends BaseController
 		if (!$validation->run($data, 'siswa')) {
 			$this->session->setFlashdata('errors', $validation->getErrors());
 
-			// Kembali ke halaman login dan mengirimkan input sebelumnya
+			// Kembali ke form tambah siswa dan mengirimkan input sebelumnya
 			return redirect()->to('/siswa/add')->withInput();
 		} else {
+			// Cek apakah nisn telah terdaftar
 			if ($this->model->find($data['nisn'])) {
 				$this->session->setFlashdata('message', [
 					'icon' => "error",
 					'title' => "Tidak dapat menambahkan data!",
 					'text' => "NISN " . $data['nisn'] . " telah digunakan!"
 				]);
+
+				// Kembali ke form tambah siswa dan mengirimkan input sebelumnya
 				return redirect()->to('/siswa/add')->withInput();
 			}
 
+			// Cek apakah nis telah terdaftar
 			if ($this->model->cekNis($data['nis'])) {
 				$this->session->setFlashdata('message', [
 					'icon' => "error",
 					'title' => "Tidak dapat menambahkan data!",
 					'text' => "NIS " . $data['nis'] . " telah digunakan!"
 				]);
+
+				// Kembali ke form tambah siswa dan mengirimkan input sebelumnya
 				return redirect()->to('/siswa/add')->withInput();
 			}
 
+			// Format nama menjadi huruf kapital
 			$data['nama'] = ucwords($data['nama']);
 
 			$this->model->save($data);
@@ -123,8 +130,7 @@ class Siswa extends BaseController
 	{
 		$data = $this->request->getPost([
 			'nisn', 'nis', 'nama',
-			'id_kelas', 'alamat', 'no_telp',
-			'id_spp'
+			'id_kelas', 'alamat', 'no_telp'
 		]);
 
 		helper(['form', 'url']);
@@ -134,10 +140,13 @@ class Siswa extends BaseController
 		if (!$validation->run($data, 'siswa')) {
 			$this->session->setFlashdata('errors', $validation->getErrors());
 
-			// Kembali ke halaman login dan mengirimkan input sebelumnya
+			// Kembali ke form edit siswa dan mengirimkan input sebelumnya
 			return redirect()->to('/siswa/edit/' . $data["nisn"])->withInput();
 		} else {
+			// Data spp siswa
 			$data['id_spp'] = $this->model->find($data['nisn'])->id_spp;
+
+			// Format nama menjadi huruf kapital
 			$data['nama'] = ucwords($data['nama']);
 
 			$this->model->save($data);

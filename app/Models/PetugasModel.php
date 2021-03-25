@@ -40,8 +40,10 @@ class PetugasModel extends Model
 	protected $beforeDelete         = [];
 	protected $afterDelete          = [];
 
+	// Fungsi untuk cek login
 	public function getLogin($data)
 	{
+		// Cek username dan password
 		if ($petugas = $this->find($data['username'])) {
 			if (password_verify($data['password'], $petugas->password)) {
 				return true;
@@ -50,6 +52,7 @@ class PetugasModel extends Model
 		return false;
 	}
 
+	// Fungsi untuk cek role (apakah admin atau petugas)
 	public function getRole($username)
 	{
 		return $this->find($username)->level;
@@ -57,6 +60,11 @@ class PetugasModel extends Model
 
 	public function cari($keyword)
 	{
-		return $this->builder('petugas')->like('username', $keyword)->orLike('nama_petugas', $keyword)->orLike('level', $keyword)->orderBy('nama_petugas')->get()->getResultObject();
+		return $this->builder('petugas')
+			->like('username', $keyword)
+			->orLike('nama_petugas', $keyword)
+			->orLike('level', $keyword)
+			->orderBy('nama_petugas')
+			->get()->getResultObject();
 	}
 }

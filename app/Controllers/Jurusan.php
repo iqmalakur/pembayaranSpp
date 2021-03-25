@@ -57,19 +57,26 @@ class Jurusan extends BaseController
 		if (!$validation->run($data, 'jurusan')) {
 			$this->session->setFlashdata('errors', $validation->getErrors());
 
-			// Kembali ke halaman login dan mengirimkan input sebelumnya
+			// Kembali ke form tambah jurusan dan mengirimkan input sebelumnya
 			return redirect()->to('/jurusan/add')->withInput();
 		} else {
+			// Cek apakah nama jurusan telah terdaftar
 			if ($this->model->cek($data['nama_jurusan'])) {
 				$this->session->setFlashdata('message', [
 					'icon' => "error",
 					'title' => "Tidak dapat menambahkan data!",
 					'text' => "Jurusan " . $data['nama_jurusan'] . " telah ada!"
 				]);
+
+				// Kembali ke form tambah jurusan dan mengirimkan input sebelumnya
 				return redirect()->to('/jurusan/add')->withInput();
 			}
 
+			// Ubah nama jurusan menjadi huruf kapital
+			// Serta ubah kata "dan" pada nama jurusan menjadi lower case
 			$data['nama_jurusan'] = preg_replace("/Dan/", "dan", ucwords($data['nama_jurusan']));
+
+			// Ubah alias jurusan menjadi upper case
 			$data['alias'] = strtoupper($data['alias']);
 
 			$this->model->save($data);
@@ -108,19 +115,27 @@ class Jurusan extends BaseController
 		if (!$validation->run($data, 'jurusan')) {
 			$this->session->setFlashdata('errors', $validation->getErrors());
 
-			// Kembali ke halaman login dan mengirimkan input sebelumnya
+			// Kembali ke form edit jurusan dan mengirimkan input sebelumnya
 			return redirect()->to('/jurusan/edit/' . $data["id_jurusan"])->withInput();
 		} else {
+			// Cek apakah nama jurusan telah terdaftar
+			// Dan cek apakah nama jurusan tidak sama dengan data sebelumnya (diubah)
 			if ($this->model->cek($data['nama_jurusan']) && $data['nama_jurusan'] !== $this->model->find($data['id_jurusan'])->nama_jurusan) {
 				$this->session->setFlashdata('message', [
 					'icon' => "error",
 					'title' => "Tidak dapat menambahkan data!",
 					'text' => "Jurusan " . $data['nama_jurusan'] . " telah ada!"
 				]);
+
+				// Kembali ke form edit jurusan dan mengirimkan input sebelumnya
 				return redirect()->to('/jurusan/edit/' . $data['id_jurusan'])->withInput();
 			}
 
+			// Ubah nama jurusan menjadi huruf kapital
+			// Serta ubah kata "dan" pada nama jurusan menjadi lower case
 			$data['nama_jurusan'] = preg_replace("/Dan/", "dan", ucwords($data['nama_jurusan']));
+
+			// Ubah alias jurusan menjadi upper case
 			$data['alias'] = strtoupper($data['alias']);
 
 			$this->model->save($data);

@@ -63,18 +63,23 @@ class Kelas extends BaseController
 		if (!$validation->run($data, 'kelas')) {
 			$this->session->setFlashdata('errors', $validation->getErrors());
 
-			// Kembali ke halaman login dan mengirimkan input sebelumnya
+			// Kembali ke form tambah kelas dan mengirimkan input sebelumnya
 			return redirect()->to('/kelas/add')->withInput();
 		} else {
+			// Ubah nama kelas menjadi upper case
+			$data['nama_kelas'] = strtoupper($data['nama_kelas']);
+
+			// Cek apakah nama kelas telah terdaftar
 			if ($this->model->cek($data['nama_kelas'])) {
 				$this->session->setFlashdata('message', [
 					'icon' => "error",
 					'title' => "Tidak dapat menambahkan data!",
 					'text' => "Kelas " . $data['nama_kelas'] . " telah ada!"
 				]);
+
+				// Kembali ke form tambah kelas dan mengirimkan input sebelumnya
 				return redirect()->to('/kelas/add')->withInput();
 			}
-			$data['nama_kelas'] = strtoupper($data['nama_kelas']);
 
 			$this->model->save($data);
 
@@ -113,18 +118,24 @@ class Kelas extends BaseController
 		if (!$validation->run($data, 'kelas')) {
 			$this->session->setFlashdata('errors', $validation->getErrors());
 
-			// Kembali ke halaman login dan mengirimkan input sebelumnya
+			// Kembali ke form edit kelas dan mengirimkan input sebelumnya
 			return redirect()->to('/kelas/edit/' . $data["id_kelas"])->withInput();
 		} else {
+			// Ubah nama kelas menjadi upper case
+			$data['nama_kelas'] = strtoupper($data['nama_kelas']);
+
+			// Cek apakah nama kelas telah terdaftar
+			// Dan cek apakah nama kelas tidak sama dengan data sebelumnya (diubah)
 			if ($this->model->cek($data['nama_kelas']) && $data['nama_kelas'] !== $this->model->find($data['id_kelas'])->nama_kelas) {
 				$this->session->setFlashdata('message', [
 					'icon' => "error",
 					'title' => "Tidak dapat menambahkan data!",
 					'text' => "Kelas " . $data['nama_kelas'] . " telah ada!"
 				]);
+
+				// Kembali ke form edit kelas dan mengirimkan input sebelumnya
 				return redirect()->to('/kelas/edit/' . $data['id_kelas'])->withInput();
 			}
-			$data['nama_kelas'] = strtoupper($data['nama_kelas']);
 
 			$this->model->save($data);
 

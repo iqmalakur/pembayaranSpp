@@ -57,17 +57,21 @@ class Spp extends BaseController
 		if (!$validation->run($data, 'spp')) {
 			$this->session->setFlashdata('errors', $validation->getErrors());
 
-			// Kembali ke halaman login dan mengirimkan input sebelumnya
+			// Kembali ke form tambah spp dan mengirimkan input sebelumnya
 			return redirect()->to('/spp/add')->withInput();
 		} else {
+			// Membuat format tahun angkatan dari input tahun dan tahun2
 			$data['angkatan'] = $this->request->getPost('tahun') . '/' . $this->request->getPost('tahun2');
 
+			// Cek apakah tahun angkatan telah terdaftar
 			if ($this->model->cek($data['angkatan'])) {
 				$this->session->setFlashdata('message', [
 					'icon' => "error",
 					'title' => "Tidak dapat menambahkan data!",
 					'text' => "SPP untuk tahun ajaran {$data['tahun']} telah ada!"
 				]);
+
+				// Kembali ke form tambah spp dan mengirimkan input sebelumnya
 				return redirect()->to('/spp/add')->withInput();
 			}
 
@@ -107,7 +111,7 @@ class Spp extends BaseController
 		if (!$validation->run($data, 'spp')) {
 			$this->session->setFlashdata('errors', $validation->getErrors());
 
-			// Kembali ke halaman login dan mengirimkan input sebelumnya
+			// Kembali ke form edit spp dan mengirimkan input sebelumnya
 			return redirect()->to('/spp/edit/' . $data["id_spp"])->withInput();
 		} else {
 			$this->model->save($data);

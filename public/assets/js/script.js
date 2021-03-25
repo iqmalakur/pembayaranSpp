@@ -1,14 +1,19 @@
 // Sidebar
+// =======================================
+sidebarTop();
+
+// Event saat browser di resize
+$(window).resize(sidebarTop);
+
+// Event saat tombol panah pada sidebar di-klik
 $("#content aside span i").click(sidebar);
 
+// Event untuk mendeteksi shortcut sidebar (ctrl + ;)
 $(document).keydown(function (event) {
     if (event.ctrlKey && event.keyCode == 59 && !event.shiftKey && !event.altKey) {
         sidebar();
     }
 });
-
-sidebarTop();
-$(window).resize(sidebarTop);
 
 function sidebar() {
     if (window.innerWidth <= 768) {
@@ -68,8 +73,9 @@ function sidebarTop() {
         }
     }
 }
+// =======================================
 
-// Controller Siswa
+// Validasi NISN
 $("input[name=nisn]").on("input", function () {
     if (this.value.length < 10 || this.value.length > 10 || this.value == "") {
         $(this).addClass("is-invalid");
@@ -80,6 +86,7 @@ $("input[name=nisn]").on("input", function () {
     }
 });
 
+// Validasi NIS
 $("input[name=nis]").on("input", function () {
     if (this.value.length < 8 || this.value.length > 8 || this.value == "") {
         $(this).addClass("is-invalid");
@@ -90,7 +97,7 @@ $("input[name=nis]").on("input", function () {
     }
 });
 
-// Controller Spp
+// Validasi tahun
 $("input[name=tahun]").on("input", function () {
     if (parseInt(this.value) < 1000 || parseInt(this.value) > 9999 || this.value == "") {
         $(this).addClass("is-invalid");
@@ -100,4 +107,11 @@ $("input[name=tahun]").on("input", function () {
         $("#tahunFeedback").html("");
     }
     $("input[name=tahun2]").val(this.value == "" ? 0 : parseInt(this.value) + 1);
+});
+
+// Membuat focus input pada modal halaman entri pembayaran
+$("#btn-cari-siswa").click(function () {
+    setTimeout(() => {
+        $("#cari-siswa").focus();
+    }, 500);
 });

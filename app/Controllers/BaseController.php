@@ -51,11 +51,15 @@ class BaseController extends Controller
 		// Preload any models, libraries, etc, here.
 		//--------------------------------------------------------------------
 
+		// Menampung nama controller
 		$this->controller = explode("\\", get_class($this))[2];
 
+		// Memanggil Session CodeIgniter 4
 		$this->session = \Config\Services::session();
 
+		// Cek apakah user telah login
 		if ($this->session->login) {
+			// Menyimpan data dan identitas User
 			$this->role = $this->session->user['role'];
 			$username = $this->session->user['username'];
 
@@ -68,6 +72,7 @@ class BaseController extends Controller
 			}
 		}
 
+		// Menyiapkan data default untuk view
 		$this->data = [
 			"controller" => $this->controller,
 			"role" => $this->role,

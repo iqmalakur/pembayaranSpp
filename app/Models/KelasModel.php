@@ -44,15 +44,24 @@ class KelasModel extends Model
 	{
 		$builder = $this->builder("kelas");
 
+		// Cek apakah parameter $id tidak kosong
 		if ($id) {
-			return $builder->where('id_kelas', $id)->join('jurusan', 'kelas.kompetensi_keahlian=jurusan.id_jurusan')->get()->getRowObject();
+			return $builder
+				->join('jurusan', 'kelas.kompetensi_keahlian=jurusan.id_jurusan')
+				->where('id_kelas', $id)
+				->get()->getRowObject();
 		}
 
-		return $builder->join('jurusan', 'kelas.kompetensi_keahlian=jurusan.id_jurusan')->get()->getResultObject();
+		return $builder
+			->join('jurusan', 'kelas.kompetensi_keahlian=jurusan.id_jurusan')
+			->orderBy("nama_kelas")
+			->get()->getResultObject();
 	}
 
+	// Validasi ubah data (menghindari nama kelas ganda)
 	public function cek($kelas)
 	{
+		// Cek apakah nama kelas telah terdaftar
 		return $this->builder("kelas")->where("nama_kelas", $kelas)->countAllResults();
 	}
 
@@ -63,6 +72,11 @@ class KelasModel extends Model
 
 	public function cari($keyword)
 	{
-		return $this->builder('kelas')->like('nama_kelas', $keyword)->orLike('nama_jurusan', $keyword)->join('jurusan', 'kelas.kompetensi_keahlian=jurusan.id_jurusan')->orderBy('nama_kelas')->get()->getResultObject();
+		return $this->builder('kelas')
+			->join('jurusan', 'kelas.kompetensi_keahlian=jurusan.id_jurusan')
+			->like('nama_kelas', $keyword)
+			->orLike('nama_jurusan', $keyword)
+			->orderBy('nama_kelas')
+			->get()->getResultObject();
 	}
 }

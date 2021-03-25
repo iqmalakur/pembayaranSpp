@@ -4,10 +4,6 @@ body {
     color: #333;
 }
 
-.title {
-    font-family: "Libre Baskerville", serif;
-}
-
 .bg-content {
     background-image: url(/assets/img/bg-content.png);
     background-attachment: fixed;
@@ -21,6 +17,10 @@ body {
 .bg-login {
     background-image: url(/assets/img/bg-login.png);
     background-attachment: fixed;
+}
+
+.title {
+    font-family: "Libre Baskerville", serif;
 }
 
 mark {
@@ -62,6 +62,7 @@ main.login-container .card {
     box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.5);
 }
 
+/* Responsive Breakpoint */
 @media only screen and (max-width: 992px) {
     nav.navbar {
         padding-right: 1rem;

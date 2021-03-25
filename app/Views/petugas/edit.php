@@ -32,7 +32,7 @@
     </div>
     <div class="mb-3">
         <label for="level" class="form-label">Level</label>
-        <select class="form-select" id="level" name="level" <?= $petugas->username == $user->username ? 'disabled' : ''; ?>>
+        <select class="form-select" id="level" name="level" <?= $petugas->username == $user->username || $user->username !== 'admin' ? 'disabled' : ''; ?>>
             <?php if (old('level')) : ?>
                 <option value="admin" <?= old('level') == 'admin' ? 'selected' : ''; ?>>admin</option>
                 <option value="petugas" <?= old('level') == 'petugas' ? 'selected' : ''; ?>>petugas</option>

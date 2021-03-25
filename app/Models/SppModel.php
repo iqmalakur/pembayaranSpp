@@ -40,13 +40,19 @@ class SppModel extends Model
 	protected $beforeDelete         = [];
 	protected $afterDelete          = [];
 
+	// Validasi ubah data (menghindari tahun angkatan ganda)
 	public function cek($tahun)
 	{
+		// Cek apakah tahun angkatan telah terdaftar
 		return $this->builder("spp")->where('angkatan', $tahun)->countAllResults();
 	}
 
 	public function cari($keyword)
 	{
-		return $this->builder('spp')->like('angkatan', $keyword)->orLike('nominal', $keyword)->orderBy('angkatan')->get()->getResultObject();
+		return $this->builder('spp')
+			->like('angkatan', $keyword)
+			->orLike('nominal', $keyword)
+			->orderBy('angkatan')
+			->get()->getResultObject();
 	}
 }

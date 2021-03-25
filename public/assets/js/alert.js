@@ -27,17 +27,12 @@ if ($("#message").length) {
 
 // Alert Berhasil
 if ($("#success-info").length) {
-    // Swal.fire({
-    //     icon: "success",
-    //     title: "Berhasil " + $('#success-info').data('title') + " data",
-    //     timer: 3000,
-    //     timerProgressBar: true,
-    // });
-
     const Toast = Swal.mixin({
         toast: true,
-        position: "bottom-right",
+        position: "top-right",
         showConfirmButton: false,
+        showCancelButton: true,
+        cancelButtonText: "X",
         timer: 5000,
         timerProgressBar: true,
         didOpen: (toast) => {
@@ -56,9 +51,11 @@ if ($("#success-info").length) {
 if ($("#login-success").length) {
     const Toast = Swal.mixin({
         toast: true,
-        position: "bottom-right",
+        position: "top-right",
         showConfirmButton: false,
-        timer: 4000,
+        showCancelButton: true,
+        cancelButtonText: "X",
+        timer: 5000,
         timerProgressBar: true,
         didOpen: (toast) => {
             toast.addEventListener("mouseenter", Swal.stopTimer);
@@ -71,9 +68,3 @@ if ($("#login-success").length) {
         title: "Login berhasil",
     });
 }
-
-$("#btn-cari-siswa").click(function () {
-    setTimeout(() => {
-        $("#cari-siswa").focus();
-    }, 500);
-});

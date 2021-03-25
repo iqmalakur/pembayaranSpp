@@ -29,6 +29,8 @@ class Ajax extends BaseController
 		$this->petugasModel = new PetugasModel();
 	}
 
+	// AJAX cari siswa pada entri pembayaran spp
+	// =========================================
 	public function pembayaran()
 	{
 		$keyword = $this->request->getPost("keyword");
@@ -47,6 +49,14 @@ class Ajax extends BaseController
 		return view('ajax/siswa', ['siswa' => $this->pembayaranModel->getPembayaran($nisn)]);
 	}
 
+	public function dataSiswa()
+	{
+		$siswa = $this->siswaModel->get($this->request->getPost("nisn"));
+		return json_encode($siswa);
+	}
+	// =========================================
+
+	// AJAX data pembayaran pada halaman laporan
 	public function laporan()
 	{
 		$spp = implode("/", explode("-", $this->request->getPost('tahun')));
@@ -59,12 +69,7 @@ class Ajax extends BaseController
 		return view('ajax/laporan', $data);
 	}
 
-	public function dataSiswa()
-	{
-		$siswa = $this->siswaModel->get($this->request->getPost("nisn"));
-		return json_encode($siswa);
-	}
-
+	// AJAX untuk membuat session untuk menyimpan keadaan sidebar
 	public function sidebar()
 	{
 		$this->session->set('sidebar', $this->request->getPost('sidebar'));

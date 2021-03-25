@@ -59,23 +59,32 @@ class Petugas extends BaseController
 		if (!$validation->run($data, 'petugas')) {
 			$this->session->setFlashdata('errors', $validation->getErrors());
 
-			// Kembali ke halaman login dan mengirimkan input sebelumnya
+			// Kembali ke form tambah petugas dan mengirimkan input sebelumnya
 			return redirect()->to('/petugas/add')->withInput();
 		} else {
+			// Cek apakah username telah terdaftar
 			if ($this->model->find($data['username'])) {
 				$this->session->setFlashdata('message', [
 					'icon' => "error",
 					'title' => "Tidak dapat menambahkan data!",
 					'text' => "Username " . $data['username'] . " telah digunakan!"
 				]);
+
+				// Kembali ke form tambah petugas dan mengirimkan input sebelumnya
 				return redirect()->to('/petugas/add')->withInput();
 			}
 
+			// Cek password
 			if ($password['password'] !== $password['repeatPassword']) {
 				$this->session->setFlashdata('wrongPassword', true);
+
+				// Kembali ke form tambah petugas dan mengirimkan input sebelumnya
 				return redirect()->to('/petugas/add')->withInput();
 			}
 
+			// Mengubah username menjadi lower case
+			// Mengubah nama petugas menjadi huruf kapital
+			// Men-enkripsi password
 			$data['username'] = strtolower($data['username']);
 			$data['nama_petugas'] = ucwords($data['nama_petugas']);
 			$data['password'] = password_hash($password['password'], PASSWORD_DEFAULT);
@@ -98,7 +107,10 @@ class Petugas extends BaseController
 			return view('errors/html/error_404');
 		}
 
-		if ($username === 'admin' && $this->user->username !== 'admin') {
+		// Cek apakah petugas yang akan diedit adalah super admin
+		// Super admin hanya boleh diedit oleh super admin itu sendiri
+		// Admin lain (selain super admin) hanya bisa mengedit dirinya sendiri dan petugas
+		if ($username !== $this->user->username && $this->model->find($username)->level !== 'petugas' && $this->user->username !== 'admin') {
 			return redirect()->to('/petugas');
 		}
 
@@ -121,18 +133,23 @@ class Petugas extends BaseController
 		if (!$validation->run($data, 'editPetugas')) {
 			$this->session->setFlashdata('errors', $validation->getErrors());
 
-			// Kembali ke halaman login dan mengirimkan input sebelumnya
+			// Kembali ke form ubah petugas dan mengirimkan input sebelumnya
 			return redirect()->to('/petugas/edit/' . $data["username"])->withInput();
 		} else {
+			// Cek apakah password akan diubah
 			if ($password['editPassword'] != null) {
 				if ($password['editPassword'] !== $password['repeatPassword']) {
 					$this->session->setFlashdata('wrongPassword', true);
+
+					// Kembali ke form ubah petugas dan mengirimkan input sebelumnya
 					return redirect()->to('/petugas/edit/' . $data['username'])->withInput();
 				}
 
+				// Enkripsi Password
 				$data['password'] = password_hash($password['editPassword'], PASSWORD_DEFAULT);
 			}
 
+			// Mengubah nama petugas menjadi huruf kapital
 			$data['nama_petugas'] = ucwords($data['nama_petugas']);
 
 			$this->model->save($data);
@@ -148,6 +165,7 @@ class Petugas extends BaseController
 		try {
 			$this->model->delete($username);
 		} catch (\Exception $e) {
+			// Mengubah nama petugas pada pembayaran sebelum petugas dihapus
 			$pembayaranModel = new PembayaranModel();
 
 			$pembayaranModel->ubahPetugas($username);

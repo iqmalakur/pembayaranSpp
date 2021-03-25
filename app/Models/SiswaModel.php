@@ -48,15 +48,29 @@ class SiswaModel extends Model
 	{
 		$builder = $this->builder("siswa");
 
+		// Cek apakah parameter $nisn tidak kosong
 		if ($nisn) {
-			return $builder->select('siswa.*, kelas.nama_kelas, jurusan.nama_jurusan, spp.angkatan, spp.nominal')->where('nisn', $nisn)->join('kelas', 'siswa.id_kelas=kelas.id_kelas')->join('spp', 'siswa.id_spp=spp.id_spp')->join('jurusan', 'kelas.kompetensi_keahlian=jurusan.id_jurusan')->get()->getRowObject();
+			return $builder
+				->select('siswa.*, kelas.nama_kelas, jurusan.nama_jurusan, spp.angkatan, spp.nominal')
+				->join('kelas', 'siswa.id_kelas=kelas.id_kelas')
+				->join('spp', 'siswa.id_spp=spp.id_spp')
+				->join('jurusan', 'kelas.kompetensi_keahlian=jurusan.id_jurusan')
+				->where('nisn', $nisn)
+				->get()->getRowObject();
 		}
 
-		return $builder->select('siswa.nisn, siswa.nama, kelas.nama_kelas, spp.angkatan')->join('kelas', 'siswa.id_kelas=kelas.id_kelas')->join('spp', 'siswa.id_spp=spp.id_spp')->orderBy('siswa.nama', "ASC")->get()->getResultObject();
+		return $builder
+			->select('siswa.nisn, siswa.nama, kelas.nama_kelas, spp.angkatan')
+			->join('kelas', 'siswa.id_kelas=kelas.id_kelas')
+			->join('spp', 'siswa.id_spp=spp.id_spp')
+			->orderBy('siswa.nama', "ASC")
+			->get()->getResultObject();
 	}
 
+	// Fungsi untuk cek login
 	public function getLogin($data)
 	{
+		// Cek username dan password
 		if ($siswa = $this->find($data['username'])) {
 			if ($data['password'] == $siswa->nis) {
 				return true;
@@ -65,14 +79,26 @@ class SiswaModel extends Model
 		return false;
 	}
 
+	// Validasi ubah data (menghindari NIS ganda)
 	public function cekNis($nis)
 	{
+		// Cek apakah NIS telah terdaftar
 		return $this->builder('siswa')->where('nis', $nis)->countAllResults();
 	}
 
+	// Fungsi cari Siswa untuk pembayaran
 	public function searchAjax($keyword)
 	{
-		return $this->builder('siswa')->select('nisn, nama, nama_kelas, angkatan')->like('nisn', $keyword)->orLike('angkatan', $keyword)->orLike('nama', $keyword)->orLike('nama_kelas', $keyword)->join('kelas', 'siswa.id_kelas=kelas.id_kelas')->join('spp', 'siswa.id_spp=spp.id_spp')->get()->getResultObject();
+		return $this->builder('siswa')
+			->select('nisn, nama, nama_kelas, angkatan')
+			->join('kelas', 'siswa.id_kelas=kelas.id_kelas')
+			->join('spp', 'siswa.id_spp=spp.id_spp')
+			->like('nisn', $keyword)
+			->orLike('angkatan', $keyword)
+			->orLike('nama', $keyword)
+			->orLike('nama_kelas', $keyword)
+			->orderBy('siswa.nama')
+			->get()->getResultObject();
 	}
 
 	public function getCount()
@@ -82,6 +108,15 @@ class SiswaModel extends Model
 
 	public function cari($keyword)
 	{
-		return $this->builder('siswa')->like('nisn', $keyword)->orLike('angkatan', $keyword)->orLike('nama', $keyword)->orLike('nama_kelas', $keyword)->join('kelas', 'siswa.id_kelas=kelas.id_kelas')->join('spp', 'siswa.id_spp=spp.id_spp')->orderBy('nama')->get()->getResultObject();
+		return $this->builder('siswa')
+			->select('siswa.nisn, siswa.nama, kelas.nama_kelas, spp.angkatan')
+			->join('kelas', 'siswa.id_kelas=kelas.id_kelas')
+			->join('spp', 'siswa.id_spp=spp.id_spp')
+			->like('nisn', $keyword)
+			->orLike('angkatan', $keyword)
+			->orLike('nama', $keyword)
+			->orLike('nama_kelas', $keyword)
+			->orderBy('nama')
+			->get()->getResultObject();
 	}
 }

@@ -40,13 +40,19 @@ class JurusanModel extends Model
 	protected $beforeDelete         = [];
 	protected $afterDelete          = [];
 
+	// Validasi ubah data (menghindari nama jurusan ganda)
 	public function cek($jurusan)
 	{
+		// Cek apakah nama jurusan telah terdaftar
 		return $this->builder('jurusan')->where("nama_jurusan", $jurusan)->countAllResults();
 	}
 
 	public function cari($keyword)
 	{
-		return $this->builder('jurusan')->like('nama_jurusan', $keyword)->orLike('alias', $keyword)->orderBy('nama_jurusan')->get()->getResultObject();
+		return $this->builder('jurusan')
+			->like('nama_jurusan', $keyword)
+			->orLike('alias', $keyword)
+			->orderBy('nama_jurusan')
+			->get()->getResultObject();
 	}
 }

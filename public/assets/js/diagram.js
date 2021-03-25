@@ -3,11 +3,13 @@ let data = JSON.parse(document.querySelector("textarea#pembayaran").value);
 let tahun = [];
 let jumlah = [];
 
+// Memisahkan tahun dan jumlah pembayaran dari variabel data
 data.forEach((item) => {
     tahun.push(item.tahun);
     jumlah.push(item.jumlah);
 });
 
+// Membuat diagram
 let diagramPembayaran = new Chart(canvasPembayaran, {
     type: "line",
     data: {

@@ -23,9 +23,7 @@
     <link rel="stylesheet" href="/assets/css/style.css">
 
     <!-- Layout CSS -->
-    <?php if ($role === 'siswa') : ?>
-        <link rel="stylesheet" href="/assets/css/siswa.css">
-    <?php elseif ($controller !== 'Auth') : ?>
+    <?php if ($role !== 'siswa' && $controller !== 'Auth') : ?>
         <link rel="stylesheet" href="/assets/css/petugas.css">
     <?php endif ?>
 
@@ -39,12 +37,14 @@
         echo $this->include('layout/navbar');
     }
     ?>
+
     <div id="content" class="<?= $controller == 'Auth' ? 'd-flex justify-content-center align-items-center' : ''; ?>">
         <?php
         if ($role != 'siswa' && $controller != 'Auth') {
             echo $this->include("layout/sidebar");
         }
         ?>
+
         <main class="container mb-5 <?= session()->sidebar == "true" || $controller == 'Auth' ? '' : 'px-5'; ?> <?= $controller == 'Auth' ? 'login-container' : ''; ?>">
             <?= $this->renderSection('content'); ?>
         </main>

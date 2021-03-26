@@ -47,10 +47,17 @@
 </div>
 
 <textarea class="d-none" id="pembayaran"><?= $pembayaran; ?></textarea>
+<textarea class="d-none" id="jurusan"><?= $jurusan; ?></textarea>
 
 <div class="row justify-content-center mt-5">
     <div class="col-10">
-        <canvas id="canvasPembayaran"></canvas>
+        <canvas id="lineChart"></canvas>
+    </div>
+</div>
+
+<div class="row justify-content-center mt-5">
+    <div class="col-10">
+        <canvas id="doughnutChart"></canvas>
     </div>
 </div>
 <?= $this->endSection(); ?>

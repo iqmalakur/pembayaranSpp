@@ -101,10 +101,20 @@ class PembayaranModel extends Model
 	// Data untuk diagram (Dashboard)
 	public function getReport()
 	{
-		return $this
+		$pembayaran = $this
 			->select("tahun_dibayar AS tahun, SUM(jumlah_bayar) AS jumlah")
 			->groupBy('tahun_dibayar')
+			->orderBy('tahun_dibayar', 'DESC')
 			->findAll();
+		$laporan = [];
+
+		foreach ($pembayaran as $index => $item) {
+			if ($index < 5) {
+				$laporan[] = $item;
+			}
+		}
+
+		return array_reverse($laporan);
 	}
 
 	public function getTahun()
@@ -124,5 +134,17 @@ class PembayaranModel extends Model
 		foreach ($petugas as $item) {
 			$this->update($item->id_pembayaran, ['petugas' => 'admin']);
 		}
+	}
+
+	// Data Pembayaran berdasarkan jurusan
+	public function pembayaranJurusan()
+	{
+		return $this
+			->select('jurusan.nama_jurusan AS nama, SUM(jumlah_bayar) AS jumlah')
+			->join('siswa', 'pembayaran.nisn=siswa.nisn')
+			->join('kelas', 'siswa.id_kelas=kelas.id_kelas')
+			->join('jurusan', 'kelas.kompetensi_keahlian=jurusan.id_jurusan')
+			->groupBy('jurusan.nama_jurusan')
+			->findAll();
 	}
 }

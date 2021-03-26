@@ -53,6 +53,7 @@
         right: 0;
         left: 0;
         z-index: 999;
+        width: 100vw !important;
     }
 
     #content aside span {
@@ -77,5 +78,9 @@
 
     #content aside span {
         margin-top: 0.23rem;
+    }
+
+    canvas {
+        display: none !important;
     }
 }

@@ -42,9 +42,10 @@ class Main extends BaseController
 			// Jika login sebagai admin / petugas
 			$this->data['title'] = "Dashboard";
 			$this->data['countPembayaran'] = $this->model->countAll();
-			$this->data['pembayaran'] = json_encode($this->model->getReport());
 			$this->data['siswa'] = $this->siswaModel->countAll();
 			$this->data['kelas'] = $kelasModel->countAll();
+			$this->data['pembayaran'] = json_encode($this->model->getReport());
+			$this->data['jurusan'] = json_encode($this->model->pembayaranJurusan());
 			$this->data['diagram'] = true;
 
 			return view("main/index", $this->data);

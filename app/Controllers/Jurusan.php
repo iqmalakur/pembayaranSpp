@@ -24,8 +24,15 @@ class Jurusan extends BaseController
 			return view('errors/html/error_404');
 		}
 
+		if (!$page = $this->request->getGet('page_jurusan')) {
+			$page = 1;
+		}
+
 		$this->data['title'] = "CRUD Data Jurusan";
-		$this->data['jurusan'] = $this->model->orderBy('nama_jurusan')->findAll();
+		$this->data['jurusan'] = $this->model->orderBy('nama_jurusan')->paginate(5, 'jurusan');
+		$this->data['count'] = $this->model->countAll();
+		$this->data['pager'] = $this->model->pager;
+		$this->data['number'] = 5 * ($page - 1);
 
 		return view("jurusan/index", $this->data);
 	}

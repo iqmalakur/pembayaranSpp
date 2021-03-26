@@ -16,9 +16,9 @@
         </tr>
     </thead>
     <tbody id="container-cari">
-        <?php foreach ($jurusan as $index => $item) : ?>
+        <?php foreach ($jurusan as $item) : ?>
             <tr>
-                <th scope="row"><?= $index + 1; ?></th>
+                <th scope="row"><?= ++$number; ?></th>
                 <td><?= $item->nama_jurusan; ?></td>
                 <td><?= $item->alias; ?></td>
                 <td>
@@ -33,6 +33,9 @@
         <?php endforeach ?>
     </tbody>
 </table>
+<?php if ($count > 5) : ?>
+    <?= $pager->links('jurusan', 'bootstrap_pagination'); ?>
+<?php endif ?>
 <div class="text-center d-none" id="loader">
     <div class="text-muted">Sedang mengambil data...</div>
     <div class="spinner-border text-secondary mt-2" role="status">

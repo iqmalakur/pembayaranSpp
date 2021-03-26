@@ -18,9 +18,9 @@
         </tr>
     </thead>
     <tbody id="container-cari">
-        <?php foreach ($siswa as $index => $item) : ?>
+        <?php foreach ($siswa as $item) : ?>
             <tr>
-                <th scope="row"><?= $index + 1; ?></th>
+                <th scope="row"><?= ++$number; ?></th>
                 <td><?= $item->nisn; ?></td>
                 <td><?= $item->nama; ?></td>
                 <td><?= $item->nama_kelas; ?></td>
@@ -32,6 +32,9 @@
         <?php endforeach ?>
     </tbody>
 </table>
+<?php if ($count > 5) : ?>
+    <?= $pager->links('siswa', 'bootstrap_pagination'); ?>
+<?php endif ?>
 <div class="text-center d-none" id="loader">
     <div class="text-muted">Sedang mengambil data...</div>
     <div class="spinner-border text-secondary mt-2" role="status">

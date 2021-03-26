@@ -25,8 +25,15 @@ class Petugas extends BaseController
 			return view('errors/html/error_404');
 		}
 
+		if (!$page = $this->request->getGet('page_petugas')) {
+			$page = 1;
+		}
+
 		$this->data['title'] = "CRUD Data Petugas";
-		$this->data['petugas'] = $this->model->orderBy('nama_petugas')->findAll();
+		$this->data['petugas'] = $this->model->orderBy('nama_petugas')->paginate(5, 'petugas');
+		$this->data['count'] = $this->model->countAll();
+		$this->data['pager'] = $this->model->pager;
+		$this->data['number'] = 5 * ($page - 1);
 
 		return view("petugas/index", $this->data);
 	}

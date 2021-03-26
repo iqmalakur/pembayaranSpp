@@ -16,9 +16,9 @@
         </tr>
     </thead>
     <tbody id="container-cari">
-        <?php foreach ($spp as $index => $item) : ?>
+        <?php foreach ($spp as $item) : ?>
             <tr>
-                <th scope="row"><?= $index + 1; ?></th>
+                <th scope="row"><?= ++$number; ?></th>
                 <td><?= $item->angkatan; ?></td>
                 <td><?= "Rp. " . number_format($item->nominal, 2, ',', '.'); ?></td>
                 <td>
@@ -33,6 +33,9 @@
         <?php endforeach ?>
     </tbody>
 </table>
+<?php if ($count > 5) : ?>
+    <?= $pager->links('spp', 'bootstrap_pagination'); ?>
+<?php endif ?>
 <div class="text-center d-none" id="loader">
     <div class="text-muted">Sedang mengambil data...</div>
     <div class="spinner-border text-secondary mt-2" role="status">

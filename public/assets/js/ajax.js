@@ -118,6 +118,13 @@ function search(url, input) {
         type: "POST",
         data: { keyword: input.val() },
         success: function (result) {
+            if (input.val() == "") {
+                location.reload();
+                $("#pagination").removeClass("d-none");
+            } else {
+                $("#pagination").addClass("d-none");
+            }
+
             $("tbody#container-cari").html(result);
 
             // Konfirmasi Hapus Data

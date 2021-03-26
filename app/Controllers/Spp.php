@@ -24,8 +24,15 @@ class Spp extends BaseController
 			return view('errors/html/error_404');
 		}
 
+		if (!$page = $this->request->getGet('page_spp')) {
+			$page = 1;
+		}
+
 		$this->data['title'] = "CRUD Data Spp";
-		$this->data['spp'] = $this->model->orderBy('angkatan')->findAll();
+		$this->data['spp'] = $this->model->orderBy('angkatan')->paginate(5, 'spp');
+		$this->data['count'] = $this->model->countAll();
+		$this->data['pager'] = $this->model->pager;
+		$this->data['number'] = 5 * ($page - 1);
 
 		return view("spp/index", $this->data);
 	}

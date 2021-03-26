@@ -52,7 +52,7 @@ class KelasModel extends Model
 		return $this
 			->join('jurusan', 'kelas.kompetensi_keahlian=jurusan.id_jurusan')
 			->orderBy("nama_kelas")
-			->findAll();
+			->paginate(5, 'kelas');
 	}
 
 	// Validasi ubah data (menghindari nama kelas ganda)
@@ -69,6 +69,6 @@ class KelasModel extends Model
 			->like('nama_kelas', $keyword)
 			->orLike('nama_jurusan', $keyword)
 			->orderBy('nama_kelas')
-			->findAll();
+			->paginate(5, 'kelas');
 	}
 }

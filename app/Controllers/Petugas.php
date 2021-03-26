@@ -30,10 +30,10 @@ class Petugas extends BaseController
 		}
 
 		$this->data['title'] = "CRUD Data Petugas";
-		$this->data['petugas'] = $this->model->orderBy('nama_petugas')->paginate(5, 'petugas');
+		$this->data['petugas'] = $this->model->orderBy('nama_petugas')->paginate($this->paginationLength, 'petugas');
 		$this->data['count'] = $this->model->countAll();
 		$this->data['pager'] = $this->model->pager;
-		$this->data['number'] = 5 * ($page - 1);
+		$this->data['number'] = $this->paginationLength * ($page - 1);
 
 		return view("petugas/index", $this->data);
 	}

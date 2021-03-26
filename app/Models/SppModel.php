@@ -53,6 +53,6 @@ class SppModel extends Model
 			->like('angkatan', $keyword)
 			->orLike('nominal', $keyword)
 			->orderBy('angkatan')
-			->paginate(5, 'spp');
+			->paginate($this->paginationLength, 'spp');
 	}
 }

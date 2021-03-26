@@ -38,7 +38,7 @@ class Siswa extends BaseController
 		$this->data['siswa'] = $this->model->get();
 		$this->data['count'] = $this->model->countAll();
 		$this->data['pager'] = $this->model->pager;
-		$this->data['number'] = 5 * ($page - 1);
+		$this->data['number'] = $this->paginationLength * ($page - 1);
 
 		return view("siswa/index", $this->data);
 	}

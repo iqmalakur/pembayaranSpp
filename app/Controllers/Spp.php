@@ -29,10 +29,10 @@ class Spp extends BaseController
 		}
 
 		$this->data['title'] = "CRUD Data Spp";
-		$this->data['spp'] = $this->model->orderBy('angkatan')->paginate(5, 'spp');
+		$this->data['spp'] = $this->model->orderBy('angkatan')->paginate($this->paginationLength, 'spp');
 		$this->data['count'] = $this->model->countAll();
 		$this->data['pager'] = $this->model->pager;
-		$this->data['number'] = 5 * ($page - 1);
+		$this->data['number'] = $this->paginationLength * ($page - 1);
 
 		return view("spp/index", $this->data);
 	}

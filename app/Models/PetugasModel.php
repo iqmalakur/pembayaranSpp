@@ -65,6 +65,6 @@ class PetugasModel extends Model
 			->orLike('nama_petugas', $keyword)
 			->orLike('level', $keyword)
 			->orderBy('nama_petugas')
-			->paginate(5, 'petugas');
+			->paginate($this->paginationLength, 'petugas');
 	}
 }

@@ -61,7 +61,7 @@ class SiswaModel extends Model
 			->join('kelas', 'siswa.id_kelas=kelas.id_kelas')
 			->join('spp', 'siswa.id_spp=spp.id_spp')
 			->orderBy('siswa.nama', "ASC")
-			->paginate(5, 'siswa');
+			->paginate($this->paginationLength, 'siswa');
 	}
 
 	// Fungsi untuk cek login
@@ -94,6 +94,6 @@ class SiswaModel extends Model
 			->orLike('nama', $keyword)
 			->orLike('nama_kelas', $keyword)
 			->orderBy('nama')
-			->paginate(5, 'siswa');
+			->paginate($this->paginationLength, 'siswa');
 	}
 }

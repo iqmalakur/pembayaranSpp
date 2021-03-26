@@ -34,6 +34,7 @@ class BaseController extends Controller
 	protected $user = '';
 	protected $controller = '';
 	protected $data = [];
+	protected $paginationLength = 5;
 
 	/**
 	 * Constructor.

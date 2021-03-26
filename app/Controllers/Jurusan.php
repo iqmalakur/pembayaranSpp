@@ -29,10 +29,10 @@ class Jurusan extends BaseController
 		}
 
 		$this->data['title'] = "CRUD Data Jurusan";
-		$this->data['jurusan'] = $this->model->orderBy('nama_jurusan')->paginate(5, 'jurusan');
+		$this->data['jurusan'] = $this->model->orderBy('nama_jurusan')->paginate($this->paginationLength, 'jurusan');
 		$this->data['count'] = $this->model->countAll();
 		$this->data['pager'] = $this->model->pager;
-		$this->data['number'] = 5 * ($page - 1);
+		$this->data['number'] = $this->paginationLength * ($page - 1);
 
 		return view("jurusan/index", $this->data);
 	}

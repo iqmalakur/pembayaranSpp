@@ -53,6 +53,6 @@ class JurusanModel extends Model
 			->like('nama_jurusan', $keyword)
 			->orLike('alias', $keyword)
 			->orderBy('nama_jurusan')
-			->paginate(5, 'jurusan');
+			->paginate($this->paginationLength, 'jurusan');
 	}
 }

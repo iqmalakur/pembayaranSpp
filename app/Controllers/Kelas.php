@@ -37,7 +37,7 @@ class Kelas extends BaseController
 		$this->data['kelas'] = $this->model->get();
 		$this->data['count'] = $this->model->countAll();
 		$this->data['pager'] = $this->model->pager;
-		$this->data['number'] = 5 * ($page - 1);
+		$this->data['number'] = $this->paginationLength * ($page - 1);
 
 		return view("kelas/index", $this->data);
 	}

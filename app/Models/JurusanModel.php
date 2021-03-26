@@ -44,15 +44,15 @@ class JurusanModel extends Model
 	public function cek($jurusan)
 	{
 		// Cek apakah nama jurusan telah terdaftar
-		return $this->builder('jurusan')->where("nama_jurusan", $jurusan)->countAllResults();
+		return $this->where("nama_jurusan", $jurusan)->countAllResults();
 	}
 
 	public function cari($keyword)
 	{
-		return $this->builder('jurusan')
+		return $this
 			->like('nama_jurusan', $keyword)
 			->orLike('alias', $keyword)
 			->orderBy('nama_jurusan')
-			->get()->getResultObject();
+			->findAll();
 	}
 }

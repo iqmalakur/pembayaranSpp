@@ -44,15 +44,15 @@ class SppModel extends Model
 	public function cek($tahun)
 	{
 		// Cek apakah tahun angkatan telah terdaftar
-		return $this->builder("spp")->where('angkatan', $tahun)->countAllResults();
+		return $this->where('angkatan', $tahun)->findAll();
 	}
 
 	public function cari($keyword)
 	{
-		return $this->builder('spp')
+		return $this
 			->like('angkatan', $keyword)
 			->orLike('nominal', $keyword)
 			->orderBy('angkatan')
-			->get()->getResultObject();
+			->findAll();
 	}
 }

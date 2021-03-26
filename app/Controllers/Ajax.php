@@ -37,7 +37,7 @@ class Ajax extends BaseController
 		return view(
 			'ajax/pembayaran',
 			[
-				'siswa' => $this->siswaModel->searchAjax($keyword),
+				'siswa' => $this->siswaModel->cari($keyword),
 				'keyword' => $keyword,
 			]
 		);

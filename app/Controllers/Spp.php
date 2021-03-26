@@ -25,7 +25,7 @@ class Spp extends BaseController
 		}
 
 		$this->data['title'] = "CRUD Data Spp";
-		$this->data['spp'] = $this->model->findAll();
+		$this->data['spp'] = $this->model->orderBy('angkatan')->findAll();
 
 		return view("spp/index", $this->data);
 	}
@@ -68,7 +68,7 @@ class Spp extends BaseController
 				$this->session->setFlashdata('message', [
 					'icon' => "error",
 					'title' => "Tidak dapat menambahkan data!",
-					'text' => "SPP untuk tahun ajaran {$data['tahun']} telah ada!"
+					'text' => "SPP untuk tahun ajaran {$data['angkatan']} telah ada!"
 				]);
 
 				// Kembali ke form tambah spp dan mengirimkan input sebelumnya

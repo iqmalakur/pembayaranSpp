@@ -25,7 +25,7 @@ class Jurusan extends BaseController
 		}
 
 		$this->data['title'] = "CRUD Data Jurusan";
-		$this->data['jurusan'] = $this->model->findAll();
+		$this->data['jurusan'] = $this->model->orderBy('nama_jurusan')->findAll();
 
 		return view("jurusan/index", $this->data);
 	}

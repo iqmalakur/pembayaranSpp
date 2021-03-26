@@ -13,6 +13,6 @@ class AllSeeder extends Seeder
 		$this->call("PetugasSeeder");
 		$this->call("KelasSeeder");
 		$this->call("SiswaSeeder");
-		// $this->call("PembayaranSeeder");
+		$this->call("PembayaranSeeder");
 	}
 }

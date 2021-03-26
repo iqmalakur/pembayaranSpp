@@ -42,41 +42,33 @@ class KelasModel extends Model
 
 	public function get($id = false)
 	{
-		$builder = $this->builder("kelas");
-
 		// Cek apakah parameter $id tidak kosong
 		if ($id) {
-			return $builder
+			return $this
 				->join('jurusan', 'kelas.kompetensi_keahlian=jurusan.id_jurusan')
-				->where('id_kelas', $id)
-				->get()->getRowObject();
+				->find($id);
 		}
 
-		return $builder
+		return $this
 			->join('jurusan', 'kelas.kompetensi_keahlian=jurusan.id_jurusan')
 			->orderBy("nama_kelas")
-			->get()->getResultObject();
+			->findAll();
 	}
 
 	// Validasi ubah data (menghindari nama kelas ganda)
 	public function cek($kelas)
 	{
 		// Cek apakah nama kelas telah terdaftar
-		return $this->builder("kelas")->where("nama_kelas", $kelas)->countAllResults();
-	}
-
-	public function getCount()
-	{
-		return $this->builder("kelas")->select("COUNT(*) AS count")->get()->getRowObject()->count;
+		return $this->where("nama_kelas", $kelas)->findAll();
 	}
 
 	public function cari($keyword)
 	{
-		return $this->builder('kelas')
+		return $this
 			->join('jurusan', 'kelas.kompetensi_keahlian=jurusan.id_jurusan')
 			->like('nama_kelas', $keyword)
 			->orLike('nama_jurusan', $keyword)
 			->orderBy('nama_kelas')
-			->get()->getResultObject();
+			->findAll();
 	}
 }

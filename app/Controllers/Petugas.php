@@ -26,7 +26,7 @@ class Petugas extends BaseController
 		}
 
 		$this->data['title'] = "CRUD Data Petugas";
-		$this->data['petugas'] = $this->model->findAll();
+		$this->data['petugas'] = $this->model->orderBy('nama_petugas')->findAll();
 
 		return view("petugas/index", $this->data);
 	}

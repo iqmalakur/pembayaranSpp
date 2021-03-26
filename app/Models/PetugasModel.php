@@ -60,11 +60,11 @@ class PetugasModel extends Model
 
 	public function cari($keyword)
 	{
-		return $this->builder('petugas')
+		return $this
 			->like('username', $keyword)
 			->orLike('nama_petugas', $keyword)
 			->orLike('level', $keyword)
 			->orderBy('nama_petugas')
-			->get()->getResultObject();
+			->findAll();
 	}
 }

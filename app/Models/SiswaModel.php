@@ -46,25 +46,22 @@ class SiswaModel extends Model
 
 	public function get($nisn = false)
 	{
-		$builder = $this->builder("siswa");
-
 		// Cek apakah parameter $nisn tidak kosong
 		if ($nisn) {
-			return $builder
+			return $this
 				->select('siswa.*, kelas.nama_kelas, jurusan.nama_jurusan, spp.angkatan, spp.nominal')
 				->join('kelas', 'siswa.id_kelas=kelas.id_kelas')
 				->join('spp', 'siswa.id_spp=spp.id_spp')
 				->join('jurusan', 'kelas.kompetensi_keahlian=jurusan.id_jurusan')
-				->where('nisn', $nisn)
-				->get()->getRowObject();
+				->find($nisn);
 		}
 
-		return $builder
+		return $this
 			->select('siswa.nisn, siswa.nama, kelas.nama_kelas, spp.angkatan')
 			->join('kelas', 'siswa.id_kelas=kelas.id_kelas')
 			->join('spp', 'siswa.id_spp=spp.id_spp')
 			->orderBy('siswa.nama', "ASC")
-			->get()->getResultObject();
+			->findAll();
 	}
 
 	// Fungsi untuk cek login
@@ -83,33 +80,13 @@ class SiswaModel extends Model
 	public function cekNis($nis)
 	{
 		// Cek apakah NIS telah terdaftar
-		return $this->builder('siswa')->where('nis', $nis)->countAllResults();
-	}
-
-	// Fungsi cari Siswa untuk pembayaran
-	public function searchAjax($keyword)
-	{
-		return $this->builder('siswa')
-			->select('nisn, nama, nama_kelas, angkatan')
-			->join('kelas', 'siswa.id_kelas=kelas.id_kelas')
-			->join('spp', 'siswa.id_spp=spp.id_spp')
-			->like('nisn', $keyword)
-			->orLike('angkatan', $keyword)
-			->orLike('nama', $keyword)
-			->orLike('nama_kelas', $keyword)
-			->orderBy('siswa.nama')
-			->get()->getResultObject();
-	}
-
-	public function getCount()
-	{
-		return $this->builder("siswa")->select("COUNT(*) AS count")->get()->getRowObject()->count;
+		return $this->where('nis', $nis)->findAll();
 	}
 
 	public function cari($keyword)
 	{
-		return $this->builder('siswa')
-			->select('siswa.nisn, siswa.nama, kelas.nama_kelas, spp.angkatan')
+		return $this
+			->select('nisn, nama, kelas.nama_kelas, spp.angkatan')
 			->join('kelas', 'siswa.id_kelas=kelas.id_kelas')
 			->join('spp', 'siswa.id_spp=spp.id_spp')
 			->like('nisn', $keyword)
@@ -117,6 +94,6 @@ class SiswaModel extends Model
 			->orLike('nama', $keyword)
 			->orLike('nama_kelas', $keyword)
 			->orderBy('nama')
-			->get()->getResultObject();
+			->findAll();
 	}
 }

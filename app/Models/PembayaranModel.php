@@ -46,90 +46,80 @@ class PembayaranModel extends Model
 
 	public function get($id)
 	{
-		return $this->builder("pembayaran")
+		return $this
 			->select('pembayaran.*, petugas.nama_petugas, siswa.nis, siswa.nama, kelas.nama_kelas, jurusan.nama_jurusan')
 			->join('petugas', 'pembayaran.petugas=petugas.username')
 			->join('siswa', 'pembayaran.nisn=siswa.nisn')
 			->join('kelas', 'siswa.id_kelas=kelas.id_kelas')
 			->join('jurusan', 'kelas.kompetensi_keahlian=jurusan.id_jurusan')
-			->where('id_pembayaran', $id)
-			->get()->getRowObject();
+			->find($id);
 	}
 
 	// Ambil data pembayaran Siswa
 	public function getPembayaran($nisn)
 	{
-		return $this->builder("pembayaran")
+		return $this
 			->select('pembayaran.*, petugas.nama_petugas, siswa.nis, siswa.nama, kelas.nama_kelas')
 			->where('pembayaran.nisn', $nisn)
 			->join('petugas', 'pembayaran.petugas=petugas.username')
 			->join('siswa', 'pembayaran.nisn=siswa.nisn')
 			->join('kelas', 'siswa.id_kelas=kelas.id_kelas')
 			->orderBy('tgl_bayar', 'DESC')
-			->get()->getResultObject();
+			->findAll();
 	}
 
 	// Cek apakah spp telah dibayar (menghindari data ganda)
 	public function bulanSpp($nisn, $bulan, $tahun)
 	{
-		return $this->builder('pembayaran')
+		return $this
 			->select('id_pembayaran')
-			->getWhere(['nisn' => $nisn, 'bulan_dibayar' => $bulan, 'tahun_dibayar' => $tahun])
-			->getRowObject();
+			->where(['nisn' => $nisn, 'bulan_dibayar' => $bulan, 'tahun_dibayar' => $tahun])
+			->findAll();
 	}
 
 	public function laporan($val)
 	{
-		return $this->builder("pembayaran")
+		return $this
 			->select('pembayaran.*, siswa.nis, siswa.nama, kelas.nama_kelas, jurusan.nama_jurusan')
 			->join('siswa', 'pembayaran.nisn=siswa.nisn')
 			->join('kelas', 'siswa.id_kelas=kelas.id_kelas')
 			->join('jurusan', 'kelas.kompetensi_keahlian=jurusan.id_jurusan')
 			->where('pembayaran.tahun_dibayar', $val)
 			->orderBy('tgl_bayar', 'DESC')
-			->get()->getResultObject();
+			->findAll();
 	}
 
 	// Menjumlahkan pembayaran per tahun
 	public function getSum($val)
 	{
-		return $this->builder("pembayaran")
-			->select('SUM(pembayaran.jumlah_bayar) AS total')
-			->where('pembayaran.tahun_dibayar', $val)
-			->get()->getRowObject()->total;
-	}
-
-	// Total Transaksi Pembayaran
-	public function getCount()
-	{
-		return $this->builder("pembayaran")
-			->select('COUNT(*) AS count')
-			->get()
-			->getRowObject()->count;
+		return $this
+			->selectSum('jumlah_bayar', 'total')
+			->where('tahun_dibayar', $val)
+			->first()->total;
 	}
 
 	// Data untuk diagram (Dashboard)
 	public function getReport()
 	{
-		return $this->builder("pembayaran")
-			->select("pembayaran.tahun_dibayar AS tahun, SUM(pembayaran.jumlah_bayar) AS jumlah")
-			->groupBy('pembayaran.tahun_dibayar')
-			->get()->getResultObject();
+		return $this
+			->select("tahun_dibayar AS tahun, SUM(jumlah_bayar) AS jumlah")
+			->groupBy('tahun_dibayar')
+			->findAll();
 	}
 
 	public function getTahun()
 	{
-		return $this->builder('pembayaran')->select('tahun_dibayar')->groupBy('tahun_dibayar')->get()->getResultObject();
+		return $this->select('tahun_dibayar')->groupBy('tahun_dibayar')->findAll();
 	}
 
 	// Ubah petugas yang bersangkutan dengan data pembayaran menjadi admin
 	// Jika petugas yang bersangkutan dihapus
 	public function ubahPetugas($username)
 	{
-		$petugas = $this->builder('pembayaran')
+		$petugas = $this
 			->select('id_pembayaran')
 			->where('petugas', $username)
-			->get()->getResultObject();
+			->findAll();
 
 		foreach ($petugas as $item) {
 			$this->update($item->id_pembayaran, ['petugas' => 'admin']);

@@ -64,7 +64,8 @@ class PembayaranModel extends Model
 			->join('petugas', 'pembayaran.petugas=petugas.username')
 			->join('siswa', 'pembayaran.nisn=siswa.nisn')
 			->join('kelas', 'siswa.id_kelas=kelas.id_kelas')
-			->orderBy('tgl_bayar', 'DESC')
+			->orderBy('tahun_dibayar', 'ASC')
+			->orderBy('bulan_dibayar', 'ASC')
 			->findAll();
 	}
 

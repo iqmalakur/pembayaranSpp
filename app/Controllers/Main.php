@@ -62,19 +62,24 @@ class Main extends BaseController
 			return view('errors/html/error_404');
 		}
 
+		helper('pembayaran');
+
 		$this->data['title'] = "Pembayaran Spp";
 		$this->data['bulan'] = date('M');
 		$this->data['siswa'] = $this->siswaModel->get();
 		$this->data['sppSiswa'] = $this->session->nisn != null ? $this->siswaModel->get($this->session->nisn) : false;
 		$this->data['pembayaran'] = $this->model->getPembayaran($this->session->nisn);
 
+		foreach ($this->data['pembayaran'] as $item) {
+			$item->bulan_dibayar = getBulan($item->bulan_dibayar);
+		}
+
 		return view("main/pembayaran", $this->data);
 	}
 
 	public function bayar()
 	{
-		$data = $this->request->getPost(['nisn', 'id_spp', 'bulan_dibayar', 'jumlah_bayar']);
-		$data['tahun_dibayar'] = $this->request->getPost('tahun') . '/' . $this->request->getPost('tahun2');
+		$data = $this->request->getPost(['nisn', 'id_spp', 'bulan_dibayar', 'jumlah_bayar', 'tahun_dibayar']);
 
 		helper(['form', 'url', 'date']);
 		$validation = \Config\Services::validation();

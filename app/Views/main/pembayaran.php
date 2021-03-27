@@ -1,11 +1,12 @@
 <?= $this->extend("layout/template"); ?>
 
 <?= $this->section("content"); ?>
-<h1 class="title text-center">Pembayaran Spp</h1>
+<h1 class="title text-center mb-5">Pembayaran Spp</h1>
 
 <!-- Form Pembayaran -->
 <form action="/bayar" method="post">
     <?= csrf_field(); ?>
+    <input type="hidden" name="id_spp" value="<?= $sppSiswa ? $sppSiswa->id_spp : ''; ?>" id="pembayaran-spp">
     <div class="mb-3">
         <label class="form-label">NISN Siswa</label>
         <div class="input-group">
@@ -15,41 +16,25 @@
         </div>
     </div>
     <div class="mb-3">
-        <label class="form-label">Id Spp</label>
-        <div class="input-group">
-            <input type="text" class="form-control" name="id_spp" placeholder="Terisi otomatis" id="pembayaran-spp" value="<?= $sppSiswa ? $sppSiswa->id_spp : ''; ?>" readonly>
-            <input type="text" class="form-control" id="pembayaran-spp-info" value="<?= $sppSiswa ? $sppSiswa->angkatan : ''; ?>" readonly>
-        </div>
-    </div>
-    <div class="mb-3">
-        <label for="tgl_bayar" class="form-label">Tanggal Bayar</label>
-        <input type="date" class="form-control" id="tgl_bayar" name="tgl_bayar" value="<?= date('Y-m-d'); ?>">
-    </div>
-    <div class="mb-3">
         <label for="bulan_dibayar" class="form-label">Bulan Dibayar</label>
         <select class="form-select" aria-label="Default select example" name="bulan_dibayar">
-            <option value="Januari" <?= $bulan == "Jan" ? "selected" : ""; ?>>Januari</option>
-            <option value="Februari" <?= $bulan == "Feb" ? "selected" : ""; ?>>Februari</option>
-            <option value="Maret" <?= $bulan == "Mar" ? "selected" : ""; ?>>Maret</option>
-            <option value="April" <?= $bulan == "Apr" ? "selected" : ""; ?>>April</option>
-            <option value="Mei" <?= $bulan == "May" ? "selected" : ""; ?>>Mei</option>
-            <option value="Juni" <?= $bulan == "Jun" ? "selected" : ""; ?>>Juni</option>
-            <option value="Juli" <?= $bulan == "Jul" ? "selected" : ""; ?>>Juli</option>
-            <option value="Agustus" <?= $bulan == "Aug" ? "selected" : ""; ?>>Agustus</option>
-            <option value="September" <?= $bulan == "Sep" ? "selected" : ""; ?>>September</option>
-            <option value="Oktober" <?= $bulan == "Oct" ? "selected" : ""; ?>>Oktober</option>
-            <option value="November" <?= $bulan == "Nov" ? "selected" : ""; ?>>November</option>
-            <option value="Desember" <?= $bulan == "Dec" ? "selected" : ""; ?>>Desember</option>
+            <option value="0" <?= $bulan == "Jul" ? "selected" : ""; ?>>Juli</option>
+            <option value="1" <?= $bulan == "Aug" ? "selected" : ""; ?>>Agustus</option>
+            <option value="2" <?= $bulan == "Sep" ? "selected" : ""; ?>>September</option>
+            <option value="3" <?= $bulan == "Oct" ? "selected" : ""; ?>>Oktober</option>
+            <option value="4" <?= $bulan == "Nov" ? "selected" : ""; ?>>November</option>
+            <option value="5" <?= $bulan == "Dec" ? "selected" : ""; ?>>Desember</option>
+            <option value="6" <?= $bulan == "Jan" ? "selected" : ""; ?>>Januari</option>
+            <option value="7" <?= $bulan == "Feb" ? "selected" : ""; ?>>Februari</option>
+            <option value="8" <?= $bulan == "Mar" ? "selected" : ""; ?>>Maret</option>
+            <option value="9" <?= $bulan == "Apr" ? "selected" : ""; ?>>April</option>
+            <option value="10" <?= $bulan == "May" ? "selected" : ""; ?>>Mei</option>
+            <option value="11" <?= $bulan == "Jun" ? "selected" : ""; ?>>Juni</option>
         </select>
     </div>
-    <div class="mb-3 row">
-        <label for="tahun" class="form-label">Tahun Dibayar</label>
-        <div class="col-6">
-            <input type="number" min="1900" max="2100" name="tahun" class="form-control <?= isset($errors['tahun']) ? 'is-invalid' : ''; ?>" id="tahun" value="<?= date('Y'); ?>">
-        </div>
-        <div class="col-6">
-            <input type="text" name="tahun2" class="form-control" value="<?= date('Y') + 1; ?>" readonly>
-        </div>
+    <div class="mb-3">
+        <label for="pembayaran-tahun" class="form-label">Tahun Dibayar</label>
+        <input type="text" class="form-control" id="pembayaran-tahun" placeholder="Terisi otomatis" name="tahun_dibayar" readonly value="<?= $sppSiswa ? $sppSiswa->angkatan : ''; ?>">
     </div>
     <div class="mb-3">
         <label class="form-label">Jumlah Bayar</label>
@@ -77,7 +62,7 @@
                 <td><?= $item->nisn; ?></td>
                 <td><?= $item->nama_petugas; ?></td>
                 <td><?= $item->tgl_bayar; ?></td>
-                <td><?= "$item->bulan_dibayar - $item->tahun_dibayar"; ?></td>
+                <td><?= "$item->tahun_dibayar - $item->bulan_dibayar"; ?></td>
                 <td><a href="/<?= sprintf("%03d", $item->id_pembayaran); ?>" class="btn btn-success" title="Kwitansi" target="_blank"><i class="bi bi-receipt"></i></a></td>
             </tr>
         <?php endforeach ?>

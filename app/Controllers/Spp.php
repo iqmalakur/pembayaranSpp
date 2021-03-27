@@ -109,7 +109,8 @@ class Spp extends BaseController
 
 	public function update()
 	{
-		$data = $this->request->getPost(["id_spp", "angkatan", "nominal"]);
+		$data = $this->request->getPost(["id_spp", "tahun", "nominal"]);
+		$data['angkatan'] = $data['tahun'];
 
 		helper(['form', 'url']);
 		$validation = \Config\Services::validation();

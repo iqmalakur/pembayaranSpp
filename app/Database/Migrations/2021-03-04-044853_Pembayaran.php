@@ -27,8 +27,7 @@ class Pembayaran extends Migration
 				'type' => 'DATE',
 			],
 			'bulan_dibayar' => [
-				'type' => 'VARCHAR',
-				'constraint' => 9,
+				'type' => 'INT',
 			],
 			'tahun_dibayar' => [
 				'type' => 'CHAR',

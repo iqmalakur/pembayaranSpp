@@ -17,7 +17,7 @@ class SiswaSeeder extends Seeder
 				'id_kelas' => 9,
 				'alamat' => 'Galanggang',
 				'no_telp' => '081955543754',
-				'id_spp' => 4,
+				'id_spp' => 1,
 			],
 			[
 				'nisn' => '0033435112',
@@ -35,7 +35,7 @@ class SiswaSeeder extends Seeder
 				'id_kelas' => 2,
 				'alamat' => 'Padalarang',
 				'no_telp' => '085755525811',
-				'id_spp' => 2,
+				'id_spp' => 6,
 			],
 			[
 				'nisn' => '0045213342',
@@ -44,7 +44,7 @@ class SiswaSeeder extends Seeder
 				'id_kelas' => 8,
 				'alamat' => 'Batujajar',
 				'no_telp' => '083855525242',
-				'id_spp' => 4,
+				'id_spp' => 2,
 			],
 			[
 				'nisn' => '0051313142',
@@ -62,7 +62,7 @@ class SiswaSeeder extends Seeder
 				'id_kelas' => 6,
 				'alamat' => 'Cikandang',
 				'no_telp' => '081555577366',
-				'id_spp' => 2,
+				'id_spp' => 4,
 			],
 			[
 				'nisn' => '0025111328',
@@ -71,7 +71,7 @@ class SiswaSeeder extends Seeder
 				'id_kelas' => 6,
 				'alamat' => 'Cililin',
 				'no_telp' => '08115554655',
-				'id_spp' => 2,
+				'id_spp' => 6,
 			],
 			[
 				'nisn' => '0031243215',
@@ -98,7 +98,7 @@ class SiswaSeeder extends Seeder
 				'id_kelas' => 8,
 				'alamat' => 'Cimahi',
 				'no_telp' => '08385558034',
-				'id_spp' => 4,
+				'id_spp' => 1,
 			],
 		];
 

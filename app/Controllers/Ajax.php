@@ -46,7 +46,15 @@ class Ajax extends BaseController
 	public function siswa()
 	{
 		$nisn = $this->request->getPost("nisn");
-		return view('ajax/siswa', ['siswa' => $this->pembayaranModel->getPembayaran($nisn)]);
+		$data = ['siswa' => $this->pembayaranModel->getPembayaran($nisn)];
+
+		helper('pembayaran');
+
+		foreach ($data['siswa'] as $item) {
+			$item->bulan_dibayar = getBulan($item->bulan_dibayar);
+		}
+
+		return view('ajax/siswa', $data);
 	}
 
 	public function dataSiswa()

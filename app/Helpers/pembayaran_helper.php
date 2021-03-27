@@ -9,6 +9,17 @@ function tanggal($tanggal)
     ];
 
     $tanggal = explode('-', $tanggal);
-
     return "{$tanggal[2]} {$bulan[$tanggal[1] - 1]} {$tanggal[0]}";
+}
+
+function getBulan($index)
+{
+    $bulan = [
+        "Juli", "Agustus", "September",
+        "Oktober", "November", "Desember",
+        "Januari", "Februari", "Maret",
+        "April", "Mei", "Juni"
+    ];
+
+    return $bulan[$index];
 }

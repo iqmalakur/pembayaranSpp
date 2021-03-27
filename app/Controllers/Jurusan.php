@@ -166,11 +166,11 @@ class Jurusan extends BaseController
 				'text' => "Kompetensi Keahlian $jurusan masih memiliki relasi data Kelas"
 			]);
 
-			return redirect()->to("/jurusan");
+			return redirect()->to(previous_url());
 		}
 
 		$this->session->setFlashdata('successInfo', 'Menghapus');
 
-		return redirect()->to("/jurusan");
+		return redirect()->to(previous_url());
 	}
 }

@@ -1,7 +1,7 @@
 <?= $this->extend("layout/template"); ?>
 
 <?= $this->section("content"); ?>
-<h1>Tambah Data Kelas</h1>
+<h1 class="text-center mb-5">Tambah Data Kelas</h1>
 <form action="/kelas/save" method="POST">
     <?= csrf_field(); ?>
     <div class="mb-3">

@@ -5,8 +5,8 @@ $("span.delete").click(function () {
         text: this.dataset.item + " akan dihapus permanen!",
         icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
+        confirmButtonColor: "#0d6efd",
+        cancelButtonColor: "#dc3545",
         confirmButtonText: "Ya, hapus data ini!",
         cancelButtonText: "Jangan hapus data!",
     }).then((result) => {

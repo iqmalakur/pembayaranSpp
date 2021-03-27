@@ -1,7 +1,7 @@
 <?= $this->extend("layout/template"); ?>
 
 <?= $this->section("content"); ?>
-<h1>Ubah Data Spp</h1>
+<h1 class="text-center mb-5">Ubah Data Spp</h1>
 <form action="/spp/update" method="POST">
     <?= csrf_field(); ?>
     <input type="hidden" name="id_spp" value="<?= $spp->id_spp; ?>">

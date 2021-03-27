@@ -1,7 +1,7 @@
 <?= $this->extend("layout/template"); ?>
 
 <?= $this->section("content"); ?>
-<h1>Ubah Data Petugas</h1>
+<h1 class="text-center mb-5">Ubah Data Petugas</h1>
 <form action="/petugas/update" method="POST">
     <?= csrf_field(); ?>
     <input type="hidden" name="username" value="<?= $petugas->username; ?>">

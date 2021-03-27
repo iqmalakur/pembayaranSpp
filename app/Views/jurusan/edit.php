@@ -1,7 +1,7 @@
 <?= $this->extend("layout/template"); ?>
 
 <?= $this->section("content"); ?>
-<h1>Ubah Data Jurusan</h1>
+<h1 class="text-center mb-5">Ubah Data Jurusan</h1>
 <form action="/jurusan/update" method="POST">
     <?= csrf_field(); ?>
     <input type="hidden" name="id_jurusan" value="<?= $jurusan->id_jurusan; ?>">

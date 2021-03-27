@@ -1,7 +1,7 @@
 <?= $this->extend("layout/template"); ?>
 
 <?= $this->section("content"); ?>
-<h1>Tambah Data Petugas</h1>
+<h1 class="text-center mb-5">Tambah Data Petugas</h1>
 <form action="/petugas/save" method="POST">
     <?= csrf_field(); ?>
     <div class="mb-3">

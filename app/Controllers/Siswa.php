@@ -177,12 +177,12 @@ class Siswa extends BaseController
 				'text' => "Siswa dengan NISN $siswa masih memiliki relasi data Pembayaran"
 			]);
 
-			return redirect()->to("/siswa");
+			return redirect()->to(previous_url());
 		}
 
 		$this->session->setFlashdata('successInfo', 'Menghapus');
 
-		return redirect()->to("/siswa");
+		return redirect()->to(previous_url());
 	}
 
 	public function detail($nisn)

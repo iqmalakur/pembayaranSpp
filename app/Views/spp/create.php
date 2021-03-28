@@ -7,7 +7,7 @@
     <div class="mb-3 row">
         <label for="tahun" class="form-label">Angkatan</label>
         <div class="col-6">
-            <input type="number" min="1900" max="2100" name="tahun" class="form-control <?= isset($errors['tahun']) ? 'is-invalid' : ''; ?>" id="tahun" value="<?= old('tahun') ? old('tahun') : date('Y'); ?>">
+            <input type="number" min="1900" max="2100" name="tahun" class="form-control <?= isset($errors['tahun']) ? 'is-invalid' : ''; ?>" id="tahun" value="<?= old('tahun') ? old('tahun') : date('Y'); ?>" autofocus>
             <div id="tahunFeedback" class="invalid-feedback">
                 <?= isset($errors['tahun']) ? $errors['tahun'] : ''; ?>
             </div>

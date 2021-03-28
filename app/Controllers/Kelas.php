@@ -165,11 +165,11 @@ class Kelas extends BaseController
 				'text' => "Kelas $kelas masih memiliki relasi data  Siswa"
 			]);
 
-			return redirect()->to(previous_url());
+			return redirect()->to('/kelas');
 		}
 
 		$this->session->setFlashdata('successInfo', 'Menghapus');
 
-		return redirect()->to(previous_url());
+		return redirect()->to('/kelas');
 	}
 }

@@ -119,7 +119,6 @@ function search(url, input) {
         data: { keyword: input.val() },
         success: function (result) {
             if (input.val() == "") {
-                location.reload();
                 $("#pagination").removeClass("d-none");
             } else {
                 $("#pagination").addClass("d-none");

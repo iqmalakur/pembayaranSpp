@@ -180,11 +180,11 @@ class Petugas extends BaseController
 
 			$this->session->setFlashdata('successInfo', 'Menghapus');
 
-			return redirect()->to(previous_url());
+			return redirect()->to('/petugas');
 		}
 
 		$this->session->setFlashdata('successInfo', 'Menghapus');
 
-		return redirect()->to(previous_url());
+		return redirect()->to('/petugas');
 	}
 }

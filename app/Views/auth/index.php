@@ -16,7 +16,7 @@
             <?= csrf_field(); ?>
             <div class="mb-3">
                 <label for="username" class="form-label"><i class="bi bi-person-fill"></i> Username</label>
-                <input type="text" name="username" class="form-control text-lowercase <?= isset($errors['username']) ? 'is-invalid' : ''; ?>" id="username" value="<?= old('username') ? old('username') : ''; ?>">
+                <input type="text" name="username" class="form-control text-lowercase <?= isset($errors['username']) ? 'is-invalid' : ''; ?>" id="username" value="<?= old('username') ? old('username') : ''; ?>" autofocus>
                 <div id="usernameFeedback" class="invalid-feedback">
                     <?= isset($errors['username']) ? $errors['username'] : ''; ?>
                 </div>

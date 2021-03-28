@@ -16,9 +16,6 @@
     <!-- Bootstrap Icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
 
-    <!-- Sweet Alert 2 CSS -->
-    <link rel="stylesheet" href="/assets/package/dist/sweetalert2.min.css">
-
     <!-- My CSS -->
     <link rel="stylesheet" href="/assets/css/style.css">
 
@@ -67,16 +64,17 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- Sweet Alert 2 -->
-    <script src="/assets/package/dist/sweetalert2.all.js"></script>
-
-    <!-- Chart.js -->
-    <script src="/assets/Chart.js-2.9.4/dist/Chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.7/dist/sweetalert2.all.min.js"></script>
 
     <!-- My JavaScript -->
     <script src="/assets/js/script.js"></script>
     <script src="/assets/js/alert.js"></script>
     <script src="/assets/js/ajax.js"></script>
+
+    <!-- Diagram -->
     <?php if (isset($diagram)) : ?>
+        <!-- Chart.js -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
         <script src="/assets/js/diagram.js"></script>
     <?php endif ?>
 </body>

@@ -6,7 +6,7 @@
     <?= csrf_field(); ?>
     <div class="mb-3">
         <label for="nama-kelas" class="form-label">Nama Kelas</label>
-        <input type="text" name="nama_kelas" class="form-control text-uppercase <?= isset($errors['nama_kelas']) ? 'is-invalid' : ''; ?>" id="nama-kelas" value="<?= old('nama_kelas') ? old('nama_kelas') : ''; ?>">
+        <input type="text" name="nama_kelas" class="form-control text-uppercase <?= isset($errors['nama_kelas']) ? 'is-invalid' : ''; ?>" id="nama-kelas" value="<?= old('nama_kelas') ? old('nama_kelas') : ''; ?>" autofocus>
         <div id="nama_kelasFeedback" class="invalid-feedback">
             <?= isset($errors['nama_kelas']) ? $errors['nama_kelas'] : ''; ?>
         </div>

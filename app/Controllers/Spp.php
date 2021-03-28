@@ -143,11 +143,11 @@ class Spp extends BaseController
 				'text' => "Spp untuk angkatan $spp masih memiliki relasi data Siswa dan Pembayaran"
 			]);
 
-			return redirect()->to(previous_url());
+			return redirect()->to('/spp');
 		}
 
 		$this->session->setFlashdata('successInfo', 'Menghapus');
 
-		return redirect()->to(previous_url());
+		return redirect()->to('/spp');
 	}
 }

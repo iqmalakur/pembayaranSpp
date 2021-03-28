@@ -4,18 +4,20 @@
 <h1 class="text-center mb-5">Tambah Data Siswa</h1>
 <form action="/siswa/save" method="POST">
     <?= csrf_field(); ?>
-    <div class="mb-3">
-        <label for="nisn" class="form-label">NISN</label>
-        <input type="text" name="nisn" class="form-control <?= isset($errors['nisn']) ? 'is-invalid' : ''; ?>" id="nisn" value="<?= old('nisn') ? old('nisn') : ''; ?>">
-        <div id="nisnFeedback" class="invalid-feedback">
-            <?= isset($errors['nisn']) ? $errors['nisn'] : ''; ?>
+    <div class="mb-3 row">
+        <div class="col-md-6">
+            <label for="nisn" class="form-label">NISN</label>
+            <input type="text" name="nisn" class="form-control <?= isset($errors['nisn']) ? 'is-invalid' : ''; ?>" id="nisn" value="<?= old('nisn') ? old('nisn') : ''; ?>" autofocus>
+            <div id="nisnFeedback" class="invalid-feedback">
+                <?= isset($errors['nisn']) ? $errors['nisn'] : ''; ?>
+            </div>
         </div>
-    </div>
-    <div class="mb-3">
-        <label for="nis" class="form-label">NIS</label>
-        <input type="text" name="nis" class="form-control <?= isset($errors['nis']) ? 'is-invalid' : ''; ?>" id="nis" value="<?= old('nis') ? old('nis') : ''; ?>">
-        <div id="nisFeedback" class="invalid-feedback">
-            <?= isset($errors['nis']) ? $errors['nis'] : ''; ?>
+        <div class="col-md-6">
+            <label for="nis" class="form-label">NIS</label>
+            <input type="text" name="nis" class="form-control <?= isset($errors['nis']) ? 'is-invalid' : ''; ?>" id="nis" value="<?= old('nis') ? old('nis') : ''; ?>">
+            <div id="nisFeedback" class="invalid-feedback">
+                <?= isset($errors['nis']) ? $errors['nis'] : ''; ?>
+            </div>
         </div>
     </div>
     <div class="mb-3">

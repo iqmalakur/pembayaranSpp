@@ -24,7 +24,7 @@
                 <td><?= $item->nisn; ?></td>
                 <td><?= $item->nama; ?></td>
                 <td><?= $item->nama_kelas; ?></td>
-                <td><?= $item->angkatan; ?></td>
+                <td><?= $item->tahun_ajaran; ?></td>
                 <td>
                     <a href="/siswa/detail/<?= $item->nisn; ?>" class="btn btn-success" title="Detail"><i class="bi bi-clipboard-plus"></i></a>
                 </td>

@@ -88,7 +88,7 @@
                 </div>
                 <div class="d-flex flex-column justify-content-between">
                     <span>Bandung, <?= tanggal(date('Y-m-d', now("Asia/Jakarta"))); ?></span>
-                    <span class="text-center border-top border-2 pt-2 border-dark fw-bold"><?= $role === 'siswa' ? $pembayaran->nama_petugas : $user->nama_petugas; ?></span>
+                    <span class="text-center border-top pt-2 border-dark fw-bold"><?= $role === 'siswa' ? $pembayaran->nama_petugas : $user->nama_petugas; ?></span>
                 </div>
             </footer>
         </main>
@@ -99,6 +99,14 @@
             e.preventDefault();
             window.print();
         })
+
+        window.onbeforeprint = function() {
+            document.title = "Kuitansi-Pembayaran-Spp.pdf";
+        }
+
+        window.onafterprint = function() {
+            document.title = "Kuitansi";
+        }
     </script>
 
     <!-- Bootstrap Bundle with Popper -->

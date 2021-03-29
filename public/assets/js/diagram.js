@@ -30,7 +30,7 @@ let lineChart = new Chart(pembayaranChart, {
                 {
                     ticks: {
                         beginAtZero: true,
-                        stepSize: 500000,
+                        stepSize: 1500000,
                         callback: function (value, index, values) {
                             return convertToRupiah(value);
                         },

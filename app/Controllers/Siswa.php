@@ -54,8 +54,8 @@ class Siswa extends BaseController
 		}
 
 		$this->data['title'] = "Tambah Data Siswa";
-		$this->data['kelas'] = $this->kelasModel->findAll();
-		$this->data['spp'] = $this->sppModel->findAll();
+		$this->data['kelas'] = $this->kelasModel->orderBy('nama_kelas')->findAll();
+		$this->data['spp'] = $this->sppModel->orderBy('tahun_ajaran', 'DESC')->findAll();
 		$this->data["errors"] = $this->session->get('errors');
 
 		return view("siswa/create", $this->data);
@@ -126,7 +126,7 @@ class Siswa extends BaseController
 
 		$this->data['title'] = "Ubah Data Siswa";
 		$this->data['siswa'] = $this->model->get($nisn);
-		$this->data['kelas'] = $this->kelasModel->findAll();
+		$this->data['kelas'] = $this->kelasModel->orderBy('nama_kelas')->findAll();
 		$this->data['spp'] = $this->sppModel->find($this->data['siswa']->id_spp);
 		$this->data["errors"] = $this->session->get('errors');
 

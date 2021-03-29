@@ -10,11 +10,19 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
     <title><?= $title; ?></title>
+
+    <style>
+        @media print {
+            body {
+                padding: 0;
+            }
+        }
+    </style>
 </head>
 
-<body>
+<body class="p-5">
     <h2 class="fw-bold text-center mt-4 mb-5">Laporan Pembayaran Spp Tahun <?= $tahun; ?></h2>
-    <table class="table table-striped mt-4">
+    <table class="table table-striped mt-4 table-bordered">
         <thead>
             <tr>
                 <th scope="col">No.</th>
@@ -35,7 +43,7 @@
                         <td><?= $item->nisn; ?></td>
                         <td><?= $item->nama; ?></td>
                         <td><?= $item->nama_kelas; ?></td>
-                        <td><?= "$item->bulan_dibayar - $item->tahun_dibayar"; ?></td>
+                        <td><?= getBulan($item->bulan_dibayar) . " - $item->tahun_dibayar"; ?></td>
                         <td><?= "Rp. " . number_format($item->jumlah_bayar, 2, ',', '.'); ?></td>
                     </tr>
                 <?php endforeach ?>
@@ -53,7 +61,10 @@
 
     <script>
         window.print();
-        window.close();
+
+        window.onafterprint = function() {
+            window.close();
+        }
     </script>
 
     <!-- Bootstrap Bundle with Popper -->

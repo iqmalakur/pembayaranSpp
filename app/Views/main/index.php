@@ -49,13 +49,15 @@
 <textarea class="d-none" id="pembayaran"><?= $pembayaran; ?></textarea>
 <textarea class="d-none" id="jurusan"><?= $jurusan; ?></textarea>
 
-<div class="row justify-content-center mt-5">
+<h2 class="mt-5 mb-4 text-center">Jumlah Pembayaran</h2>
+<div class="row justify-content-center">
     <div class="col-10">
         <canvas id="lineChart"></canvas>
     </div>
 </div>
 
-<div class="row justify-content-center mt-5">
+<h2 class="mt-5 mb-4 text-center">Jumlah Pembayaran per Jurusan</h2>
+<div class="row justify-content-center">
     <div class="col-10">
         <canvas id="doughnutChart"></canvas>
     </div>

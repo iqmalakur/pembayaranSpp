@@ -123,20 +123,6 @@ class PembayaranModel extends Model
 		return $this->select('tahun_dibayar')->groupBy('tahun_dibayar')->findAll();
 	}
 
-	// Ubah petugas yang bersangkutan dengan data pembayaran menjadi admin
-	// Jika petugas yang bersangkutan dihapus
-	public function ubahPetugas($username)
-	{
-		$petugas = $this
-			->select('id_pembayaran')
-			->where('petugas', $username)
-			->findAll();
-
-		foreach ($petugas as $item) {
-			$this->update($item->id_pembayaran, ['petugas' => 'admin']);
-		}
-	}
-
 	// Data Pembayaran berdasarkan jurusan
 	public function pembayaranJurusan()
 	{

@@ -68,14 +68,14 @@ class Validation
 	public $petugas = [
 		'username' => 'required|alpha_numeric|max_length[25]',
 		'password' => 'required|max_length[32]',
-		'nama_petugas' => 'required|alpha|max_length[35]',
+		'nama_petugas' => 'required|alpha_space|max_length[35]',
 	];
 
 	// Validasi Edit Petugas
 	public $editPetugas = [
 		'username' => 'required|alpha_numeric|max_length[25]',
 		'editPassword' => 'max_length[32]',
-		'nama_petugas' => 'required|alpha|max_length[35]',
+		'nama_petugas' => 'required|alpha_space|max_length[35]',
 	];
 
 	// Validasi Siswa

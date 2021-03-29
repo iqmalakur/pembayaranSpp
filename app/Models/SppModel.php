@@ -14,7 +14,7 @@ class SppModel extends Model
 	protected $returnType           = 'object';
 	protected $useSoftDelete        = false;
 	protected $protectFields        = true;
-	protected $allowedFields        = ['angkatan', 'nominal'];
+	protected $allowedFields        = ['tahun_ajaran', 'nominal'];
 
 	// Dates
 	protected $useTimestamps        = false;
@@ -40,19 +40,19 @@ class SppModel extends Model
 	protected $beforeDelete         = [];
 	protected $afterDelete          = [];
 
-	// Validasi ubah data (menghindari tahun angkatan ganda)
+	// Validasi ubah data (menghindari tahun ajaran ganda)
 	public function cek($tahun)
 	{
-		// Cek apakah tahun angkatan telah terdaftar
-		return $this->where('angkatan', $tahun)->findAll();
+		// Cek apakah tahun ajaran telah terdaftar
+		return $this->where('tahun_ajaran', $tahun)->findAll();
 	}
 
 	public function cari($keyword)
 	{
 		return $this
-			->like('angkatan', $keyword)
+			->like('tahun_ajaran', $keyword)
 			->orLike('nominal', $keyword)
-			->orderBy('angkatan')
+			->orderBy('tahun_ajaran')
 			->paginate($this->paginationLength, 'spp');
 	}
 }

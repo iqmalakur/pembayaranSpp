@@ -69,6 +69,8 @@ class Ajax extends BaseController
 	{
 		$spp = implode("/", explode("-", $this->request->getPost('tahun')));
 
+		helper('pembayaran');
+
 		$data = [
 			'pembayaran' => $this->pembayaranModel->laporan($spp),
 			'total' => $this->pembayaranModel->getSum($spp),

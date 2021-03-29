@@ -34,7 +34,7 @@
                     <td><?= $item->nisn; ?></td>
                     <td><?= $item->nama; ?></td>
                     <td><?= $item->nama_kelas; ?></td>
-                    <td><?= "$item->bulan_dibayar - $item->tahun_dibayar"; ?></td>
+                    <td><?= getBulan($item->bulan_dibayar) . " - $item->tahun_dibayar"; ?></td>
                     <td><?= "Rp. " . number_format($item->jumlah_bayar, 2, ',', '.'); ?></td>
                 </tr>
             <?php endforeach ?>

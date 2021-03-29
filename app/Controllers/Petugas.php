@@ -172,13 +172,13 @@ class Petugas extends BaseController
 		try {
 			$this->model->delete($username);
 		} catch (\Exception $e) {
-			// Mengubah nama petugas pada pembayaran sebelum petugas dihapus
-			$pembayaranModel = new PembayaranModel();
+			$petugas = $this->model->find($username)->username;
 
-			$pembayaranModel->ubahPetugas($username);
-			$this->model->delete($username);
-
-			$this->session->setFlashdata('successInfo', 'Menghapus');
+			$this->session->setFlashdata('message', [
+				'icon' => "error",
+				'title' => "Tidak dapat menghapus data!",
+				'text' => "Petugas dengan Username $petugas masih memiliki relasi data Pembayaran"
+			]);
 
 			return redirect()->to('/petugas');
 		}

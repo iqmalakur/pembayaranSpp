@@ -44,7 +44,7 @@
     </div>
     <div class="mb-3">
         <label for="no_telp" class="form-label">No. Telepon</label>
-        <input type="text" name="no_telp" class="form-control <?= isset($errors['no_telp']) ? 'is-invalid' : ''; ?>" id="no_telp" value="<?= old('no_telp') ? old('no_telp') : ''; ?>">
+        <input type="number" name="no_telp" class="form-control <?= isset($errors['no_telp']) ? 'is-invalid' : ''; ?>" id="no_telp" value="<?= old('no_telp') ? old('no_telp') : ''; ?>">
         <div id="no_telpFeedback" class="invalid-feedback">
             <?= isset($errors['no_telp']) ? $errors['no_telp'] : ''; ?>
         </div>
@@ -53,7 +53,7 @@
         <label for="id_spp" class="form-label">SPP</label>
         <select class="form-select" id="id_spp" name="id_spp">
             <?php foreach ($spp as $item) : ?>
-                <option value="<?= $item->id_spp; ?>" <?= old('id_spp') == $item->id_spp ? 'selected' : ''; ?>><?= $item->angkatan . " | Rp " . number_format($item->nominal, 2, ',', '.'); ?></option>
+                <option value="<?= $item->id_spp; ?>" <?= old('id_spp') == $item->id_spp ? 'selected' : ''; ?>><?= $item->tahun_ajaran . " | Rp " . number_format($item->nominal, 2, ',', '.'); ?></option>
             <?php endforeach ?>
         </select>
     </div>

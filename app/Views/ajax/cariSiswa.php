@@ -4,7 +4,7 @@
         <td><?= preg_replace("/$keyword/i", "<mark>$keyword</mark>", $item->nisn); ?></td>
         <td class="text-capitalize"><?= preg_replace("/$keyword/i", "<mark>$keyword</mark>", $item->nama); ?></td>
         <td class="text-uppercase"><?= preg_replace("/$keyword/i", "<mark>$keyword</mark>", $item->nama_kelas); ?></td>
-        <td><?= preg_replace("/" . preg_replace("/\//", "\/", $keyword) . "/i", "<mark>$keyword</mark>", $item->angkatan); ?></td>
+        <td><?= preg_replace("/" . preg_replace("/\//", "\/", $keyword) . "/i", "<mark>$keyword</mark>", $item->tahun_ajaran); ?></td>
         <td>
             <a href="/siswa/detail/<?= $item->nisn; ?>" class="btn btn-success" title="Detail"><i class="bi bi-clipboard-plus"></i></a>
         </td>

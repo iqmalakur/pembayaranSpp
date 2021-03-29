@@ -1,7 +1,10 @@
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
-<h2 class="text-center">Identitas Siswa</h2>
+<?php if ($loginStatus) : ?>
+    <span class="d-none" id="login-success"></span>
+<?php endif ?>
+<h2 class="text-center mt-5 mb-4">Identitas Siswa</h2>
 <form>
     <div class="row mb-3">
         <div class="col-md-6">
@@ -32,7 +35,7 @@
         <textarea class="form-control" rows="3" disabled><?= $user->alamat; ?></textarea>
     </div>
 </form>
-<h2 class="text-center">Histori Pembayaran</h2>
+<h2 class="text-center mt-5 mb-4">Histori Pembayaran</h2>
 <table class="table table-hover table-striped table-bordered">
     <thead>
         <tr>
@@ -49,7 +52,7 @@
                 <th scope="row"><?= $index + 1; ?></th>
                 <td><?= $item->nama_petugas; ?></td>
                 <td><?= $item->tgl_bayar; ?></td>
-                <td><?= "$item->bulan_dibayar - $item->tahun_dibayar"; ?></td>
+                <td><?= getBulan($item->bulan_dibayar) . " - $item->tahun_dibayar";; ?></td>
                 <td><a href="/<?= sprintf("%03d", $item->id_pembayaran); ?>" class="btn btn-success" title="Kuitansi" target="_blank"><i class="bi bi-receipt"></i></a></td>
             </tr>
         <?php endforeach ?>

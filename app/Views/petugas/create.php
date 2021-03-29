@@ -35,7 +35,7 @@
     <div class="mb-3">
         <label for="level" class="form-label">Level</label>
         <select class="form-select" id="level" name="level">
-            <option value="admin" <?= old('level') == 'admin' ? 'selected' : ''; ?>>admin</option>
+            <option value="admin" <?= old('level') == 'admin' ? 'selected' : ''; ?> <?= $user->username !== 'admin' ? 'disabled' : ''; ?>>admin</option>
             <option value="petugas" <?= old('level') == 'petugas' ? 'selected' : ''; ?>>petugas</option>
         </select>
     </div>

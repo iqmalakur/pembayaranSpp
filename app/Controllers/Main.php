@@ -29,6 +29,8 @@ class Main extends BaseController
 
 		$kelasModel = new KelasModel();
 
+		helper('pembayaran');
+
 		$this->data['loginStatus'] = $this->session->get('success');
 
 		// Cek role login
@@ -66,7 +68,7 @@ class Main extends BaseController
 
 		$this->data['title'] = "Pembayaran Spp";
 		$this->data['bulan'] = date('M');
-		$this->data['siswa'] = $this->siswaModel->get();
+		$this->data['siswa'] = $this->siswaModel->pembayaran();
 		$this->data['sppSiswa'] = $this->session->nisn != null ? $this->siswaModel->get($this->session->nisn) : false;
 		$this->data['pembayaran'] = $this->model->getPembayaran($this->session->nisn);
 
@@ -81,7 +83,7 @@ class Main extends BaseController
 	{
 		$data = $this->request->getPost(['nisn', 'id_spp', 'bulan_dibayar', 'jumlah_bayar', 'tahun_dibayar']);
 
-		helper(['form', 'url', 'date']);
+		helper(['form', 'url', 'date', 'pembayaran']);
 		$validation = \Config\Services::validation();
 
 		// Cek Validasi (Rules ada di app/Config/validation.php)
@@ -97,10 +99,12 @@ class Main extends BaseController
 		} else {
 			// Cek apakah spp telah dibayar
 			if ($this->model->bulanSpp($data['nisn'], $data['bulan_dibayar'], $data['tahun_dibayar'])) {
+				$bulan = getBulan($data['bulan_dibayar']);
+
 				$this->session->setFlashdata('message', [
 					'icon' => "error",
 					'title' => "Tidak dapat menambahkan data!",
-					'text' => "Spp {$data['bulan_dibayar']} - {$data['tahun_dibayar']} untuk Siswa dengan NISN {$data['nisn']} telah dibayar"
+					'text' => "Spp {$bulan} - {$data['tahun_dibayar']} untuk Siswa dengan NISN {$data['nisn']} telah dibayar"
 				]);
 
 				$this->session->setFlashdata('nisn', $data['nisn']);
@@ -130,6 +134,8 @@ class Main extends BaseController
 		if ($this->session->user['role'] !== 'admin') {
 			return view('errors/html/error_404');
 		}
+
+		helper('pembayaran');
 
 		$this->data['title'] = "Laporan Pembayaran Spp";
 		$this->data['spp'] = $this->model->getTahun();
@@ -162,6 +168,8 @@ class Main extends BaseController
 	{
 		// Ubah format tahun
 		$spp = implode("/", explode("-", $tahun));
+
+		helper('pembayaran');
 
 		$data = [
 			'title' => "Laporan-Spp-Tahun-$tahun.pdf",

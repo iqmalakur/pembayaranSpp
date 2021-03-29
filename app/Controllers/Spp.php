@@ -29,7 +29,7 @@ class Spp extends BaseController
 		}
 
 		$this->data['title'] = "CRUD Data Spp";
-		$this->data['spp'] = $this->model->orderBy('angkatan')->paginate($this->paginationLength, 'spp');
+		$this->data['spp'] = $this->model->orderBy('tahun_ajaran', 'DESC')->paginate($this->paginationLength, 'spp');
 		$this->data['count'] = $this->model->countAll();
 		$this->data['pager'] = $this->model->pager;
 		$this->data['number'] = $this->paginationLength * ($page - 1);
@@ -67,15 +67,15 @@ class Spp extends BaseController
 			// Kembali ke form tambah spp dan mengirimkan input sebelumnya
 			return redirect()->to('/spp/add')->withInput();
 		} else {
-			// Membuat format tahun angkatan dari input tahun dan tahun2
-			$data['angkatan'] = $this->request->getPost('tahun') . '/' . $this->request->getPost('tahun2');
+			// Membuat format tahun tahun ajaran dari input tahun dan tahun2
+			$data['tahun_ajaran'] = $this->request->getPost('tahun') . '/' . $this->request->getPost('tahun2');
 
-			// Cek apakah tahun angkatan telah terdaftar
-			if ($this->model->cek($data['angkatan'])) {
+			// Cek apakah tahun tahun ajaran telah terdaftar
+			if ($this->model->cek($data['tahun_ajaran'])) {
 				$this->session->setFlashdata('message', [
 					'icon' => "error",
 					'title' => "Tidak dapat menambahkan data!",
-					'text' => "SPP untuk tahun ajaran {$data['angkatan']} telah ada!"
+					'text' => "SPP untuk tahun ajaran {$data['tahun_ajaran']} telah ada!"
 				]);
 
 				// Kembali ke form tambah spp dan mengirimkan input sebelumnya
@@ -110,7 +110,7 @@ class Spp extends BaseController
 	public function update()
 	{
 		$data = $this->request->getPost(["id_spp", "tahun", "nominal"]);
-		$data['angkatan'] = $data['tahun'];
+		$data['tahun_ajaran'] = $data['tahun'];
 
 		helper(['form', 'url']);
 		$validation = \Config\Services::validation();
@@ -135,12 +135,12 @@ class Spp extends BaseController
 		try {
 			$this->model->delete($id);
 		} catch (\Exception $e) {
-			$spp = $this->model->find($id)->angkatan;
+			$spp = $this->model->find($id)->tahun_ajaran;
 
 			$this->session->setFlashdata('message', [
 				'icon' => "error",
 				'title' => "Tidak dapat menghapus data!",
-				'text' => "Spp untuk angkatan $spp masih memiliki relasi data Siswa dan Pembayaran"
+				'text' => "Spp untuk tahun_ajaran $spp masih memiliki relasi data Siswa dan Pembayaran"
 			]);
 
 			return redirect()->to('/spp');

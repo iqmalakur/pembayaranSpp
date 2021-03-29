@@ -16,7 +16,7 @@ class Kelas extends BaseController
 		$this->model = new KelasModel();
 
 		$jurusanModel = new JurusanModel();
-		$this->jurusan = $jurusanModel->findAll();
+		$this->jurusan = $jurusanModel->orderBy('nama_jurusan')->findAll();
 	}
 
 	public function index()

@@ -34,7 +34,7 @@
     </div>
     <div class="mb-3">
         <label for="pembayaran-tahun" class="form-label">Tahun Dibayar</label>
-        <input type="text" class="form-control" id="pembayaran-tahun" placeholder="Terisi otomatis" name="tahun_dibayar" readonly value="<?= $sppSiswa ? $sppSiswa->angkatan : ''; ?>">
+        <input type="text" class="form-control" id="pembayaran-tahun" placeholder="Terisi otomatis" name="tahun_dibayar" readonly value="<?= $sppSiswa ? $sppSiswa->tahun_ajaran : ''; ?>">
     </div>
     <div class="mb-3">
         <label class="form-label">Jumlah Bayar</label>
@@ -105,7 +105,7 @@
                                 <td><?= $item->nisn; ?></td>
                                 <td><?= $item->nama; ?></td>
                                 <td><?= $item->nama_kelas; ?></td>
-                                <td><?= $item->angkatan; ?></td>
+                                <td><?= $item->tahun_ajaran; ?></td>
                             </tr>
                         <?php endforeach ?>
                     </tbody>

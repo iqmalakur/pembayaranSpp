@@ -55,7 +55,7 @@ function cariSiswa(siswa) {
             $("#pembayaran-siswa").val(siswa.nisn);
             $("#pembayaran-siswa-info").val(siswa.nama + " - " + siswa.nama_kelas);
             $("#pembayaran-spp").val(siswa.id_spp);
-            $("#pembayaran-tahun").val(siswa.angkatan);
+            $("#pembayaran-tahun").val(siswa.tahun_ajaran);
             $("#pembayaran-jumlah").val(siswa.nominal);
 
             // Mengisi data pembayaran siswa

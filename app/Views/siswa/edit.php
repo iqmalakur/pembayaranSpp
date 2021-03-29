@@ -40,14 +40,14 @@
     </div>
     <div class="mb-3">
         <label for="no_telp" class="form-label">No. Telepon</label>
-        <input type="text" name="no_telp" class="form-control <?= isset($errors['no_telp']) ? 'is-invalid' : ''; ?>" id="no_telp" value="<?= old('no_telp') ? old('no_telp') : $siswa->no_telp; ?>">
+        <input type="number" name="no_telp" class="form-control <?= isset($errors['no_telp']) ? 'is-invalid' : ''; ?>" id="no_telp" value="<?= old('no_telp') ? old('no_telp') : $siswa->no_telp; ?>">
         <div id="no_telpFeedback" class="invalid-feedback">
             <?= isset($errors['no_telp']) ? $errors['no_telp'] : ''; ?>
         </div>
     </div>
     <div class="mb-3">
         <label class="form-label">SPP</label>
-        <input type="text" class="form-control" value="<?= $spp->angkatan . " | Rp " . number_format($spp->nominal, 2, ',', '.'); ?>" readonly>
+        <input type="text" class="form-control" value="<?= $spp->tahun_ajaran . " | Rp " . number_format($spp->nominal, 2, ',', '.'); ?>" readonly>
     </div>
     <button type="submit" class="btn btn-success">Ubah</button>
     <a href="/siswa" class="btn btn-warning"><i class="bi bi-arrow-return-left"></i> Kembali</a>

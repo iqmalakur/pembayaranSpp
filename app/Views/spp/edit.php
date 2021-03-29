@@ -6,8 +6,8 @@
     <?= csrf_field(); ?>
     <input type="hidden" name="id_spp" value="<?= $spp->id_spp; ?>">
     <div class="mb-3">
-        <label class="form-label">Angkatan</label>
-        <input type="text" value="<?= $spp->angkatan; ?>" name="tahun" class="form-control" readonly>
+        <label class="form-label">Tahun Ajaran</label>
+        <input type="text" value="<?= $spp->tahun_ajaran; ?>" name="tahun" class="form-control" readonly>
     </div>
     <div class=" mb-3">
         <label for="nominal" class="form-label">Nominal</label>

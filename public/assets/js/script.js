@@ -9,8 +9,8 @@ $(window).resize(sidebarTop);
 $("#content aside span i").click(sidebar);
 
 // Event untuk mendeteksi shortcut sidebar (ctrl + ;)
-$(document).keydown(function (event) {
-    if (event.ctrlKey && event.keyCode == 59 && !event.shiftKey && !event.altKey) {
+$(document).on("keydown", function (event) {
+    if (event.ctrlKey && event.key == ";" && !event.shiftKey && !event.altKey) {
         sidebar();
     }
 });

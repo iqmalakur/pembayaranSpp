@@ -19,10 +19,12 @@ function sidebar() {
     if (window.innerWidth <= 768) {
         let height = window.innerWidth <= 400 ? 50 : 64;
         $("#content aside span").toggleClass("expand");
-        $("#content aside span").hasClass("expand") ? $("aside#sidebar").css("height", "354px") : $("aside#sidebar").css("height", height + "px");
+        $("#content aside nav").css("top", "0");
+        $("#content aside span").hasClass("expand") ? $("aside#sidebar").css("height", "100vh") : $("aside#sidebar").css("height", height + "px");
     } else {
         $("#content aside span").toggleClass("aktif");
         $("aside").toggleClass("sidebar-collapse");
+        $("#content aside nav").css("top", "5rem");
 
         setTimeout(
             () => {
@@ -56,6 +58,7 @@ function sidebarTop() {
         $("aside#sidebar").css("height", height + "px");
         $("aside nav").removeClass("px-2");
         $(".login-container").removeClass("container");
+        $("#content aside nav").css("top", "0");
 
         if ($("aside").hasClass("sidebar-collapse")) {
             $(".list-text").removeClass("d-none");
@@ -66,6 +69,7 @@ function sidebarTop() {
         $("aside nav").addClass("px-2");
         $(".login-container").addClass("container");
         $("#content aside span").removeClass("expand");
+        $("#content aside nav").css("top", "5rem");
 
         if ($("aside").hasClass("sidebar-collapse")) {
             $(".list-text").addClass("d-none");

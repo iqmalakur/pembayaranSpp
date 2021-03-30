@@ -80,7 +80,7 @@
         margin-top: 0.23rem;
     }
 
-    canvas {
+    #diagram {
         display: none !important;
     }
 }

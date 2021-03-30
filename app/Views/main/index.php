@@ -49,17 +49,19 @@
 <textarea class="d-none" id="pembayaran"><?= $pembayaran; ?></textarea>
 <textarea class="d-none" id="jurusan"><?= $jurusan; ?></textarea>
 
-<h2 class="mt-5 mb-4 text-center">Jumlah Pembayaran</h2>
-<div class="row justify-content-center">
-    <div class="col-10">
-        <canvas id="lineChart"></canvas>
+<div id="diagram">
+    <h2 class="mt-5 mb-4 text-center">Jumlah Pembayaran</h2>
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <canvas id="lineChart"></canvas>
+        </div>
     </div>
-</div>
 
-<h2 class="mt-5 mb-4 text-center">Jumlah Pembayaran per Jurusan</h2>
-<div class="row justify-content-center">
-    <div class="col-10">
-        <canvas id="doughnutChart"></canvas>
+    <h2 class="mt-5 mb-4 text-center">Jumlah Pembayaran per Jurusan</h2>
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <canvas id="doughnutChart"></canvas>
+        </div>
     </div>
 </div>
 <?= $this->endSection(); ?>

@@ -6,7 +6,7 @@
         <td class="text-uppercase"><?= preg_replace("/$keyword/i", "<mark>$keyword</mark>", $item->nama_kelas); ?></td>
         <td><?= preg_replace("/" . preg_replace("/\//", "\/", $keyword) . "/i", "<mark>$keyword</mark>", $item->tahun_ajaran); ?></td>
         <td>
-            <a href="/siswa/detail/<?= $item->nisn; ?>" class="btn btn-success" title="Detail"><i class="bi bi-clipboard-plus"></i></a>
+            <a href="/siswa/detail/<?= $item->nisn; ?>" class="btn btn-success" title="Detail"><i class="bi bi-eye"></i></a>
         </td>
     </tr>
 <?php endforeach ?>

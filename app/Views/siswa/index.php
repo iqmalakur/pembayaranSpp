@@ -26,7 +26,7 @@
                 <td><?= $item->nama_kelas; ?></td>
                 <td><?= $item->tahun_ajaran; ?></td>
                 <td>
-                    <a href="/siswa/detail/<?= $item->nisn; ?>" class="btn btn-success" title="Detail"><i class="bi bi-clipboard-plus"></i></a>
+                    <a href="/siswa/detail/<?= $item->nisn; ?>" class="btn btn-success" title="Detail"><i class="bi bi-eye"></i></a>
                 </td>
             </tr>
         <?php endforeach ?>

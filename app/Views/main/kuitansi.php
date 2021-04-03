@@ -78,7 +78,7 @@
             </div>
             <h6 class="ps-2 fw-bold">Keterangan</h6>
             <div class="rounded border border-2 border-secondary p-2 d-flex justify-content-between">
-                <span>Pembayaran Spp Bulan <?= $pembayaran->bulan_dibayar; ?> Tahun Ajaran <?= $pembayaran->tahun_dibayar; ?></span>
+                <span>Pembayaran Spp Bulan <?= getBulan($pembayaran->bulan_dibayar); ?> Tahun Ajaran <?= $pembayaran->tahun_dibayar; ?></span>
                 <span>Total: <?= "Rp. " . number_format($pembayaran->jumlah_bayar, 2, ',', '.'); ?></span>
             </div>
             <footer class="d-flex justify-content-between px-2 pt-3">

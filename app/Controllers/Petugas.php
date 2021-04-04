@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\PembayaranModel;
 use App\Models\PetugasModel;
 
 class Petugas extends BaseController
@@ -158,6 +157,9 @@ class Petugas extends BaseController
 
 			// Mengubah nama petugas menjadi huruf kapital
 			$data['nama_petugas'] = ucwords($data['nama_petugas']);
+			if ($data['level'] == null) {
+				$data['level'] = $this->user->level;
+			}
 
 			$this->model->save($data);
 
@@ -169,9 +171,7 @@ class Petugas extends BaseController
 
 	public function delete($username)
 	{
-		try {
-			$this->model->delete($username);
-		} catch (\Exception $e) {
+		if ($this->model->cekHapus($username)) {
 			$petugas = $this->model->find($username)->username;
 
 			$this->session->setFlashdata('message', [
@@ -179,11 +179,11 @@ class Petugas extends BaseController
 				'title' => "Tidak dapat menghapus data!",
 				'text' => "Petugas dengan Username $petugas masih memiliki relasi data Pembayaran"
 			]);
+		} else {
+			$this->model->delete($username);
 
-			return redirect()->to('/petugas');
+			$this->session->setFlashdata('successInfo', 'Menghapus');
 		}
-
-		$this->session->setFlashdata('successInfo', 'Menghapus');
 
 		return redirect()->to('/petugas');
 	}

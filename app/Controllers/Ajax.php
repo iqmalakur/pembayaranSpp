@@ -31,21 +31,27 @@ class Ajax extends BaseController
 
 	// AJAX cari siswa pada entri pembayaran spp
 	// =========================================
-	public function pembayaran()
+	public function pembayaran($keyword)
 	{
-		$keyword = $this->request->getPost("keyword");
+		if ($keyword == "-1") {
+			$keyword = "";
+		}
+
 		return view(
 			'ajax/pembayaran',
 			[
-				'siswa' => $this->siswaModel->cari($keyword),
+				'siswa' => $this->siswaModel->pembayaran($keyword),
 				'keyword' => $keyword,
 			]
 		);
 	}
 
-	public function siswa()
+	public function siswa($nisn)
 	{
-		$nisn = $this->request->getPost("nisn");
+		if ($nisn == "-1") {
+			$nisn = "";
+		}
+
 		$data = ['siswa' => $this->pembayaranModel->getPembayaran($nisn)];
 
 		helper('pembayaran');
@@ -57,17 +63,25 @@ class Ajax extends BaseController
 		return view('ajax/siswa', $data);
 	}
 
-	public function dataSiswa()
+	public function dataSiswa($nisn)
 	{
-		$siswa = $this->siswaModel->get($this->request->getPost("nisn"));
+		if ($nisn == "-1") {
+			$nisn = "";
+		}
+
+		$siswa = $this->siswaModel->get($nisn);
 		return json_encode($siswa);
 	}
 	// =========================================
 
 	// AJAX data pembayaran pada halaman laporan
-	public function laporan()
+	public function laporan($tahun)
 	{
-		$spp = implode("/", explode("-", $this->request->getPost('tahun')));
+		if ($tahun == "-1") {
+			$tahun = "";
+		}
+
+		$spp = implode("/", explode("-", $tahun));
 
 		helper('pembayaran');
 
@@ -86,68 +100,78 @@ class Ajax extends BaseController
 	}
 
 	// Searching
-	public function cariJurusan()
+	public function cariJurusan($keyword)
 	{
+		if ($keyword == "-1") {
+			$keyword = "";
+		}
+
 		return view(
 			"ajax/cariJurusan",
 			[
-				'jurusan' => $this->jurusanModel->cari(
-					$this->request->getPost('keyword')
-				),
-				'keyword' => $this->request->getPost('keyword')
+				'jurusan' => $this->jurusanModel->cari($keyword),
+				'keyword' => $keyword
 			]
 		);
 	}
 
-	public function cariKelas()
+	public function cariKelas($keyword)
 	{
+		if ($keyword == "-1") {
+			$keyword = "";
+		}
+
 		return view(
 			"ajax/cariKelas",
 			[
-				'kelas' => $this->kelasModel->cari(
-					$this->request->getPost('keyword')
-				),
-				'keyword' => $this->request->getPost('keyword')
+				'kelas' => $this->kelasModel->cari($keyword),
+				'keyword' => $keyword
 			]
 		);
 	}
 
-	public function cariSpp()
+	public function cariSpp($keyword)
 	{
+		if ($keyword == "-1") {
+			$keyword = "";
+		}
+
 		return view(
 			"ajax/cariSpp",
 			[
-				'spp' => $this->sppModel->cari(
-					$this->request->getPost('keyword')
-				),
-				'keyword' => $this->request->getPost('keyword')
+				'spp' => $this->sppModel->cari($keyword),
+				'keyword' => $keyword
 			]
 		);
 	}
 
-	public function cariPetugas()
+	public function cariPetugas($keyword)
 	{
+		if ($keyword == "-1") {
+			$keyword = "";
+		}
+
 		return view(
 			"ajax/cariPetugas",
 			[
-				'petugas' => $this->petugasModel->cari(
-					$this->request->getPost('keyword')
-				),
+				'petugas' => $this->petugasModel->cari($keyword),
 				'user' => $this->user,
-				'keyword' => $this->request->getPost('keyword')
+				'keyword' => $keyword
 			]
 		);
 	}
 
-	public function cariSiswa()
+	public function cariSiswa($keyword)
 	{
+		if ($keyword == "-1") {
+			$keyword = "";
+		}
+
 		return view(
 			"ajax/cariSiswa",
 			[
-				'siswa' => $this->siswaModel->cari(
-					$this->request->getPost('keyword')
-				),
-				'keyword' => $this->request->getPost('keyword')
+				'siswa' => $this->siswaModel->cari($keyword),
+				'keyword' => $keyword
 			]
 		);
 	}

@@ -22,11 +22,16 @@ $("#cari-siswa").on("keyup", function (e) {
             cariSiswa($("#container-cari").children()[0].children[1].innerHTML);
         }
     } else {
+        let data = this.value;
+
+        if (data == "") {
+            data = "-1";
+        }
+
         // Mengambil data siswa
         $.ajax({
-            url: "/ajaxPembayaran/",
-            type: "POST",
-            data: { keyword: this.value },
+            url: "/ajaxPembayaran/" + data,
+            type: "GET",
             success: function (result) {
                 $("#container-cari").html(result);
 
@@ -45,10 +50,15 @@ $(".data-siswa").click(function () {
 });
 
 function cariSiswa(siswa) {
+    let data = siswa;
+
+    if (data == "") {
+        data = "-1";
+    }
+
     $.ajax({
-        url: "/getSiswa/",
-        type: "POST",
-        data: { nisn: siswa },
+        url: "/getSiswa/" + data,
+        type: "GET",
         dataType: "json",
         success: function (siswa) {
             // Mengisi form secara otomatis sesuai data siswa
@@ -58,11 +68,16 @@ function cariSiswa(siswa) {
             $("#pembayaran-tahun").val(siswa.tahun_ajaran);
             $("#pembayaran-jumlah").val(siswa.nominal);
 
+            let data = siswa.nisn;
+
+            if (data == "") {
+                data = "-1";
+            }
+
             // Mengisi data pembayaran siswa
             $.ajax({
-                url: "/ajaxSiswa/",
-                type: "POST",
-                data: { nisn: siswa.nisn },
+                url: "/ajaxSiswa/" + data,
+                type: "GET",
                 success: function (result) {
                     $("tbody#data-pembayaran").html(result);
                 },
@@ -77,10 +92,15 @@ function cariSiswa(siswa) {
 
 // Event saat tahun laporan diganti
 $("#filter-laporan").change(function () {
+    let data = $(this).val();
+
+    if (data == "") {
+        data = "-1";
+    }
+
     $.ajax({
-        url: "/ajaxLaporan/",
-        type: "POST",
-        data: { tahun: $(this).val() },
+        url: "/ajaxLaporan/" + data,
+        type: "GET",
         success: function (result) {
             $("tbody#container-cari").html(result);
 
@@ -92,38 +112,50 @@ $("#filter-laporan").change(function () {
 
 // AJAX cari data
 // ================================================
-$("input#search-jurusan").on("keyup", function () {
-    search("/cariJurusan/", $(this));
+$("input#search-jurusan").on("keyup", function (event) {
+    if (!event.ctrlKey && !event.altKey && !event.shiftKey) {
+        search("/cariJurusan/", $(this));
+    }
 });
 
-$("input#search-kelas").on("keyup", function () {
-    search("/cariKelas/", $(this));
+$("input#search-kelas").on("keyup", function (event) {
+    if (!event.ctrlKey && !event.altKey && !event.shiftKey) {
+        search("/cariKelas/", $(this));
+    }
 });
 
-$("input#search-spp").on("keyup", function () {
-    search("/cariSpp/", $(this));
+$("input#search-spp").on("keyup", function (event) {
+    if (!event.ctrlKey && !event.altKey && !event.shiftKey) {
+        search("/cariSpp/", $(this));
+    }
 });
 
-$("input#search-petugas").on("keyup", function () {
-    search("/cariPetugas/", $(this));
+$("input#search-petugas").on("keyup", function (event) {
+    if (!event.ctrlKey && !event.altKey && !event.shiftKey) {
+        search("/cariPetugas/", $(this));
+    }
 });
 
-$("input#search-siswa").on("keyup", function () {
-    search("/cariSiswa/", $(this));
+$("input#search-siswa").on("keyup", function (event) {
+    if (!event.ctrlKey && !event.altKey && !event.shiftKey) {
+        search("/cariSiswa/", $(this));
+    }
 });
 
 function search(url, input) {
-    $.ajax({
-        url: url,
-        type: "POST",
-        data: { keyword: input.val() },
-        success: function (result) {
-            if (input.val() == "") {
-                $("#pagination").removeClass("d-none");
-            } else {
-                $("#pagination").addClass("d-none");
-            }
+    let keyword = input.val();
 
+    if (keyword == "") {
+        keyword = "-1";
+        $("#pagination").removeClass("d-none");
+    } else {
+        $("#pagination").addClass("d-none");
+    }
+
+    $.ajax({
+        url: url + keyword,
+        type: "GET",
+        success: function (result) {
             $("tbody#container-cari").html(result);
 
             // Konfirmasi Hapus Data

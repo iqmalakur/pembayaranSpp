@@ -55,4 +55,15 @@ class SppModel extends Model
 			->orderBy('tahun_ajaran')
 			->paginate($this->paginationLength, 'spp');
 	}
+
+	// Cek apakah data memiliki relasi siswa atau pembayaran
+	public function cekHapus($id)
+	{
+		if ($this->builder('siswa')->where('id_spp', $id)->get()->getResultObject()) {
+			if ($this->builder('pembayaran')->where('id_spp', $id)->get()->getResultObject()) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

@@ -71,4 +71,10 @@ class KelasModel extends Model
 			->orderBy('nama_kelas')
 			->paginate($this->paginationLength, 'kelas');
 	}
+
+	// Cek apakah data memiliki relasi siswa
+	public function cekHapus($id)
+	{
+		return $this->builder('siswa')->where('id_kelas', $id)->get()->getResultObject();
+	}
 }

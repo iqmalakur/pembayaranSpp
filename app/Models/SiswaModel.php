@@ -64,8 +64,21 @@ class SiswaModel extends Model
 			->paginate($this->paginationLength, 'siswa');
 	}
 
-	public function pembayaran()
+	public function pembayaran($keyword = false)
 	{
+		if ($keyword) {
+			return $this
+				->select('nisn, nama, kelas.nama_kelas, spp.tahun_ajaran')
+				->join('kelas', 'siswa.id_kelas=kelas.id_kelas')
+				->join('spp', 'siswa.id_spp=spp.id_spp')
+				->like('nisn', $keyword)
+				->orLike('tahun_ajaran', $keyword)
+				->orLike('nama', $keyword)
+				->orLike('nama_kelas', $keyword)
+				->orderBy('nama')
+				->findAll();
+		}
+
 		return $this
 			->select('siswa.nisn, siswa.nama, kelas.nama_kelas, spp.tahun_ajaran')
 			->join('kelas', 'siswa.id_kelas=kelas.id_kelas')
@@ -105,5 +118,11 @@ class SiswaModel extends Model
 			->orLike('nama_kelas', $keyword)
 			->orderBy('nama')
 			->paginate($this->paginationLength, 'siswa');
+	}
+
+	// Cek apakah data memiliki relasi pembayaran
+	public function cekHapus($nisn)
+	{
+		return $this->builder('pembayaran')->where('nisn', $nisn)->get()->getResultObject();
 	}
 }

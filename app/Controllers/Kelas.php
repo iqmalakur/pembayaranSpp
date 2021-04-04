@@ -154,9 +154,7 @@ class Kelas extends BaseController
 
 	public function delete($id)
 	{
-		try {
-			$this->model->delete($id);
-		} catch (\Exception $e) {
+		if ($this->model->cekHapus($id)) {
 			$kelas = $this->model->find($id)->nama_kelas;
 
 			$this->session->setFlashdata('message', [
@@ -164,11 +162,11 @@ class Kelas extends BaseController
 				'title' => "Tidak dapat menghapus data!",
 				'text' => "Kelas $kelas masih memiliki relasi data  Siswa"
 			]);
+		} else {
+			$this->model->delete($id);
 
-			return redirect()->to('/kelas');
+			$this->session->setFlashdata('successInfo', 'Menghapus');
 		}
-
-		$this->session->setFlashdata('successInfo', 'Menghapus');
 
 		return redirect()->to('/kelas');
 	}

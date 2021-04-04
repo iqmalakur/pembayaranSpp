@@ -166,9 +166,7 @@ class Siswa extends BaseController
 
 	public function delete($nisn)
 	{
-		try {
-			$this->model->delete($nisn);
-		} catch (\Exception $e) {
+		if ($this->model->cekHapus($nisn)) {
 			$siswa = $this->model->find($nisn)->nisn;
 
 			$this->session->setFlashdata('message', [
@@ -176,11 +174,11 @@ class Siswa extends BaseController
 				'title' => "Tidak dapat menghapus data!",
 				'text' => "Siswa dengan NISN $siswa masih memiliki relasi data Pembayaran"
 			]);
+		} else {
+			$this->model->delete($nisn);
 
-			return redirect()->to('/siswa');
+			$this->session->setFlashdata('successInfo', 'Menghapus');
 		}
-
-		$this->session->setFlashdata('successInfo', 'Menghapus');
 
 		return redirect()->to('/siswa');
 	}

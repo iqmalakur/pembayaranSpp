@@ -55,4 +55,10 @@ class JurusanModel extends Model
 			->orderBy('nama_jurusan')
 			->paginate($this->paginationLength, 'jurusan');
 	}
+
+	// Cek apakah data memiliki relasi kelas
+	public function cekHapus($id)
+	{
+		return $this->builder('kelas')->where('kompetensi_keahlian', $id)->get()->getResultObject();
+	}
 }

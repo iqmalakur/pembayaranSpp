@@ -86,18 +86,18 @@ $routes->post('/petugas/update', 'Petugas::update');
 $routes->delete('/petugas/delete/(:segment)', 'Petugas::delete/$1');
 
 // AJAX
-$routes->post('/cariJurusan', 'Ajax::cariJurusan');
-$routes->post('/cariKelas', 'Ajax::cariKelas');
-$routes->post('/cariSpp', 'Ajax::cariSpp');
-$routes->post('/cariPetugas', 'Ajax::cariPetugas');
-$routes->post('/cariSiswa', 'Ajax::cariSiswa');
-$routes->post('/ajaxPembayaran', 'Ajax::pembayaran');
-$routes->post('/ajaxSiswa', 'Ajax::siswa');
-$routes->post('/ajaxLaporan', 'Ajax::laporan');
-$routes->post('/getSiswa', 'Ajax::dataSiswa');
+$routes->get('/cariJurusan/(:any)', 'Ajax::cariJurusan/$1');
+$routes->get('/cariKelas/(:any)', 'Ajax::cariKelas/$1');
+$routes->get('/cariSpp/(:any)', 'Ajax::cariSpp/$1');
+$routes->get('/cariPetugas/(:any)', 'Ajax::cariPetugas/$1');
+$routes->get('/cariSiswa/(:any)', 'Ajax::cariSiswa/$1');
+$routes->get('/ajaxPembayaran/(:any)', 'Ajax::pembayaran/$1');
+$routes->get('/ajaxSiswa/(:any)', 'Ajax::siswa/$1');
+$routes->get('/ajaxLaporan/(:any)', 'Ajax::laporan/$1');
+$routes->get('/getSiswa/(:any)', 'Ajax::dataSiswa/$1');
 $routes->post('/sidebar', 'Ajax::sidebar');
 
-// Kuitansi atau Bukti Pembayaran
+// Kuitansi
 $routes->get('/(:any)', 'Main::kuitansi/$1');
 
 /*

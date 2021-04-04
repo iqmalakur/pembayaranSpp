@@ -67,4 +67,10 @@ class PetugasModel extends Model
 			->orderBy('nama_petugas')
 			->paginate($this->paginationLength, 'petugas');
 	}
+
+	// Cek apakah data memiliki relasi pembayaran
+	public function cekHapus($username)
+	{
+		return $this->builder('pembayaran')->where('petugas', $username)->get()->getResultObject();
+	}
 }

@@ -1,5 +1,5 @@
 <?php foreach ($siswa as $index => $item) : ?>
-    <tr class="data-siswa" style="cursor: pointer;">
+    <tr class="data-siswa" style="cursor: pointer;" data-nisn="<?= $item->nisn; ?>">
         <th scope="row"><?= $index + 1; ?></th>
         <td><?= preg_replace("/$keyword/i", "<mark>$keyword</mark>", $item->nisn); ?></td>
         <td class="text-capitalize"><?= preg_replace("/$keyword/i", "<mark>$keyword</mark>", $item->nama); ?></td>

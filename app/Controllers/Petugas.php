@@ -95,6 +95,19 @@ class Petugas extends BaseController
 			$data['nama_petugas'] = ucwords($data['nama_petugas']);
 			$data['password'] = password_hash($password['password'], PASSWORD_DEFAULT);
 
+			if ($data['level'] == 'admin') {
+				if ($this->model->where("level", "admin")->countAllResults() >= 3) {
+					$this->session->setFlashdata('message', [
+						'icon' => "error",
+						'title' => "Tidak dapat menambahkan data!",
+						'text' => "Level Admin telah mencapai batas!"
+					]);
+
+					// Kembali ke form tambah petugas dan mengirimkan input sebelumnya
+					return redirect()->to('/petugas/add')->withInput();
+				}
+			}
+
 			$this->model->save($data);
 
 			$this->session->setFlashdata('successInfo', 'Menambahkan');
@@ -159,6 +172,19 @@ class Petugas extends BaseController
 			$data['nama_petugas'] = ucwords($data['nama_petugas']);
 			if ($data['level'] == null) {
 				$data['level'] = $this->user->level;
+			}
+
+			if ($data['level'] == 'admin') {
+				if ($this->model->where("level", "admin")->countAllResults() >= 3) {
+					$this->session->setFlashdata('message', [
+						'icon' => "error",
+						'title' => "Tidak dapat menambahkan data!",
+						'text' => "Level Admin telah mencapai batas!"
+					]);
+
+					// Kembali ke form tambah petugas dan mengirimkan input sebelumnya
+					return redirect()->to('/petugas/add')->withInput();
+				}
 			}
 
 			$this->model->save($data);

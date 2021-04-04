@@ -100,7 +100,7 @@
                     </thead>
                     <tbody id="container-cari">
                         <?php foreach ($siswa as $index => $item) : ?>
-                            <tr class="data-siswa" style="cursor: pointer;">
+                            <tr class="data-siswa" style="cursor: pointer;" data-nisn="<?= $item->nisn; ?>">
                                 <th scope="row"><?= $index + 1; ?></th>
                                 <td><?= $item->nisn; ?></td>
                                 <td><?= $item->nama; ?></td>

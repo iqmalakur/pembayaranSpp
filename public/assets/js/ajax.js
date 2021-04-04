@@ -19,7 +19,7 @@ $("#cari-siswa").on("keyup", function (e) {
     if (e.keyCode === 13) {
         // Memilih Siswa yang berada pada urutan teratas
         if ($("#container-cari").children().length !== 0) {
-            cariSiswa($("#container-cari").children()[0].children[1].innerHTML);
+            cariSiswa($($("#container-cari").children()[0]).data("nisn"));
         }
     } else {
         let data = this.value;
@@ -37,7 +37,7 @@ $("#cari-siswa").on("keyup", function (e) {
 
                 // Event jika data siswa pada modal entri pembayaran di-klik
                 $(".data-siswa").click(function () {
-                    cariSiswa($(this).children()[1].innerHTML);
+                    cariSiswa($(this).data("nisn"));
                 });
             },
         });
@@ -46,7 +46,7 @@ $("#cari-siswa").on("keyup", function (e) {
 
 // Event jika data siswa pada modal entri pembayaran di-klik
 $(".data-siswa").click(function () {
-    cariSiswa($(this).children()[1].innerHTML);
+    cariSiswa($(this).data("nisn"));
 });
 
 function cariSiswa(siswa) {
